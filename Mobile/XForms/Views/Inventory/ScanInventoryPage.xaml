@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Base:BasePage
+    xmlns:Base="clr-namespace:XForms.Views"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:FF="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:cc="clr-namespace:XForms.Controls"
+        xmlns:res="clr-namespace:XForms.Resources"
+
+    xmlns:shared="clr-namespace:XForms.Views.SharedViews"
+    xmlns:behavior="clr-namespace:XForms.Behaviors"
+    HasNavigationBar="False"
+    x:Name="this"
+    Padding="0"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    x:Class="XForms.Views.Inventory.ScanInventoryPage">
+    <Base:BaseContent>
+
+        <Grid
+            VerticalOptions="FillAndExpand">
+
+            <!--Background-->
+            <BoxView
+                Grid.Row="0"
+                Style="{StaticResource GradientNavStyle}">
+                <BoxView.Background>
+                    <LinearGradientBrush
+                        StartPoint="0,0"
+                        EndPoint="0,1">
+                        <GradientStop
+                            Color="{StaticResource StartGradient}"
+                            Offset="0.1" />
+                        <GradientStop
+                            Color="{StaticResource EndGradient}"
+                            Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
+
+            <Grid
+                RowSpacing="10"
+                VerticalOptions="FillAndExpand"
+                RowDefinitions="Auto,*">
+
+                <!--Style="{StaticResource MainGridStyle}"-->
+                <Grid
+                    Grid.Row="0"
+                    Style="{StaticResource MainGridStyle}"
+                    ColumnDefinitions="*,Auto">
+
+                <!--NavBar-->
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="5,0,0,0"
+                    FontSize="14" 
+                    TextColor="White"
+                    Text="{Binding SelectedInventory.Inventory.number, StringFormat='N° inventaire {0}'}"
+                    />
+                    
+                    <cc:CustomButton
+                        Grid.Column="1"
+                        BackgroundColor="Transparent"
+                        HeightRequest="45"
+                        WidthRequest="45"
+                        Padding="25"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="EndAndExpand"
+                        Visual="Default"
+                        StyleCorner="Circle"
+                        Command="{Binding ConfirmCreateInventaryCommand}">
+                        <cc:CustomButton.ImageSource>
+                            <FontImageSource
+                                FontFamily="{x:Static res:FontAwesomeFonts.FontFamilySolid}"
+                                Glyph="{x:Static res:FontAwesomeFonts.WindowClose}"
+                                Color="{StaticResource White}"
+                                Size="20" />
+                        </cc:CustomButton.ImageSource>
+                    </cc:CustomButton>
+
+                    <!--Dlc Produit-->
+                    <Grid   Grid.Column="1" TranslationX="-60" IsVisible="{Binding ISVisibleCount}">
+                        <cc:CustomButton BackgroundColor="Transparent" HeightRequest="45" WidthRequest="45"
+                                         Padding="25" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"
+                                         Visual="Default" StyleCorner="Circle" Command="{Binding CanSendOfflineProduitCommand}">
+                            <cc:CustomButton.ImageSource >
+                                <FontImageSource FontFamily="{x:Static res:FontAwesomeFonts.FontFamilySolid}"
+                                                 Glyph="{x:Static res:FontAwesomeFonts.Percent}"
+                                                 Color="{StaticResource White}" Size="20" />
+                            </cc:CustomButton.ImageSource>
+                        </cc:CustomButton>
+
+                        <cc:PressableView Command="{Binding CanSendOfflineProduitCommand}">
+                            <cc:CornerView TranslationY="-2" TranslationX="2" BackgroundColor="{StaticResource StartGradient}"
+                                           VerticalOptions="Start" HorizontalOptions="End" StyleCorner="Circle" Padding="2">
+
+                                <cc:CornerView Padding="3" BackgroundColor="{StaticResource GreenStatut}">
+                                    <Label Text="{Binding Count,Mode=TwoWay}" TextColor="{StaticResource White}" LineBreakMode="TailTruncation"
+                                           HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center" FontSize="12" />
+                                </cc:CornerView>
+                            </cc:CornerView>
+                        </cc:PressableView>
+                    </Grid>
+
+                </Grid>
+                 
+
+                <Grid
+                    Grid.Row="1"
+                    RowSpacing="0"
+                    RowDefinitions="35,Auto,*">
+                    <Grid
+                        Grid.Row="1"
+                        Grid.RowSpan="2"
+                        RowSpacing="20"
+                        VerticalOptions="FillAndExpand"
+                        RowDefinitions="*">
+
+                        <!--Corner Background-->
+                        <BoxView
+                            CornerRadius="0,0,0,0"
+                            VerticalOptions="FillAndExpand"
+                            BackgroundColor="{StaticResource White}" />
+
+                        <Grid
+                            RowDefinitions="Auto,*"
+                            Padding="20,60,20,0"
+                            RowSpacing="12">
+
+                            <Frame
+                                Grid.Row="0"
+                                              IsVisible="{Binding HasProductInfosVisibility}"
+                                  Padding="15,5"
+                                CornerRadius="5"
+                                IsClippedToBounds="True"
+                                BackgroundColor="{StaticResource White}"
+                                VerticalOptions="FillAndExpand">
+                                <Grid
+                                    ColumnSpacing="10"
+                                    RowSpacing="0"
+                     
+                                    ColumnDefinitions="Auto,*,Auto"
+                                    RowDefinitions="Auto,Auto,Auto"
+                                    VerticalOptions="CenterAndExpand">
+
+                                    <!--Column 1-->
+                                    <cc:PressableView
+                                       Grid.Column="0"
+                                       IsHasClickEffect="False"
+                                       Command="{Binding OpenProductCommandImage}"
+                                        >
+                                        <cc:CornerView
+                                StyleCorner="Default"
+                                CornerRadius="5"
+                                HorizontalOptions="Start"
+                                VerticalOptions="CenterAndExpand"
+                                Padding="0" BackgroundColor="{StaticResource LightBackground}">
+                                            <FF:CachedImage
+                                WidthRequest="60"
+                                HeightRequest="60"
+                                    Aspect="AspectFill"
+                                Source="{Binding ProductImage}"/>
+                                        </cc:CornerView>
+                                    </cc:PressableView>
+
+
+                                    <!--Column 2-->
+                                    <StackLayout          
+                                        Grid.Column="1"
+                                        VerticalOptions="Start">
+                                        <Label
+                                        Text="{Binding CurrentProductInfos.LIBELLE, StringFormat='{0}', TargetNullValue='- -'}"
+                                        FontSize="20"
+                                        MaxLines="4"
+                                        FontAttributes="Bold"
+                                        LineBreakMode="TailTruncation"
+                                        TextColor="{StaticResource Black}" />
+
+                                        <!--Column 2-->
+                                        <Grid
+                                           Grid.Row="2"
+                                        ColumnSpacing="10"
+                                        
+                                        VerticalOptions="CenterAndExpand">
+                                            <Label
+                                                Grid.Column="0" 
+                                     
+                                        Text="{Binding CurrentProductInfos.DEP, Converter={StaticResource StringValueConverter},StringFormat='dep : {0}'}"
+                                        FontSize="10"
+                                         VerticalOptions="FillAndExpand"
+                                        VerticalTextAlignment="Center"
+                                        LineBreakMode="TailTruncation"
+                                        TextColor="{StaticResource Accent}" />
+
+                                            <Label
+                                                   Grid.Column="1" 
+                                        Text="{Binding CurrentProductInfos.LIB_ETAT_ARTICLE, Converter={StaticResource StringValueConverter},StringFormat='Etat Article : {0}'}"
+                                      FontSize="10"
+                                         VerticalOptions="FillAndExpand"
+                                        VerticalTextAlignment="Center"
+                                        LineBreakMode="TailTruncation"
+                                        TextColor="{StaticResource Accent}" />
+
+                                        </Grid>
+
+                                    </StackLayout>
+
+
+
+
+                                </Grid>
+                            </Frame>
+
+                            <!--Padding="{Binding ProductInfosPadding}"-->
+                            <ScrollView
+                                Grid.Row="1"
+                                   Padding="0,0,0,20"
+                                VerticalOptions="FillAndExpand">
+                                <StackLayout
+                                    Spacing="10">
+
+                                    <!--Code-->
+                                    <Frame
+                                        Padding="15,5,5,5"
+                                        CornerRadius="10"
+                                        HasShadow="False"
+                                        IsClippedToBounds="True"
+                                        BorderColor="{StaticResource DarkBorderColor}"
+                                        BackgroundColor="{StaticResource White}">
+                                        <Grid
+                                            ColumnSpacing="10"
+                                            RowSpacing="0"
+                                            Padding="0"
+                                            ColumnDefinitions="Auto,*">
+
+                                            <Label
+                                                Grid.Column="0"
+                                                Text="CODE"
+                                                FontSize="14"
+                                                VerticalOptions="FillAndExpand"
+                                                VerticalTextAlignment="Center"
+                                                LineBreakMode="TailTruncation"
+                                                FontAttributes="Bold"
+                                                TextColor="{StaticResource Black}" />
+
+                                            <cc:CustomEntry
+                                                x:Name="ProductBarCodeEntry"
+                                                Grid.Column="1"
+                                                Text="{Binding ProductBarCode}"
+                                                CornerRaduis="0"
+                                                Keyboard="Numeric"
+                                                StyleCorner="Default"
+                                              FontAttributes="Bold"
+                                               FontSize="25"
+                                                Padding="10,10"
+                                                VerticalOptions="FillAndExpand"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalOptions="FillAndExpand"
+                                                HorizontalTextAlignment="End"
+                                                IsHasBorder="False"
+                                                BorderWidth="0"
+                                                ReturnType="Search"
+                                                Completed="ProductBarCodeEntry_Completed">
+                                                <cc:CustomEntry.Behaviors>
+                                                    <behavior:NumericValidationBehavior />
+                                                </cc:CustomEntry.Behaviors>
+                                            </cc:CustomEntry>
+
+                                            <cc:PressableView
+                                                        Grid.Column="1"
+                                                VerticalOptions="FillAndExpand"
+                                                  IsVisible="{Binding ProductBarCodePlaceholderVisibility}"
+                                                IsHasClickEffect="False" Clicked="ProductBarCodePlaceholder_Clicked">
+
+                                                <Label
+                                                Text="Scanner/ Saisissez le code"
+                                                FontSize="16"
+                                                VerticalOptions="FillAndExpand"
+                                                VerticalTextAlignment="Center"
+                                                        HorizontalOptions="FillAndExpand"
+                                                HorizontalTextAlignment="End"
+                                                LineBreakMode="TailTruncation"
+                                                                     Padding="10,10"
+                                                FontAttributes="Bold"
+                                                TextColor="{StaticResource PlaceholderColor}" />
+                                            </cc:PressableView>
+
+                                        </Grid>
+                                    </Frame>
+
+                                    <!--QTE-->
+                                    <Frame
+                                        IsVisible="{Binding ProductQuantityEnabled}"
+                                        Padding="15,5,5,5"
+                                        CornerRadius="10"
+                                        HasShadow="False"
+                                        IsClippedToBounds="True"
+                                            
+                                        BorderColor="{StaticResource DarkBorderColor}"
+                                        BackgroundColor="{Binding ProductQuantityBackgroundColor}">
+                                        <Grid
+                                            ColumnSpacing="10"
+                                            RowSpacing="0"
+                                            ColumnDefinitions="Auto,*">
+
+                                            <Label
+                                                Grid.Column="0"
+                                                Text="QTE"
+                                                FontSize="14"
+                                                VerticalOptions="FillAndExpand"
+                                                VerticalTextAlignment="Center"
+                                                LineBreakMode="TailTruncation"
+                                                FontAttributes="Bold"
+                                                TextColor="{StaticResource Black}" />
+
+                                            <cc:CustomEntry
+                                                Grid.Column="1"
+                                                x:Name="ProductQuantityEntry"
+                                                Placeholder="Qte"
+                                                Text="{Binding ProductQuantity}"
+                                                BackgroundColor="{Binding ProductQuantityBackgroundColor}"
+                                                IsCustom="True"
+                                                CornerRaduis="0"
+                                                StyleCorner="Default"
+                                                Keyboard="Numeric"
+                                                FontAttributes="Bold"
+                                                FontSize="30"
+                                                Padding="10,10"
+                                                VerticalOptions="FillAndExpand"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalOptions="FillAndExpand"
+                                                HorizontalTextAlignment="End"
+                                                IsHasBorder="False"
+                                                BorderWidth="0"
+                                                ReturnType="Done"
+                                                      ReturnCommand="{Binding SaveInventaryProductCommand}">
+                                                <cc:CustomEntry.Behaviors>
+                                                    <behavior:NumericValidationBehavior />
+                                                </cc:CustomEntry.Behaviors>
+                                            </cc:CustomEntry>
+                                        </Grid>
+                                    </Frame>
+
+                                    <!--POIDS-->
+                                    <Frame
+                                        Padding="15,5,5,5"
+                                        CornerRadius="10"
+                                        IsVisible="{Binding ProductWeightEnabled}"
+                                        HasShadow="False"
+                                        IsClippedToBounds="True"
+                                        BorderColor="{StaticResource DarkBorderColor}"
+                                        BackgroundColor="{Binding ProductWeightBackgroundColor}">
+                                        <Grid
+                                            ColumnSpacing="10"
+                                            RowSpacing="0"
+                                            ColumnDefinitions="Auto,*">
+
+                                            <Label
+                                                Grid.Column="0"
+                                                Text="POIDS"
+                                                FontSize="14"
+                                                VerticalOptions="FillAndExpand"
+                                                VerticalTextAlignment="Center"
+                                                LineBreakMode="TailTruncation"
+                                                FontAttributes="Bold"
+                                                TextColor="{StaticResource Black}" />
+
+                                            <cc:CustomEntry
+                                                Grid.Column="1"
+                                                x:Name="ProductWeigthEntry"
+                                                Placeholder="Poids"
+                                                Text="{Binding ProductWeight}"
+                                                BackgroundColor="{Binding ProductWeightBackgroundColor}"
+                                                IsHasBorder="False"
+                                                BorderWidth="0"
+                                                IsCustom="True"
+                                                  FontAttributes="Bold"
+                                                 FontSize="30"
+                                                Padding="10,10"
+                                                Keyboard="Numeric"
+                                                VerticalOptions="FillAndExpand"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalOptions="FillAndExpand"
+                                                HorizontalTextAlignment="End"
+                                                ReturnType="Done"
+                                                ReturnCommand="{Binding SaveInventaryProductCommand}"/>
+                                        </Grid>
+                                    </Frame>
+
+                                    <!--Motif-->
+                                    <Frame
+                                        Padding="15,5,5,5"
+                                        CornerRadius="10"
+                                        HasShadow="False"
+                                        IsClippedToBounds="True"
+                                        BorderColor="{StaticResource DarkBorderColor}"
+                                        BackgroundColor="{StaticResource White}">
+                                        <Grid
+                                            ColumnSpacing="10"
+                                            RowSpacing="0"
+                                            Padding="0"
+                                            ColumnDefinitions="Auto,*">
+                                            <Label
+                                                Grid.Column="0"
+                                                Text="{Binding MotifTitle}"
+                                                FontSize="14"
+                                                VerticalOptions="FillAndExpand"
+                                                VerticalTextAlignment="Center"
+                                                LineBreakMode="TailTruncation"
+                                                FontAttributes="Bold"
+                                                TextColor="{StaticResource Black}" />
+
+                                            <cc:CustomEntry
+                                                x:Name="MotifEntry"
+                                                Grid.Column="1"
+                                                CornerRaduis="0"
+                                                Keyboard="Numeric"
+                                                StyleCorner="Default"
+                                                FontAttributes="Bold"
+                                                FontSize="25"
+                                                Padding="10,10"
+                                                VerticalOptions="FillAndExpand"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalOptions="FillAndExpand"
+                                                HorizontalTextAlignment="End"
+                                                IsHasBorder="False"
+                                                BorderWidth="0"
+                                                ReturnType="Search">
+                                                <cc:CustomEntry.Behaviors>
+                                                    <behavior:NumericValidationBehavior />
+                                                </cc:CustomEntry.Behaviors>
+                                            </cc:CustomEntry>
+                                            <cc:PressableView
+                                                Grid.Column="1"
+                                                VerticalOptions="FillAndExpand"
+                                                Command="{Binding OpenArticlePopupCommand}"  
+                                                IsHasClickEffect="True" >
+                                                <cc:CustomButton
+                                                    Grid.Column="1"
+                                                    BackgroundColor="Transparent"
+                                                    HeightRequest="45"
+                                                    WidthRequest="45"
+                                                    Padding="25"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    HorizontalOptions="EndAndExpand"
+                                                    Visual="Default"
+                                                    StyleCorner="Circle">
+                                                    <cc:CustomButton.ImageSource>
+                                                        <FontImageSource
+                                                            FontFamily="{x:Static res:FontAwesomeFonts.FontFamilySolid}"
+                                                            Glyph="{x:Static res:FontAwesomeFonts.AngleDown}"
+                                                            Color="{StaticResource Black}"
+                                                            Size="20" />        
+                                                    </cc:CustomButton.ImageSource>
+                                                </cc:CustomButton>
+                                            </cc:PressableView>
+
+                                        </Grid>
+                                    </Frame>
+
+                                    <!--Actions-->
+                                    <!--<Grid
+                                        Margin="0,10,0,0"
+                                        VerticalOptions="EndAndExpand"
+                                        ColumnSpacing="10"
+                                        ColumnDefinitions="*">
+
+                                        <cc:CustomButton
+                                            Grid.Column="0"
+                                            Text="   OK"
+                                            BackgroundColor="{StaticResource Primary}"
+                                            Padding="20,15"
+                                            VerticalOptions="Start"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Visual="Default"
+                                            CornerRadius="10"
+                                            Command="{Binding SaveInventaryProductCommand}"
+                                            CommandParameter="{local:SystemType Bool=False}">
+                                            <cc:CustomButton.ImageSource>
+                                                <FontImageSource
+                                                    FontFamily="{x:Static res:FontAwesomeFonts.FontFamilySolid}"
+                                                    Glyph="{x:Static res:FontAwesomeFonts.Save}"
+                                                    Color="{StaticResource White}"
+                                                    Size="20" />
+                                            </cc:CustomButton.ImageSource>
+                                        </cc:CustomButton>
+
+                                    </Grid>-->
+                                </StackLayout>
+                            </ScrollView>
+                        </Grid>
+                    </Grid>
+
+                    <Frame
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Margin="20,0"
+                        Padding="15,10"
+                        CornerRadius="5"
+                        IsClippedToBounds="True"
+                        BackgroundColor="{StaticResource White}"
+                        VerticalOptions="FillAndExpand">
+                        <Grid
+                            RowSpacing="2"
+                            RowDefinitions="Auto,Auto,Auto"
+                            VerticalOptions="CenterAndExpand">
+
+                            <!--Row 3-->
+                            <Grid
+                                    Grid.Row="2"
+                                    ColumnSpacing="10"
+                                    ColumnDefinitions="Auto,*">
+
+                                <Label
+                                    Grid.Column="0"
+                                    Text="lot"
+                                    FontSize="14"
+                                    VerticalOptions="FillAndExpand"
+                                    VerticalTextAlignment="Center"
+                                    LineBreakMode="TailTruncation"
+                                    TextColor="{StaticResource MediumText}" />
+
+                                <Label
+                                    Grid.Column="1"
+                                    Text="{Binding NomEmplacement}"
+                                    FontSize="14"
+                                    FontAttributes="Bold"
+                                    VerticalOptions="FillAndExpand"
+                                    VerticalTextAlignment="Center"
+                                    HorizontalOptions="EndAndExpand"
+                                    HorizontalTextAlignment="Start"
+                                    LineBreakMode="TailTruncation"
+                                    TextColor="{StaticResource Primary}" />
+                            </Grid>
+                        </Grid>
+                    </Frame>
+
+                </Grid>
+            </Grid>
+        </Grid>
+    </Base:BaseContent>
+</Base:BasePage>

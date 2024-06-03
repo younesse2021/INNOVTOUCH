@@ -1,0 +1,207 @@
+﻿@page "/AddOrEditUtilisateur"
+@using DLC_BO.Client.Service.Entite;
+@using DLC_BO.Client.Service.Role;
+@using InnovTouch_BO.Client.Service.Magasin;
+@using global::Shared.DTO.InnovTouch.DTO.Entite;
+@using global::Shared.DTO.InnovTouch.DTO.Role;
+
+@inject NotificationService _notificationService
+@inject DialogService _dialogService
+@inject BlazorSpinner.SpinnerService _spinnerService
+@inject AppStateContainer _appStateContainer
+@inject UtilisateurService _utilisateurService
+@inject ProfileService _profileService
+@inject MagasinService _magasinService
+
+<RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">
+    Une exception a été levée réessayez plus tard.
+</RadzenAlert>
+
+<RadzenTemplateForm TItem="UtilisateurDto"
+                    Data=@model
+                    Submit="@( async args => await AddOrUpdateAsync())">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+
+
+                <div class="col-12 col-sm-6">
+                    <div class="row">
+                        <div class="col-12"><RadzenLabel TextStyle="TextStyle.Subtitle2" class="w-100">Login</RadzenLabel></div>
+                        <div class="col-12"><RadzenTextBox class="w-100" Name="Login *" @bind-Value="@model.Login" /></div>
+                        <RadzenRequiredValidator Component="Login" Text="Champs login obligatoire."></RadzenRequiredValidator>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12"><RadzenLabel TextStyle="TextStyle.Subtitle2" class="w-100">Nom</RadzenLabel></div>
+                        <div class="col-12"><RadzenTextBox class="w-100" Name="Nom" @bind-Value="@model.Nom" /></div>
+                        <RadzenRequiredValidator Component="Nom" Text="Champs nom obligatoire."></RadzenRequiredValidator>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <div class="row">
+                        <div class="col-12"><RadzenLabel TextStyle="TextStyle.Subtitle2" class="w-100">Prénom</RadzenLabel></div>
+                        <div class="col-12"><RadzenTextBox class="w-100" Name="Prenom" @bind-Value="@model.Prenom" /></div>
+                        <RadzenRequiredValidator Component="Prenom" Text="Champs prénom obligatoire."></RadzenRequiredValidator>
+                    </div>
+                    <div class="row">
+                        <div class="col-12"><RadzenLabel TextStyle="TextStyle.Subtitle2" class="w-100">Email</RadzenLabel></div>
+                        <div class="col-12"><RadzenTextBox class="w-100" @bind-Value="@model.Email" /></div>
+                        <RadzenRequiredValidator Component="Email" Text="Champs e-mail obligatoire."></RadzenRequiredValidator>
+                    </div>
+
+                </div>
+                <div class="col-12 col-sm-6">
+                    <div class="row">
+                        <div class="col-12"><RadzenLabel TextStyle="TextStyle.Subtitle2" class="w-100">Profile</RadzenLabel></div>
+                        <div class="col-12">
+                            <RadzenDropDown AllowFiltering="true"
+                                            AllowClear="true"
+                                            Style="width: 100%"
+                                            TValue="ProfileDto"
+                                            TextProperty="Libelle"
+                                            Data="@_profiles?.OrderBy(p => p.Libelle)"
+                                            @bind-Value="@model.Profile">
+                            </RadzenDropDown>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <div class="row">
+                        <div class="col-12"><RadzenLabel TextStyle="TextStyle.Subtitle2" class="w-100">Magasin</RadzenLabel></div>
+                        <div class="col-12">
+                            <RadzenDropDown AllowFiltering="true"
+                                            AllowClear="true"
+                                            Style="width: 100%"
+                                            TValue="MagasinDto"
+                                            TextProperty="Libelle"
+                                            Data="@_magasins?.OrderBy(p => p.Libelle)"
+                                            @bind-Value="@model.Magasin">
+                            </RadzenDropDown>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row float-end">
+                <div class="">
+                    <RadzenButton Click="@((args) => _dialogService.Close(false))" Text="Retour" ButtonStyle="ButtonStyle.Light"></RadzenButton>
+                    <RadzenButton Text="Enregistrer" ButtonType="ButtonType.Submit" ButtonStyle="ButtonStyle.Primary"></RadzenButton>
+                </div>
+            </div>
+        </div>
+    </div>
+</RadzenTemplateForm>
+
+
+
+
+@code {
+
+
+    [Parameter]
+    public EventCallback? OnConfirm { get; set; }
+    [Parameter]
+    public string action { get; set; } = "C";
+    [Parameter]
+    public UtilisateurDto? item { get; set; }
+    [Parameter]
+    public UtilisateurDto model { get; set; }
+
+    private IEnumerable<ProfileDto>? _profiles { get; set; }
+
+    private IEnumerable<MagasinDto>? _magasins { get; set; }
+
+    private bool errorVisible { get; set; } = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadDropDownProfil();
+        await LoadDropDownMagasin();
+        if (("M".Equals(action) || "C".Equals(action)) && item?.Id > 0)
+        {
+            await LoadDetails();
+        }
+    }
+    public async Task LoadDetails()
+    {
+        var response = await _utilisateurService.GetById(item.Id);
+        if (!response.Succeeded)
+        {
+            model = new UtilisateurDto();
+            errorVisible = true;
+            return;
+        }
+        model = response.Data;
+    }
+    public async Task LoadDropDownProfil()
+    {
+        var response = await _profileService.GetAllByEnseigneId(
+            Convert.ToInt32(_appStateContainer.UtilisateurBo.EnseigneId));
+        if (!response.Succeeded)
+        {
+            _profiles = Enumerable.Empty<ProfileDto>();
+            errorVisible = true;
+            return;
+        }
+        _profiles = response.Data;
+    }
+
+    public async Task LoadDropDownMagasin()
+    {
+    }
+    public async Task AddOrUpdateAsync()
+    {
+        if ("A".Equals(action))
+        {
+            await AddAsync();
+        }
+        else if ("M".Equals(action))
+        {
+            await UpdateAsync();
+        }
+    }
+    public async Task AddAsync()
+    {
+        var response = await _utilisateurService.Add(model);
+        if (!response.Succeeded)
+        {
+            errorVisible = true;
+            return;
+        }
+        item.Id = response.Data;
+        item.Login = model.Login;
+        item.Nom = model.Nom;
+        item.Prenom = model.Prenom;
+        item.Email = model.Email;
+        item.Profile = model.Profile;
+        item.ProfileId = model.ProfileId;
+
+        await OnConfirm.Value.InvokeAsync(true);
+    }
+    public async Task UpdateAsync()
+    {
+        var response = await _utilisateurService.Edit(model);
+        if (!response.Succeeded)
+        {
+            errorVisible = true;
+            return;
+        }
+        if (!response.Data)
+        {
+            return;
+        }
+
+        item.Login = model.Login;
+        item.Nom = model.Nom;
+        item.Prenom = model.Prenom;
+        item.Email = model.Email;
+        item.Profile = model.Profile;
+        item.ProfileId = model.ProfileId;
+
+        _dialogService.Close(true);
+
+        _notificationService.Notify(new NotificationMessage
+            { Severity = NotificationSeverity.Success, Detail = "La modification a bien été effectuée." });
+    }
+}

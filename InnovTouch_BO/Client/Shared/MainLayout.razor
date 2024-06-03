@@ -1,0 +1,94 @@
+﻿@inherits LayoutComponentBase
+
+@inject AppStateContainer appStateContainer
+@inject Blazored.SessionStorage.ISessionStorageService sessionStorage
+
+@inject NotificationService _notificationService
+@inject DialogService _dialogService
+@inject BlazorSpinner.SpinnerService _spinnerService
+@inject Blazored.SessionStorage.ISessionStorageService _sessionStorage
+@inject InnovTouch_BO.Client.Models.AppStateContainer _appStateContainer
+
+@if (appStateContainer.UtilisateurBo.isConnected == true)
+{
+    <RadzenLayout  style="grid-template-areas: 'rz-sidebar rz-header' 'rz-sidebar rz-body';">
+        <RadzenDialog />
+        <RadzenNotification />
+        <RadzenHeader Style="background-color:#073C4E;">
+            <div class="container-fluid">
+                <div class="row justify-content-start align-items-center">
+                    <div class="col-4 d-flex align-items-center ps-0 pl-0">
+                        <RadzenSidebarToggle Click="@SidebarToggleClick"></RadzenSidebarToggle>
+                    </div>
+                    <div class="col-8 d-flex flex-row-reverse align-items-center ps-0 pl-0">
+                        <RadzenButton style="margin-left:5px;margin-right:5px;" Icon="logout" Click="@(args => Logout(args))" ButtonStyle="ButtonStyle.Info" />
+                        <img hidden style="margin-left:5px;margin-right:5px;" src=@($"/images/") height="30" width="30">
+                        <RadzenLabel style="margin-left:5px;margin-right:5px;" Text="@(GetUser())"></RadzenLabel>
+                    </div>
+                </div>
+            </div>
+        </RadzenHeader>
+
+        <RadzenBody Expanded="true">
+            <div class="container-fluid  pe-0 ps-0 me-0 ms-0 pt-0 pt-md-0 pt-lg-0 pt-xl-0 pb-2 pb-lg-5 ">
+                <div class="row h-100">
+                    <div class="col">
+                        @Body
+                    </div>
+                </div>
+            </div>
+        </RadzenBody>
+
+        <RadzenSidebar Expanded="@sidebarExpanded" style="background-color:#073C4E;">
+            <div class="py-3 py-lg-4" style=" padding: var(--rz-panel-menu-item-padding); border-bottom: var(--rz-panel-menu-item-border); display: flex; flex-direction: column; gap: 1rem; align-items: center;background-color:#073C4E">
+                <img width="198" height="110" src="/images/logo2.png" />
+            </div>
+            <div style="flex: 1;">
+                <NavMenu />
+            </div>
+            <div class="py-3 py-md-4 " style="padding: var(--rz-panel-menu-item-padding);background-color:#073C4E">
+               @* <RadzenText Text="INNOVTOUCH v1.0.0" TextStyle="Radzen.Blazor.TextStyle.Caption" style="color: var(--rz-text-disabled-color);" TagName="Radzen.Blazor.TagName.P" TextAlign="Radzen.TextAlign.Center" />
+                @*<RadzenText Text="Marjane - NeoTechit.Ma" TextStyle="Radzen.Blazor.TextStyle.Caption" class="mb-0" style="color: var(--rz-text-disabled-color);" TagName="Radzen.Blazor.TagName.P" TextAlign="Radzen.TextAlign.Center" />*@
+            </div>
+        </RadzenSidebar>
+    </RadzenLayout>
+}
+else
+{
+    <InnovTouch_BO.Client.Pages.Login></InnovTouch_BO.Client.Pages.Login>
+}
+@code {
+    bool sidebarExpanded = true;
+
+
+    void SidebarToggleClick()
+    {
+        sidebarExpanded = !sidebarExpanded;
+    }
+
+    protected override void OnInitialized()
+    {
+        appStateContainer.OnStateChange += StateHasChanged;
+    }
+    public void Dispose()
+    {
+        appStateContainer.OnStateChange -= StateHasChanged;
+    }
+
+    public string GetUser()
+    {
+        var userName = appStateContainer.UtilisateurBo.UserName.ToUpper();
+        var company = appStateContainer.UtilisateurBo.Magasins;
+        return $"{userName} - {company}";
+    }
+   
+    public async Task Logout(Object args)
+    {
+        if (appStateContainer.UtilisateurBo != null)
+        {
+            await sessionStorage.RemoveItemAsync("usr_bo");
+            appStateContainer.UtilisateurBo = new UtilisateurBoDto();
+        }
+    }
+}
+

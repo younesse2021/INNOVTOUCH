@@ -1,0 +1,1736 @@
+﻿{
+  "succeeded": true,
+  "message": "Success",
+  "errors": null,
+  "data": [
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "1",
+      "libelle_site": "MARJANE BOUREGR"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "2",
+      "libelle_site": "MARJANE CALIFOR"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "3",
+      "libelle_site": "ACIMA TWIN CENTER"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "4",
+      "libelle_site": "MARJANE MENARA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "5",
+      "libelle_site": "MARJANE HAYRYAD"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "6",
+      "libelle_site": "MARJANE AIN SEB"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "7",
+      "libelle_site": "AGADIR FOUNTY"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "8",
+      "libelle_site": "TANGER MEDINA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "9",
+      "libelle_site": "FES AGDAL"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "10",
+      "libelle_site": "MOHAMMEDIA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "11",
+      "libelle_site": "TETOUAN"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "12",
+      "libelle_site": "MEKNES"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "13",
+      "libelle_site": "DERB SULTAN"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "14",
+      "libelle_site": "MARRA. MASSIRA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "15",
+      "libelle_site": "HAY HASSANI"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "16",
+      "libelle_site": "MARJANE SAFI"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "17",
+      "libelle_site": "MARJANE KENITRA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "18",
+      "libelle_site": "MARJANE OUJDA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "19",
+      "libelle_site": "MARJANE TANGER II"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "20",
+      "libelle_site": "MARJANE FES 2"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "21",
+      "libelle_site": "NADOR"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "22",
+      "libelle_site": "MARJANE KHOURIBGA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "23",
+      "libelle_site": "MARJANE BENI MELLAL"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "24",
+      "libelle_site": "KELAA SRAGHNA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "25",
+      "libelle_site": "MARJANE SALE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "26",
+      "libelle_site": "MARJANE MOROCCOMALL"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "27",
+      "libelle_site": "MARJANE HOCEIMA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "28",
+      "libelle_site": "MARJANE FKIH BENSALEH"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "29",
+      "libelle_site": "MARJANE TAZA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "30",
+      "libelle_site": "MARJANE BERKANE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "31",
+      "libelle_site": "MARJANE HAMRIA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "32",
+      "libelle_site": "MARJANE SIDI SLIMANE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "33",
+      "libelle_site": "MARJANE EL JADIDA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "34",
+      "libelle_site": "MARJANE INZEGANE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "35",
+      "libelle_site": "MARJANE LARACHE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "36",
+      "libelle_site": "MARJANE GUELMIM"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "37",
+      "libelle_site": "MARJANE SIDI OTHMAN"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "38",
+      "libelle_site": "MARJANE IBN TACHFINE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "39",
+      "libelle_site": "MARJANE MARINA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "40",
+      "libelle_site": "MARJANE ARRIBAT CENTER"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "94",
+      "libelle_site": "SOCHEPRESS"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "95",
+      "libelle_site": "REFERENCE ELECTRO"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "98",
+      "libelle_site": "ACIMA T3"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "99",
+      "libelle_site": "REFERENCE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "101",
+      "libelle_site": "ACIMA 2 MARS"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "102",
+      "libelle_site": "ACIMA BEAUSEJOUR"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "103",
+      "libelle_site": "ACIMA PAQUET"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "104",
+      "libelle_site": "ACIMA  LAMENAIS"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "105",
+      "libelle_site": "ACIMA  LIBERTE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "106",
+      "libelle_site": "ACIMA FES SALAM"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "107",
+      "libelle_site": "ACIMA  CITY CENTER RABAT"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "108",
+      "libelle_site": "ZELLAQUA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "109",
+      "libelle_site": "ACIMA  OCEAN RABAT"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "110",
+      "libelle_site": "ACIMA ACIMA GUELIZ"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "111",
+      "libelle_site": "ACIMA EL JADIDA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "114",
+      "libelle_site": "ACIMA BENI MELLAL"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "115",
+      "libelle_site": "ACIMA SIDI OTHMANE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "116",
+      "libelle_site": "ACIMA  SAFI"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "117",
+      "libelle_site": "ACIMA  RYAD ANFA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "118",
+      "libelle_site": "ACIMA TEMARA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "119",
+      "libelle_site": "ACIMA  MARR. EL MASSIRA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "120",
+      "libelle_site": "TANGER"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "121",
+      "libelle_site": "ACIMA EMILE ZOLA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "122",
+      "libelle_site": "ACIMA  FES SEFROU"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "123",
+      "libelle_site": "IBN TACHFINE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "124",
+      "libelle_site": "ACIMA GHANDI"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "125",
+      "libelle_site": "INARA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "126",
+      "libelle_site": "ACIMA TETOUAN"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "127",
+      "libelle_site": "BERRCHID"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "128",
+      "libelle_site": "MEKNES ZAITOUNE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "129",
+      "libelle_site": "BERNOUSSI"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "130",
+      "libelle_site": "TANGER ANDALOUCIA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "131",
+      "libelle_site": "AGADIR AIT MELLOUL"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "132",
+      "libelle_site": "MARRAKECH MAJORELLE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "133",
+      "libelle_site": "ACIMA BOULEVARD"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "134",
+      "libelle_site": "ACIMA SALE  ONCF"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "135",
+      "libelle_site": "ACIMA MOHAMMEDIA ONCF"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "136",
+      "libelle_site": "ACIMA HARHOURA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "137",
+      "libelle_site": "ACIMA MDIQ"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "138",
+      "libelle_site": "ACIMA KENITRA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "139",
+      "libelle_site": "ACIMA  ERRACHIDIA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "140",
+      "libelle_site": "ACIMA MIDELT"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "141",
+      "libelle_site": "ACIMA MOHAMMEDIA PARC"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "142",
+      "libelle_site": "ACIMA HAY RIAD"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "143",
+      "libelle_site": "ACIMA RABAT CHAMPION"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "144",
+      "libelle_site": "ACIMA EL HAJEB"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "145",
+      "libelle_site": "ACIMA TANGER CITY CENTER"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "146",
+      "libelle_site": "ACIMA OUJDA EL QODS"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "147",
+      "libelle_site": "ACIMA OUJDA MEDINA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "148",
+      "libelle_site": "ACIMA ZAER"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "149",
+      "libelle_site": "ACIMA MY ISMAIL"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "150",
+      "libelle_site": "ACIMA AGADIR AL HOUDA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "151",
+      "libelle_site": "ACIMA TANGER VAL FLEURI"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "152",
+      "libelle_site": "ACIMA TANGER IBERIA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "153",
+      "libelle_site": "ACIMA TANGER CASTILLA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "154",
+      "libelle_site": "ACIMA CASA LES HÔPITAUX"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "155",
+      "libelle_site": "ACIMA DAR BOUAZZA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "156",
+      "libelle_site": "ACIMA FES CHAMPS DE COURSE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "157",
+      "libelle_site": "ACIMA OULFA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "158",
+      "libelle_site": "ACIMA DAR BOUAZZA CGI"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "159",
+      "libelle_site": "ACIMA MARRAKECH SEMLALIA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "160",
+      "libelle_site": "ACIMA PLAZA TORO"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "161",
+      "libelle_site": "MM CASA PALMIER"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "162",
+      "libelle_site": "MARJANE MARKET MEKNES HAMRIA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "163",
+      "libelle_site": "MARJANE MARKET FES LA FONTAINE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "201",
+      "libelle_site": "XPRESS VAL FLEURI"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "202",
+      "libelle_site": "XPRESS GAUTHIER"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "203",
+      "libelle_site": "XPRESS BOURGOGNE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "204",
+      "libelle_site": "XPRESS OULFA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "205",
+      "libelle_site": "XPRESS BOUSKOURA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "206",
+      "libelle_site": "OTOP 2 MARS"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "207",
+      "libelle_site": "OTOP GHANDI"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "208",
+      "libelle_site": "OTOP HJAJMA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "209",
+      "libelle_site": "OTOP GOULMIMA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "210",
+      "libelle_site": "SUPERETTE MANINA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "211",
+      "libelle_site": "SUPER MAMOUN"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "212",
+      "libelle_site": "SUPERETTE RANIA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "213",
+      "libelle_site": "SUPERETTE ALBARAKA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "214",
+      "libelle_site": "TOTAL TARGA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "215",
+      "libelle_site": "LIBRE SERVICE 2 MARS"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "216",
+      "libelle_site": "OCEAN SELF"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "217",
+      "libelle_site": "SIMO MARCHE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "218",
+      "libelle_site": "SUPERETTE FINE MAARIF"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "219",
+      "libelle_site": "SUPERETTE TICHKA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "220",
+      "libelle_site": "SUPERETTE IZY"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "221",
+      "libelle_site": "SUPERETTE TOTAL LISSASFA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "222",
+      "libelle_site": "SUPERETTE MOHAMMEDIA ELWAFA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "223",
+      "libelle_site": "BMX MARKETS"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "224",
+      "libelle_site": "OSHOP"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "225",
+      "libelle_site": "RANIA BOURGONE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "301",
+      "libelle_site": "MARJANE MARKET SAIDIA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "501",
+      "libelle_site": "ELECTRO PLANET MARRAKECH"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "502",
+      "libelle_site": "ELECTROPLANET DERB SULTAN"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "503",
+      "libelle_site": "ELECTROPLANET HAY RYAD"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "504",
+      "libelle_site": "ELECTROPLANET TANGER"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "505",
+      "libelle_site": "ELECTROPLANET MOHAMMEDIA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "506",
+      "libelle_site": "ELECTROPLANET OUJDA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "507",
+      "libelle_site": "ELECTROPLANET SALE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "508",
+      "libelle_site": "ELECTROPLANET TECHNOPARK"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "509",
+      "libelle_site": "ELECTROPLANET AGADIR"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "510",
+      "libelle_site": "ELECTROPLANET GUELIZ"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "511",
+      "libelle_site": "ELECTROPLANET FES"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "512",
+      "libelle_site": "ELECTROPLANET KENITRA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "513",
+      "libelle_site": "ELECTROPLANET TETOUAN"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "514",
+      "libelle_site": "ELECTROPLANET ELJADIDA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "515",
+      "libelle_site": "ELECTROPLANET SIDI OTHMANE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "516",
+      "libelle_site": "ELECTROPLANET TANGER CITY CENTER"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "517",
+      "libelle_site": "ELECTROPLANET INARA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "518",
+      "libelle_site": "ELECTROPLANET NADOR"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "519",
+      "libelle_site": "ELECTROPLANET IBN TACHFINE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "520",
+      "libelle_site": "ELECTROPLANET SAFI"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "521",
+      "libelle_site": "ELECTROPLANET MEKNES"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "522",
+      "libelle_site": "EP RABAT VITAE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "523",
+      "libelle_site": "ELECTROPLANET KENITRA 2"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "524",
+      "libelle_site": "ELECTROPLANET FES SAISS"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "525",
+      "libelle_site": "ELECTROPLANET MARINA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "526",
+      "libelle_site": "ELECTROPLANET TEMARA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "527",
+      "libelle_site": "ELECTROPLANET TARGA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "528",
+      "libelle_site": "ELECTROPLANET REBBAT CENTER"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "529",
+      "libelle_site": "ELECTROPLANET OULFA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "530",
+      "libelle_site": "ELECTROPLANET TETOUAN2"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "531",
+      "libelle_site": "ELECTROPLANET DAR BOUAZZZA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "532",
+      "libelle_site": "ELECTROPLANET MASSIRA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "533",
+      "libelle_site": "ELECTROPLANET ZENATA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "534",
+      "libelle_site": "ELECTROPLANET FES ESSAADA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "535",
+      "libelle_site": "ELECTROPALNET RABAT DIOUR JAMAA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "536",
+      "libelle_site": "ELECTROPLANET AIN SEBAA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "537",
+      "libelle_site": "ELECTROPLANET SETTAT"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "538",
+      "libelle_site": "ELECTROPLANET AGADIR BAB AL MADINA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "598",
+      "libelle_site": "EP B2B"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "599",
+      "libelle_site": "SITE E-COMMERCE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "601",
+      "libelle_site": "TEXTIBAY MOHAMMEDIA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "602",
+      "libelle_site": "TIKI FES"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "603",
+      "libelle_site": "TIKI KENITRA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "604",
+      "libelle_site": "TIKI DERB SULTAN"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "651",
+      "libelle_site": "ERAM KENITRA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "652",
+      "libelle_site": "ERAM ELJADIDA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "653",
+      "libelle_site": "GEMO TACHEFINE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "654",
+      "libelle_site": "GEMO TANGER"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "655",
+      "libelle_site": "GEMO MARINA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "801",
+      "libelle_site": "DIRECTION DES SYSTEME D'INFORMATION"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "802",
+      "libelle_site": "PRESIDENCE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "803",
+      "libelle_site": "DIRECTION FONCTIONS RESSOURCES"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "804",
+      "libelle_site": "DIRECTION ACHAT"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "805",
+      "libelle_site": "DIRECTION GENERAL ACIMA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "806",
+      "libelle_site": "DIRECTION ADMINISTRATIVE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "807",
+      "libelle_site": "DIRECTION FINANCIERE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "808",
+      "libelle_site": "DIRECTION IMMOBILIER ET EXPANSION"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "809",
+      "libelle_site": "SECRETARIAT GENERAL"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "810",
+      "libelle_site": "DIRECTION DE DEVELOPPEMENT"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "811",
+      "libelle_site": "DIRECTION ICD"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "812",
+      "libelle_site": "DIRECTION LOGISTIQUE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "813",
+      "libelle_site": "DIRECTION COMMERCIALE / GRD PROJET"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "814",
+      "libelle_site": "DIRECTION MARKETING ACIMA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "815",
+      "libelle_site": "DIRECTION GENERALE MARJANE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "816",
+      "libelle_site": "DIR RESSOURCES HUMAINES DIGIBAY"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "817",
+      "libelle_site": "DIRECTION RESSOURCES HUMAINES ACIMA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "818",
+      "libelle_site": "DIR RESSOURCES HUMAINES MARJANE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "819",
+      "libelle_site": "DIRECTION CONTROLE GESTION MARJANE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "820",
+      "libelle_site": "DIRECTION MARKETING STRATEGIQUE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "821",
+      "libelle_site": "DIRECTION CONTROLE GESTION ACIMA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "822",
+      "libelle_site": "DIRECTION JURIDIQUE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "823",
+      "libelle_site": "DIRECTION STRATEGIE & TRANSF DIGITA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "824",
+      "libelle_site": "DIR ORGA QUALITE ET ENVIRONNEMENT"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "825",
+      "libelle_site": "DIRECTION ACHATS NON ALIMENTAIRE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "826",
+      "libelle_site": "DIRECTION ACHATS INDIRECTS"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "827",
+      "libelle_site": "DIR COMMERCIALE ET TECHNIQUE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "828",
+      "libelle_site": "DIRECTION AUDIT INTERNE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "829",
+      "libelle_site": "DIRECTION MARK DE L'OFFRE ET MDD"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "830",
+      "libelle_site": "DIRECTION DEV INTERNATIONAL"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "831",
+      "libelle_site": "TACHEFINE CENTER"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "832",
+      "libelle_site": "DOUBLE MALL HAY RIAD"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "833",
+      "libelle_site": "DIR RELATIONS PUBLIQUES ET FONCIERS"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "834",
+      "libelle_site": "DIR TRANSFORMATION ORGA & DEV COM"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "835",
+      "libelle_site": "DIRECTION CAPITAL HUMAIN"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "836",
+      "libelle_site": "SITE ALDAR"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "837",
+      "libelle_site": "DIRECTION CDG PÔLE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "900",
+      "libelle_site": "ADMINISTRATION"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "902",
+      "libelle_site": "ENTREPOT COMMUN"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "903",
+      "libelle_site": "ENTREPOT MARJAN"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "904",
+      "libelle_site": "ENTREPOT FLEG CASA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "905",
+      "libelle_site": "ENTREPOT PF"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "906",
+      "libelle_site": "POISSONNERIE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "907",
+      "libelle_site": "RECHARGE TELEPH"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "908",
+      "libelle_site": "RECHARGE WANA ACIMA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "909",
+      "libelle_site": "PLATEFORME FLEG FES"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "910",
+      "libelle_site": "PLATEFORME FLEG BOUREGREG"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "911",
+      "libelle_site": "PLATFORME VRAC"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "912",
+      "libelle_site": "ENTREPOT ACIMA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "913",
+      "libelle_site": "ENTREPOT MARJANE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "914",
+      "libelle_site": "LABO BOUCHERIE ACIMA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "915",
+      "libelle_site": "PLATEFORME VOLAILLE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "916",
+      "libelle_site": "BOUCHERIE CENTRE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "917",
+      "libelle_site": "PLATFORME VRAC FES"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "918",
+      "libelle_site": "ENTREPOT PF"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "919",
+      "libelle_site": "ENTREPOT DIGIBAY"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "920",
+      "libelle_site": "ENTREPOT GIE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "921",
+      "libelle_site": "PLATEFORME PATISSERIE MAROCAINE"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "922",
+      "libelle_site": "ENTREPOT ELECTROPLANET AIN ATIQ"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "923",
+      "libelle_site": "ENTREPOT MARJANE EXPORT"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "924",
+      "libelle_site": "ENTREPOT MARJANE EM"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "925",
+      "libelle_site": "ENTREPOT ELECTROPLANET MARRAKESH"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "926",
+      "libelle_site": "PLATEFORME PATISSERIE MAROCAINE ORI"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "927",
+      "libelle_site": "ENTREPOT EP CASABLANCA"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "928",
+      "libelle_site": "ENTREPOT EP TANGER"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "998",
+      "libelle_site": "EXPRESS FOURNISSEUR DIRECT"
+    },
+    {
+      "profil": "DEMO",
+      "langue": "FR",
+      "password": "bWFyajEyMzQ1",
+      "code_site": "999",
+      "libelle_site": "ENTREPOT 999 TEXTIBAY"
+    }
+  ]
+}

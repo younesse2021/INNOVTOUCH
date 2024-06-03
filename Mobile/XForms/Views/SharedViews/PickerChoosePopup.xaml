@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Base:BasePopupView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Base="clr-namespace:XForms.Views"
+    xmlns:cc="clr-namespace:XForms.Controls"
+    xmlns:res="clr-namespace:XForms.Resources"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    CloseWhenBackgroundIsClicked="True"
+    x:Name="this"
+    BackgroundColor="#90000000"
+    x:Class="XForms.Views.SharedViews.PickerChoosePopup">
+    <Base:BasePopupView.Animation>
+        <animations:ScaleAnimation
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            ScaleIn="1"
+            ScaleOut="1"
+            DurationIn="200"
+            DurationOut="200"
+            HasBackgroundAnimation="True" />
+    </Base:BasePopupView.Animation>
+
+    <Grid
+        VerticalOptions="EndAndExpand"
+        Padding="0,30,0,0"
+        RowDefinitions="Auto,Auto">
+
+        <!--Close Button-->
+        <cc:CustomImageButton
+            Grid.Row="0"
+            BackgroundColor="{StaticResource White}"
+            Padding="8"
+            HeightRequest="35"
+            WidthRequest="35"
+            Margin="0,0,40,0"
+            VerticalOptions="Start"
+            HorizontalOptions="EndAndExpand"
+            StyleCorner="Circle"
+            Clicked="Close_Clicked">
+
+            <cc:CustomImageButton.Source>
+                <FontImageSource
+                    FontFamily="{x:Static res:MaterialIconsFonts.FontFamily}"
+                    Glyph="{x:Static res:MaterialIconsFonts.Close}"
+                    Color="{StaticResource DarkIconAction}"
+                    Size="28" />
+            </cc:CustomImageButton.Source>
+        </cc:CustomImageButton>
+
+        <BoxView
+            Grid.Row="1"
+            BackgroundColor="{StaticResource White}"
+            CornerRadius="30,30,0,0"
+            VerticalOptions="FillAndExpand" />
+
+        <ScrollView
+            Grid.Row="1"
+            Padding="20,20,20,20">
+            <StackLayout
+                Spacing="20">
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="{Binding Source={x:Reference this}, Path=ViewTitle}"
+                    FontSize="14"
+                    VerticalOptions="FillAndExpand"
+                    VerticalTextAlignment="Center"
+                    LineBreakMode="TailTruncation"
+                    TextColor="{StaticResource MediumText}" />
+
+
+                <StackLayout
+                    VerticalOptions="Start"
+                    Spacing="10"
+                    BackgroundColor="Transparent"
+                    BindableLayout.ItemsSource="{Binding ChooseList}">
+
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <cc:PressableView
+                                Clicked="Itemt_Clicked">
+                                <Frame
+                                    HasShadow="False"
+                                    CornerRadius="5"
+                                    Padding="15,20"
+                                    IsClippedToBounds="True"
+                                    BorderColor="#E2E8F3"
+                                    BackgroundColor="{Binding BackgroundColor}">
+
+                                    <Grid
+                                        ColumnSpacing="10"
+                                        ColumnDefinitions="Auto,*,Auto">
+
+                                        <Image
+                                            Grid.Column="0"
+                                            IsVisible="{Binding Icon, Converter={StaticResource ValueToVisibilityConverter}}"
+                                            VerticalOptions="CenterAndExpand">
+                                            <Image.Source>
+                                                <FontImageSource
+                                                    FontFamily="{x:Static res:MaterialIconsFonts.FontFamily}"
+                                                    Glyph="{Binding Icon}"
+                                                    Color="{StaticResource Black}"
+                                                    Size="25" />
+                                            </Image.Source>
+                                        </Image>
+
+                                        <Label
+                                            Grid.Column="1"
+                                            Text="{Binding Name}"
+                                            TextColor="{StaticResource Black}"
+                                            FontAttributes="Bold" />
+
+                                        <Image
+                                            Grid.Column="2"
+                                            IsVisible="{Binding IsSelected}"
+                                            BackgroundColor="Transparent"
+                                            Visual="Default"
+                                            VerticalOptions="CenterAndExpand"
+                                            HorizontalOptions="EndAndExpand"
+                                            HeightRequest="20">
+                                            <Image.Source>
+                                                <FontImageSource
+                                                    FontFamily="{x:Static res:FontAwesomeFonts.FontFamilySolid}"
+                                                    Glyph="{x:Static  res:FontAwesomeFonts.CheckCircle}"
+                                                    Color="#2DA94F">
+                                                </FontImageSource>
+                                            </Image.Source>
+                                        </Image>
+
+                                        <cc:CornerView
+                                            Grid.Column="2"
+                                            IsVisible="{Binding IsSelected, Converter={StaticResource NegateBooleanConverter}}"
+                                            HeightRequest="20"
+                                            WidthRequest="20"
+                                            StyleCorner="Circle"
+                                            BorderColor="#DEE1F0"
+                                            Padding="0"
+                                            BackgroundColor="Transparent" />
+                                    </Grid>
+                                </Frame>
+                            </cc:PressableView>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                    <!--<CollectionView.Footer>
+                    <BoxView HeightRequest="20"/>
+                </CollectionView.Footer>-->
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+
+    </Grid>
+</Base:BasePopupView>

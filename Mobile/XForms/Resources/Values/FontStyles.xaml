@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="XForms.Resources.FontStyles"
+    xmlns:resources="clr-namespace:XForms.Resources">
+    <ResourceDictionary.MergedDictionaries>
+        <resources:Colors />
+    </ResourceDictionary.MergedDictionaries>
+
+     <OnPlatform
+        x:Key="FontAwesome"
+        x:TypeArguments="x:String"
+        Android="FontAwesome5Solid.ttf#"
+        iOS="Font Awesome 5 Free" />
+
+    <OnPlatform
+        x:Key="FontAwesome5Solid"
+        x:TypeArguments="x:String"
+        Android="FontAwesome5Solid.ttf#"
+        iOS="Font Awesome 5 Free" />
+
+      <OnPlatform
+        x:Key="FontAwesome5Regular"
+        x:TypeArguments="x:String"
+        Android="FontAwesome5Regular.ttf#"
+        iOS="Font Awesome 5 Free" />
+
+    <OnPlatform
+        x:Key="AppFontFamily"
+        x:TypeArguments="x:String"
+        Android="feather.ttf#feather"
+        iOS="feather" />
+
+    <OnPlatform
+        x:Key="GlyphIcons"
+        x:TypeArguments="x:String"
+        Android="glyphicons-halflings-regular.ttf#glyphicons-halflings-regular"
+        iOS="GLYPHICONS HALFLINGS" />
+
+    <!--<OnPlatform
+        x:Key="AppFontFamily"
+        x:TypeArguments="x:String">
+        <On
+            Platform="iOS"
+            Value="feather" />
+        <On
+            Platform="Android"
+            Value="feather.ttf#feather" />
+    </OnPlatform>-->
+
+    <!--<OnPlatform
+        x:Key="StringBackIcon"
+        x:TypeArguments="x:String"
+        Android="{x:Static resources:IconFont.ArrowLeft}"
+        iOS="{x:Static resources:IconFont.ChevronLeft}" />-->
+
+</ResourceDictionary>

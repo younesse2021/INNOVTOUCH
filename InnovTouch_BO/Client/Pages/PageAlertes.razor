@@ -1,0 +1,229 @@
+﻿@page "/emplacement"
+
+@using InnovTouch_BO.Client.Components;
+@using DLC_BO.Client.Service.Entite;
+@using DLC_BO.Client.Service.Produits;
+@using InnovTouch_BO.Client.Service.Emplacement;
+@using InnovTouch_BO.Client.Service.Inventaires;
+@using global::Shared.DTO.InnovTouch.DTO.Entite;
+@using global::Shared.DTO.InnovTouch.DTO.Helper;
+@using global::Shared.DTO.InnovTouch.DTO.Inventaire;
+@using global::Shared.DTO.InnovTouch.DTO.Produit;
+
+@inject NotificationService _notificationService
+@inject DialogService _dialogService
+@inject BlazorSpinner.SpinnerService _spinnerService
+@inject AppStateContainer _appStateContainer
+@inject EnseigneService _enseigneService
+@inject AlerteProduitService _alerteProduitService
+@inject FamilleProduitService _familleProduitService
+@inject AddInventaireService _AddInventaireService
+@inject EmplacementService _EmplacementService
+
+
+<RadzenPanel AllowCollapse="false">
+    <HeaderTemplate>
+        <RadzenText TextStyle="TextStyle.H6" Class="rz-display-flex rz-align-items-center rz-m-0">
+            <RadzenIcon Icon="account_box" class="rz-mr-1" /><b>Gestion des Emplacement</b>
+        </RadzenText>
+    </HeaderTemplate>
+    <ChildContent>
+        <div class="row">
+            <div class="row">
+                <div class="col-12">
+                    <div class="float-end">
+
+                        <RadzenButton Click=@(async args => await OpenFilterBtnClick())
+                                      Text="Ajouter Emplacement"
+                                      Icon="add_circle_outline"
+                                      Style="margin:10px;"
+                                      ButtonStyle="ButtonStyle.Primary" />
+
+
+                        <RadzenButton Size="ButtonSize.Medium" Click=@(args => ExportExcelBtnClick())
+                                      Text="Exporter les Lot"
+                                      Icon="download"
+                                      ButtonStyle="ButtonStyle.Success" />
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <RadzenDataGrid @ref="@gridData"
+                                    IsLoading="@_isLoading"
+                                    Data="@_Emplacment"
+                                    TItem="EmplacementDetails"
+                                    AllowFiltering="true"
+                                    AllowSorting="true"
+                                    AllowPaging="true"
+                                    PageSize="10"
+                                    FilterMode="FilterMode.Simple"
+                                    FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                                    LogicalFilterOperator="LogicalFilterOperator.Or"
+                                    ColumnWidth="200px"
+                                    TItem="InventoryDTO">
+                            <EmptyTemplate><p>Vide</p></EmptyTemplate>
+
+                        <Columns>
+                            <RadzenDataGridColumn TItem="EmplacementDetails" Property="Inventory.number" Title="Numero Inventaire" />
+                            <RadzenDataGridColumn TItem="EmplacementDetails" Property="Inventory.description" Title="Description" />
+                            <RadzenDataGridColumn TItem="EmplacementDetails" Property="Rayone.IdRayone" Title="Numero Rayone" />
+                            <RadzenDataGridColumn TItem="EmplacementDetails" Property="Rayone.Name" Title="Name Rayone" />
+                            <RadzenDataGridColumn TItem="EmplacementDetails" Property="NumberEmplacement" Title="Number Emplacements" />
+                            <RadzenDataGridColumn TItem="EmplacementDetails" Property="DisplayInventaire" Title="Type Inventaire" />
+
+                            <RadzenDataGridColumn TItem="EmplacementDetails"
+                                                  Property="Id"
+                                                  Filterable="false"
+                                                  TextAlign="TextAlign.Right">
+
+                                <Template Context="data">
+                                    <RadzenButton Icon="delete" ButtonStyle="ButtonStyle.Danger"
+                                                  Click=@(args=>OpenDeleteDialog(args,data)) />
+                                </Template>
+                            </RadzenDataGridColumn>
+
+                        </Columns>
+                    </RadzenDataGrid>
+                </div>
+            </div>
+        </div>
+    </ChildContent>
+</RadzenPanel>
+
+
+@code {
+
+    DialogOptions _diagOptions = new DialogOptions() { Width = "50%", Resizable = false };
+    private IEnumerable<EnseigneDto>? _enseignes { get; set; }
+    private IEnumerable<FamilleProduitDto>? _familleProduits { get; set; }
+    private List<EmplacementDetails>? _Emplacment { get; set; }
+    private RadzenDataGrid<EmplacementDetails>? gridData { get; set; }
+    private EnseigneDto? _enseigneSelected { get; set; }
+    private FamilleProduitDto? _familleProduitSelected { get; set; }
+    private EmplacementDetails? _newItem;
+    private bool _isLoading = true;
+    private EventCallback AjoutHandler => new(this, (Action)(async () => { await AddRowCallBack(); }));
+
+    protected async override Task OnInitializedAsync()
+    {
+        await LoadGrid();
+    }
+
+    public async Task LoadGrid()
+    {
+        _isLoading = true;
+        var response = await _EmplacementService.GetAll();
+
+        if (!response.Succeeded)
+        {
+            _Emplacment?.Clear();
+            return;
+        }
+        _Emplacment = new List<EmplacementDetails>();
+        _Emplacment.AddRange(response.Data);
+        _isLoading = false;
+    }
+
+    public async Task OpenUpdateDialog(MouseEventArgs args, EmplacementDetails item, int id)
+    {
+        await _dialogService.OpenAsync<AddOrEditAlerte>("Modification alerte",
+                        new Dictionary<string, object>() {
+                             { "action", "M" },
+                             { "item", item }
+                                    }, _diagOptions
+                    );
+
+        await gridData.Reload();
+    }
+
+
+    private async Task ExportExcelBtnClick()
+    {
+        try
+        {
+            _isLoading = true;
+            await _EmplacementService.DowloadExport(1);
+            _isLoading = false;
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            _notificationService.Notify(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Detail = "Echèc de l'opération!"
+                });
+        }
+
+    }
+
+    public async Task OpenDeleteDialog(MouseEventArgs args, EmplacementDetails item)
+    {
+        if (!string.IsNullOrEmpty(item.Inventory.number) &&
+               !string.IsNullOrEmpty(item.Inventory.description))
+        {
+            var Resulte = await _EmplacementService.DeleteEmplacement(item);
+
+            if (Resulte?.Succeeded == true)
+            {
+                _spinnerService.Hide();
+
+                _notificationService.Notify(new NotificationMessage
+                    {
+                        Severity = NotificationSeverity.Success,
+                        Detail = "supprission  a effectuée avec success."
+                    });
+
+                await LoadGrid();
+            }
+        }
+    }
+
+    public async Task AddRowCallBack()
+    {
+        await LoadGrid();
+        _dialogService.Close();
+    }
+
+    public async Task FiltrerClick()
+    {
+        _dialogService.Close();
+        await LoadGrid();
+        StateHasChanged();
+    }
+
+    private async Task OpenFilterBtnClick()
+    {
+        try
+        {
+            await _dialogService.OpenAsync<AddOrUpdateEplacement>($"Ajout Emplacement.",
+            new Dictionary<string, object>() { { "OnConfirm", AjoutHandler } }, _diagOptions);
+        }
+        catch (Exception ex)
+        {
+            _notificationService.Notify(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Detail = "Echèc de l'opération!"
+                });
+        }
+    }
+
+
+    private async Task SetFilterCallBack(FiltreDto args)
+    {
+        try
+        {
+            _dialogService.CloseSide();
+            await LoadGrid();
+        }
+        catch (Exception ex)
+        {
+        }
+    }
+
+}

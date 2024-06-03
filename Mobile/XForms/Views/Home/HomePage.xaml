@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Base:BasePage
+    xmlns:Base="clr-namespace:XForms.Views"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:FF="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:res="clr-namespace:XForms.Resources"
+    xmlns:local="clr-namespace:XForms"
+    xmlns:cc="clr-namespace:XForms.Controls"
+    xmlns:shared="clr-namespace:XForms.Views.SharedViews"
+    xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:home="clr-namespace:XForms.ViewModels.Home" 
+
+    HasNavigationBar="False"
+    x:Name="this"
+    Padding="0"
+    x:Class="XForms.Views.Home.HomePage">
+    <!--//x:DataType="home:HomeViewModel"-->
+    <Base:BaseContent>
+        <Grid
+            VerticalOptions="FillAndExpand">
+
+            <!--Background-->
+            <BoxView
+                Grid.Row="0"
+                Style="{StaticResource GradientNavStyle}">
+                <BoxView.Background>
+                    <LinearGradientBrush
+                        StartPoint="0,0"
+                        EndPoint="0,1">
+                        <GradientStop
+                            Color="{StaticResource StartGradient}"
+                            Offset="0.1" />
+                        <GradientStop
+                            Color="{StaticResource EndGradient}"
+                            Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
+
+
+            <Grid
+                RowSpacing="5"
+                VerticalOptions="FillAndExpand"
+                Style="{StaticResource MainGridStyle}"
+                RowDefinitions="Auto,*">
+
+                <!--NavBar-->
+                <Grid
+                    Grid.Row="0"
+                    ColumnDefinitions="*,Auto">
+
+                    <Grid
+                        Grid.Column="0"
+                        Padding="15,0">
+
+                        <Grid
+                            ColumnSpacing="10"
+                            VerticalOptions="CenterAndExpand"
+                            TranslationY="-5"
+                            ColumnDefinitions="Auto,*">
+                            
+                            <Label
+                                    Text="{Binding UserName,StringFormat='Welcome  {0}'}"
+                                    MaxLines="2"
+                                    TextColor="White"
+                                    FontSize="Body"
+                                    HorizontalOptions="FillAndExpand"
+                                    HorizontalTextAlignment="Center"
+                                    VerticalOptions="CenterAndExpand"
+                                    VerticalTextAlignment="Center"
+                                    LineBreakMode="TailTruncation" />
+
+                        </Grid>
+
+                        <Label
+                            Text="{Binding UserName}"
+                            HorizontalOptions="Start"
+                            VerticalOptions="CenterAndExpand"
+                            BackgroundColor="Transparent"
+                            Opacity="0"
+                            Padding="0" />
+
+                    </Grid>
+
+                    <cc:CustomButton
+                        Grid.Column="1"
+                        BackgroundColor="Transparent"
+                        HeightRequest="45"
+                        WidthRequest="45"
+                        Padding="25"
+                        VerticalOptions="Start"
+                        HorizontalOptions="FillAndExpand"
+                        Visual="Default"
+                        StyleCorner="Circle"
+                        Command="{Binding LogoutCommand}">
+                        <cc:CustomButton.ImageSource>
+                            <FontImageSource
+                                FontFamily="{x:Static res:FontAwesomeFonts.FontFamilySolid}"
+                                Glyph="{x:Static res:FontAwesomeFonts.SignOutAlt}"
+                                Color="{StaticResource White}"
+                                Size="20" />
+                        </cc:CustomButton.ImageSource>
+                    </cc:CustomButton>
+                </Grid>
+
+                <Grid
+                    Grid.Row="1"
+                    RowSpacing="20"
+                    RowDefinitions="*">
+
+                    <!--Corner Background-->
+                    <BoxView
+                        CornerRadius="0,0,0,0"
+                        VerticalOptions="FillAndExpand"
+                        BackgroundColor="{StaticResource White}" />
+
+                    <RefreshView
+                        Padding="15,2,15,0"
+                        IsRefreshing="{Binding IsRefreshing}"
+                        Command="{Binding RefreshPageCommand}">
+                        <CollectionView
+                            ItemsSource="{Binding ServicesList}"
+                            Footer=""
+                            ItemsLayout="VerticalGrid, 2">
+                            <CollectionView.Header>
+                                <BoxView
+                                    HeightRequest="20" />
+                            </CollectionView.Header>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <cc:PressableView
+                                        Padding="5,5"
+                                        Clicked="Service_Clicked">
+                                        <Frame
+                                            BorderColor="{StaticResource StartGradient}"
+                                            HasShadow="True"
+                                            CornerRadius="5"
+                                            Padding="15"
+                                            IsClippedToBounds="True"
+                                            BackgroundColor="{StaticResource White}">
+
+                                            <Grid
+                                                RowDefinitions="60,Auto">
+
+                                                <Image  Grid.Row="0"
+                                                    Source="{Binding IconNonRead,Mode=TwoWay}"
+                                                    Aspect="AspectFit"
+                                                    VerticalOptions="FillAndExpand"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    HeightRequest="60"
+                                                    WidthRequest="60" />
+
+                                                <Label
+                                                    Grid.Row="1"
+                                                    Text="{Binding Title}"
+                                                    MaxLines="2"
+                                                    FontSize="14"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    HorizontalTextAlignment="Center"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    VerticalTextAlignment="Center"
+                                                    LineBreakMode="TailTruncation" />
+                                            </Grid>
+                                        </Frame>
+                                    </cc:PressableView>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </RefreshView>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Base:BaseContent>
+</Base:BasePage>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary
+    x:Class="XForms.Resources.Colors"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Color
+        x:Key="Primary">#008B8B</Color>
+    <Color
+        x:Key="Accent">#F03F22</Color>
+    <Color
+        x:Key="Danger">#FF3E00</Color>
+    <Color
+        x:Key="Warning">#FF9F43</Color>
+    <Color
+        x:Key="Success">#2DA94F</Color>
+    <Color
+        x:Key="Info">#00CFE8</Color>
+    <Color
+        x:Key="StartGradient">#008080</Color>
+    <Color
+        x:Key="EndGradient">#008080</Color>
+    <Color
+        x:Key="BlueAction">#007AFF</Color>
+    <Color
+        x:Key="BlueB">#0757AA</Color>
+    <Color
+        x:Key="BlackB">#4D5259</Color>
+    <!--STATUT COLORS-->
+    <Color
+        x:Key="GreenStatut">#7DCB1F</Color>
+    <Color
+        x:Key="RedStatut">#EF6767</Color>
+    <Color
+        x:Key="OrangeStatut">#E37A0A</Color>
+    <Color
+        x:Key="YellowStatut">#E4C156</Color>
+    <Color
+        x:Key="BlueStatut">#5489BA</Color>
+    <Color
+        x:Key="GrayStatut">#d2dae2</Color>
+
+    <Color
+        x:Key="White">#FFFFFF</Color>
+
+    <Color
+        x:Key="Black">#000000</Color>
+
+    <Color
+        x:Key="Red">#EB0505</Color>
+
+    <Color
+        x:Key="LightText">#bdc3c7</Color>
+    <Color
+        x:Key="MediumText">#6D6F76</Color>
+
+
+    <Color
+        x:Key="DarkText">#4d4d4d</Color>
+
+    <Color
+        x:Key="Background">#FFFFFF</Color>
+
+    <Color
+        x:Key="BackgroundColor">#F0F2F5</Color>
+
+    <Color
+        x:Key="DarkBackground">#636E72</Color>
+
+    <Color
+        x:Key="TransparentBlack">#70000000</Color>
+
+    <Color
+        x:Key="LightBackground">#EEEEEE</Color>
+
+    <Color
+        x:Key="LightAction">#eaeaea</Color>
+
+    <Color
+        x:Key="DarkIconAction">#1D1D1D</Color>
+
+    <Color
+        x:Key="LightIconAction">#626262</Color>
+
+    <Color
+        x:Key="DarkAction">#4D5259</Color>
+
+    <Color
+        x:Key="MediumAction">#999798</Color>
+
+    <Color
+        x:Key="DarkBorderColor">#E5E4EC</Color>
+
+    <Color
+        x:Key="MediumBorderColor">#9a9a9a</Color>
+
+    <Color
+        x:Key="LightBorderColor">#DFE6E9</Color>
+
+    <Color
+        x:Key="DisabledBackgroundColor">#F2F7FF</Color>
+
+    <Color
+        x:Key="PlaceholderColor">#A8ACB0</Color>
+
+    <Color
+        x:Key="PlaceholderLightColor">#bfbfbf</Color>
+
+    <Color
+        x:Key="InputBackgroundColor">#f4f4f4</Color>
+
+    <Color
+        x:Key="InputBorderColor">#EAEDF1</Color>
+
+    <Color
+        x:Key="TabBarTextColor">#757575</Color>
+
+
+    <Color
+        x:Key="TabBarBackground">#ffffff</Color>
+
+
+    <Color
+        x:Key="UnselectedTabColor">#a5b6be</Color>
+
+
+    <Color
+        x:Key="InactiveDarkTextColor">#9a9899</Color>
+
+
+</ResourceDictionary>

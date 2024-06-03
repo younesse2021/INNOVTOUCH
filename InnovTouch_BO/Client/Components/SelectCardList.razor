@@ -1,0 +1,235 @@
+﻿@typeparam TItem
+
+
+<RadzenFieldset AllowCollapse="false">
+    <ChildContent>
+        <div class="row">
+            <div class="col-12">
+                @if (Data == null)
+                {
+                    <RadzenProgressBar Value="100" class="w-100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+                }
+                else
+                {
+                    <RadzenStack Orientation="@orientation"
+                             Gap="@gap"
+                             Reverse="@reverse"
+                             JustifyContent="@justifyContent"
+                             AlignItems="@alignItems">
+                        @foreach (var item in Items)
+                        {
+                            <RadzenCard Style="@item.CardStyle" @onclick="args => CardClick(item)">
+                                <div class="row-12 @(Disabled?"card-list-disabled":"")" style="text-align:center">
+                                    <RadzenImage Path="@item.CardImagePath" Style="width:50px;height:50px;" />
+                                </div>
+                                <div class="row-12 @(Disabled?"card-list-disabled":"")" style="text-align:center;text-overflow:ellipsis;">
+                                    <RadzenLabel Text="@item.GetText()" />
+                                </div>
+                            </RadzenCard>
+                        }
+                    </RadzenStack>
+                }
+            </div>
+        </div>
+    </ChildContent>
+</RadzenFieldset>
+
+<style>
+    .rz-fieldset-content {
+        padding: 1rem;
+    }
+
+    .card-visited {
+        box-shadow: 0 3px 10px 2px #FF0000;
+    }
+
+    .card-list-disabled {
+        filter: grayscale(100%);
+    }
+</style>
+
+
+@code {
+    // paramètre d'entrée
+    [Parameter]
+    public bool Disabled { get; set; } = false;
+    [Parameter]
+    public IEnumerable<TItem>? Data { get; set; }
+    [Parameter]
+    public string ImageProperty { get; set; }
+    [Parameter]
+    public string TextProperty { get; set; }
+    [Parameter]
+    public string? Name { get; set; }
+
+    // paramètre de sortie, objet selectionné
+    [Parameter]
+    public TItem? Value { get; set; }
+    [Parameter]
+    public EventCallback<TItem> ValueChanged { get; set; }
+
+
+    // variables interne au composant
+    private List<CardItem> Items = new List<CardItem>();
+    private CardItem? SelectedCardItem { get; set; }
+    private class CardItem
+    {
+        private static int Count { get; set; } = 0;
+        public int IdInterne { get; set; } = 0;
+        private static string CardBaseStyle { get; set; } = "width:100px;height:100px;cursor: pointer;";
+        private static string CardBaseDisabledStyle { get; set; } = "width:100px;height:100px;";
+        public string CardStyle { get; set; } = CardBaseStyle;
+        public bool IsSelected { get; set; } = false;
+
+        public TItem? Item { get; set; }
+        public string CardText { get; set; } = string.Empty;
+        public string CardImagePath { get; set; } = string.Empty;
+
+        private string styleCardNotSelected;
+        private string styleCardSelected ;
+
+        public CardItem(bool disabled)
+        {
+            Count++;
+            IdInterne = Count;
+            if (disabled)
+            {
+                styleCardNotSelected = $"{CardBaseDisabledStyle}";
+                styleCardSelected = $"{CardBaseDisabledStyle}box-shadow: 0 3px 10px 2px #FF0000;";
+            }
+            else
+            {
+                styleCardNotSelected = $"{CardBaseStyle}";
+                styleCardSelected = $"{CardBaseStyle}box-shadow: 0 3px 10px 2px #FF0000;";
+            }
+        }
+        public override string ToString()
+        {
+            return $"{IdInterne} - {CardText}";
+        }
+        public void SelectItem()
+        {
+            IsSelected = true;
+            CardStyle = styleCardSelected;
+        }
+        public void UnSelectItem()
+        {
+            IsSelected = false;
+            CardStyle = styleCardNotSelected;
+        }
+        public string GetText()
+        {
+            //transform long text like "Marjane market" to "Mar..mark" or ELECTROPLANET to ELECTROP..
+            if (CardText.Length > 10)
+            {
+                var words = CardText.Split(" ");
+                if (words.Length == 1)
+                {
+                    return $"{words[0].Substring(0, 8)}..";
+                }
+                return $"{words[0].Substring(0, 4)}..{words[1].Substring(0, 4)}";
+            }
+            return CardText;
+        }
+    }
+
+    // variables de personalisation
+    private Orientation orientation = Orientation.Horizontal;
+    private AlignItems alignItems = AlignItems.Center;
+    private JustifyContent justifyContent = JustifyContent.SpaceAround;
+    private FlexWrap wrap = FlexWrap.NoWrap;
+    private string gap = "10px";
+    private bool reverse;
+
+    protected override Task OnParametersSetAsync()
+    {
+        //convert input list into items list
+        if (Items == null || Items.Count <= 0)
+        {
+            ConvertDataToListItems();
+            if (Value != null && !(Items == null || Items.Count <= 0))
+            {
+                //todo select the item in the cardList
+                Items.ForEach(x =>
+                {
+                    var text = typeof(TItem).GetProperty(TextProperty);
+                    if (text != null)
+                    {
+                        if (text.GetValue(Value)?.ToString().Equals(text.GetValue(x.Item)?.ToString()) == true)
+                        {
+                            x.SelectItem();
+                        }
+                    }
+                });
+            }
+        }
+        return base.OnParametersSetAsync();
+    }
+    private void ConvertDataToListItems()
+    {
+        if (Data == null)
+        {
+            return;
+        }
+        Items = new List<CardItem>();
+        foreach (var item in Data)
+        {
+            var cardItem = new CardItem(Disabled);
+            cardItem.Item = item;
+            var text = typeof(TItem).GetProperty(TextProperty);
+            if (text != null)
+            {
+                cardItem.CardText = text.GetValue(item)?.ToString();
+            }
+
+            var imagePath = typeof(TItem).GetProperty(ImageProperty);
+            if (imagePath != null)
+            {
+                cardItem.CardImagePath = imagePath.GetValue(item)?.ToString();
+            }
+            Items.Add(cardItem);
+        }
+    }
+    private async Task CardClick(CardItem selectedCard)
+    {
+        if (Disabled) { return; }
+        //remove selected Items
+        var oldSelected = Items.Where(x => x.IsSelected && x.IdInterne != selectedCard.IdInterne).FirstOrDefault();
+        if (oldSelected != null)
+        {
+            oldSelected.UnSelectItem();
+        }
+
+        //select or remove selection for clicked on item
+        if (selectedCard.IsSelected)
+        {
+            SelectedCardItem = null;
+            selectedCard.UnSelectItem();
+        }
+        else
+        {
+            SelectedCardItem = selectedCard;
+            selectedCard.SelectItem();
+        }
+        StateHasChanged();
+        // return the selected Item in event callback
+        if (SelectedCardItem == null)
+        {
+            Value = default;
+            await ValueChanged.InvokeAsync();
+        }
+        else
+        {
+            Value = SelectedCardItem.Item;
+            await ValueChanged.InvokeAsync(SelectedCardItem.Item);
+        }
+    }
+    public void ClearSelection()
+    {
+        var oldSelected = Items.Where(x => x.IsSelected).FirstOrDefault();
+        if (oldSelected != null)
+        {
+            oldSelected.UnSelectItem();
+        }
+    }
+}

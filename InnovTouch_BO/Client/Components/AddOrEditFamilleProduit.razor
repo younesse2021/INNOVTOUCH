@@ -1,0 +1,134 @@
+﻿@using DLC_BO.Client.Service.Produits;
+@using global::Shared.DTO.InnovTouch.DTO.Produit;
+@inject NotificationService _notificationService
+@inject DialogService _dialogService
+@inject BlazorSpinner.SpinnerService _spinnerService
+@inject AppStateContainer _appStateContainer
+@inject ILogger<AddOrEditAlerte> _logger;
+@inject FamilleProduitService _familleProduitService
+
+
+<RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">
+    Une exception a été levée réessayez plus tard.
+</RadzenAlert>
+
+<RadzenTemplateForm TItem="FamilleProduitDto"
+                    Data=@model
+                    Submit="@( async args => await AddOrUpdateAsync())">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <RadzenCard>
+                    <div class="col-12"><RadzenLabel TextStyle="TextStyle.Subtitle2" class="w-100">Code famille produit *</RadzenLabel></div>
+                    <div class="col-12">
+                        <RadzenFormField Text="" class="w-100">
+                            <RadzenTextBox Name="CodeFamilleProduit" @bind-Value=@model.Code />
+                        </RadzenFormField>
+                    </div>
+                    <RadzenRequiredValidator Component="CodeFamilleProduit" Text="Champs code famille de produit obligatoire."></RadzenRequiredValidator>
+                </RadzenCard>
+            </div>
+            <div class="row">
+                <RadzenCard>
+                    <div class="col-12"><RadzenLabel TextStyle="TextStyle.Subtitle2" class="w-100">Libellé famille produit *</RadzenLabel></div>
+                    <div class="col-12">
+                        <RadzenFormField Text="" class="w-100">
+                            <RadzenTextBox Name="LibelleFamilleProduit" @bind-Value=@model.Libelle />
+                        </RadzenFormField>
+                    </div>
+                    <RadzenRequiredValidator Component="LibelleFamilleProduit" Text="Champs libellé famille de produit obligatoire."></RadzenRequiredValidator>
+                </RadzenCard>
+            </div>
+
+            <div class="row float-end">
+                <div class="">
+                    <RadzenButton Size="ButtonSize.Small" Click="@((args) => _dialogService.Close(false))" Text="Retour" ButtonStyle="ButtonStyle.Light"></RadzenButton>
+                    <RadzenButton Size="ButtonSize.Small" Icon="check" Text="@(_fieldsState.BtnSaveText)" ButtonType="ButtonType.Submit" ButtonStyle="ButtonStyle.Primary" Visible="@_fieldsState.IsBtnEnregistreVisible"></RadzenButton>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</RadzenTemplateForm>
+
+
+
+@code {
+    [Parameter]
+    public EventCallback? OnConfirm { get; set; }
+    [Parameter]
+    public string action { get; set; } = "C";
+    [Parameter]
+    public FamilleProduitDto? item { get; set; }
+    public FamilleProduitDto model { get; set; } = new();
+
+    private bool errorVisible { get; set; } = false;
+
+
+    struct FormStatus
+    {
+        public bool IsBtnEnregistreVisible = false;
+        public string BtnSaveText = "Ajouter";
+        public ButtonStyle BtnSaveStyle = ButtonStyle.Success;
+        public FormStatus()
+        {
+
+        }
+    }
+    private FormStatus _fieldsState = new FormStatus();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        InitFormFields();
+    }
+    public void InitFormFields()
+    {
+        if ("A".Equals(action))
+        {
+            _fieldsState.IsBtnEnregistreVisible = true;
+            _fieldsState.BtnSaveText = "Ajouter";
+            _fieldsState.BtnSaveStyle = ButtonStyle.Success;
+
+        }
+        else if ("M".Equals(action))
+        {
+            _fieldsState.IsBtnEnregistreVisible = true;
+            _fieldsState.BtnSaveText = "Enregistrer";
+            _fieldsState.BtnSaveStyle = ButtonStyle.Danger;
+        }
+    }
+    public async Task AddOrUpdateAsync()
+    {
+        if ("A".Equals(action))
+        {
+            await AddAsync();
+        }
+    }
+    public async Task AddAsync()
+    {
+        var response = await _familleProduitService.Add(model);
+        if (!response.Succeeded)
+        {
+            errorVisible = true;
+            _logger.LogError($"Echèc création:{response.Message}");
+            return;
+        }
+        if (response.Data <= 0)
+        {
+            await _dialogService.Alert(response.Message, "Echèc création", new AlertOptions()
+                {
+                    OkButtonText = "Ok",
+                    ShowClose = false
+                });
+            _logger.LogWarning($"Echèc création:{response.Message}");
+            return;
+        }
+        item.Id = response.Data;
+        item.Code = model.Code;
+        item.Libelle = model.Libelle;
+
+        await OnConfirm.Value.InvokeAsync(true);
+    }
+}

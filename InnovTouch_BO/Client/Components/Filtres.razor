@@ -1,0 +1,285 @@
+﻿@using DLC_BO.Client.Service.Entite;
+@using DLC_BO.Client.Service.Produits;
+@using InnovTouch_BO.Client.Service.Inventaires;
+@using global::Shared.DTO.DLC.DTO.Produit;
+@using global::Shared.DTO.InnovTouch.DTO.Entite
+@using global::Shared.DTO.InnovTouch.DTO.Helper
+@using global::Shared.DTO.InnovTouch.DTO.Inventaire
+@using global::InnovTouch_BO.Client.Service.Magasin
+@using global::Shared.DTO.InnovTouch.DTO.Models.Helper
+@inject ILogger<Index> _logger;
+@inject NotificationService _notificationService
+@inject DialogService _dialogService
+@inject MagasinService _MagasinService
+@inject RayoneService _RayoneService
+@inject BlazorSpinner.SpinnerService _spinnerService
+@inject ProduitService _produitService
+@inject AddInventaireService _AddInventaireService
+@inject AppStateContainer _appStateContainer
+@inject AppStateContainer appStateContainer
+@inject IJSRuntime JS
+
+<RadzenTemplateForm TItem="InventoryDTO"
+                    Data=@model
+                    Submit=@((forupdate)?
+                    @ConfirmModification:ConfirmAjout)>
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <h4 for="FirstName" style="text-align:center">Ajouter un inventeur </h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label for="FirstName">Numero Inventaire *</label>
+                <RadzenTextBox ReadOnly="@showdetails" @bind-Value=@model.number Name="number" Type="number" Class="form-control-plaintext"></RadzenTextBox>
+                <RadzenRequiredValidator Component="number" Text="Le Numero Inventaire est obligatoire." />
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label for="Description">Description *</label>
+                <RadzenTextBox ReadOnly="@showdetails" @bind-Value=@model.description Name="description" Class="form-control-plaintext"></RadzenTextBox>
+                <RadzenRequiredValidator Component="description" Text="la  description est obligatoire." />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label>Choisissez un type d'inventaire *</label>
+
+                @if (ListTypeInventaire == null)
+                {
+                    <p><select disabled class="form-control"></select></p>
+                }
+                else
+                {
+                    <RadzenDropDown AllowFiltering="false"
+                                AllowClear="true"
+                                Style="width: 100%"
+                                TextProperty="NameType"
+                                ValueProperty="TypeInv"
+                                FilterOperator="StringFilterOperator.StartsWith"
+                                FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                                TValue="String"
+                                Name="stockPosition"
+                                Data="@ListTypeInventaire"
+                                    class="w-100"
+                                @bind-Value=@model.stockPosition />
+                    <RadzenRequiredValidator Component="stockPosition" Text="Choix du StockPosition est obligatoire." />
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label>Choisissez le magasin *</label>
+
+                @if (ListMagasin == null)
+                {
+                    <p><select disabled class="form-control"></select></p>
+                }
+                else
+                {
+                    <RadzenDropDown Data="@ListMagasin"
+                                AllowFiltering="false"
+                                AllowClear="true"
+                                Style="width: 100%"
+                                Name="magasin"
+                                TextProperty="Libelle"
+                                FilterOperator="StringFilterOperator.StartsWith"
+                                FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                                TValue="MagasinDto"
+                                @bind-Value=@model.Magasin
+                                    class="w-100" />
+                    <RadzenRequiredValidator Component="magasin" Text="Choix du Magasin est obligatoire." />
+                }
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row pt-2">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <RadzenButton ButtonStyle="ButtonStyle.Light"
+                              Click=@(async args => _dialogService.CloseSide())
+                              Text="@(showdetails?"Retour":"Retour")"
+                              Style="width: 120px" Class="me-1" />
+
+                <RadzenButton Visible="@(!showdetails)"
+                              ButtonType="ButtonType.Submit"
+                              Text="Enregistrer"
+                              ButtonStyle="ButtonStyle.Primary"
+                              Icon="save"
+                              Style="margin-right: 0.5rem"
+                              Class="float-end">
+                </RadzenButton>
+            </div>
+        </div>
+    </div>
+
+</RadzenTemplateForm>
+
+
+
+@code {
+
+    #region  Attribute
+
+    [Parameter]
+    public EventCallback OnConfirm { get; set; }
+
+    [Parameter]
+    public bool showdetails { get; set; }
+    [Parameter]
+    public bool forupdate { get; set; }
+    [Parameter]
+    public FiltreDto Filtre { get; set; }
+
+    private FiltreDto _filtreSelected { get; set; } = new();
+    public List<TypeInventaireDto> ListTypeInventaire { get; set; }
+    public List<RayoneDto> ListRayone { get; set; }
+    public List<MagasinDto> ListMagasin { get; set; }
+    public InventoryDTO model { get; set; } = new InventoryDTO();
+    public SelectCardList<EnseigneDto>? selectCardList;
+
+    #endregion
+
+    protected async override Task OnInitializedAsync()
+    {
+        GetAllTypeInventair();
+        GetAllRayone();
+        await LoadGrid();
+    }
+
+
+    public async Task ConfirmModification()
+    {
+        try
+        {
+            _spinnerService.Show();
+        }
+        catch (Exception)
+        {
+        }
+    }
+    public async Task LoadDropDownDepartement()
+    {
+        Filtre.Departements = await Task.FromResult(_appStateContainer.UtilisateurBo.Departements);
+        if (Filtre.Departements != null && Filtre.Departements.Count() == 1)
+        {
+            _filtreSelected.Departement = Filtre.Departements.FirstOrDefault();
+            Filtre.IsDepartementDisabled = true;
+        }
+    }
+    public async Task LoadDropDownRayon()
+    {
+        Filtre.Rayons = await Task.FromResult(_appStateContainer.UtilisateurBo.Rayons);
+        if (Filtre.Rayons != null && Filtre.Rayons.Count() == 1)
+        {
+            _filtreSelected.Rayon = Filtre.Rayons.FirstOrDefault();
+            Filtre.IsRayonDisabled = true;
+        }
+    }
+    #region function data
+
+    public void GetAllTypeInventair()
+    {
+        var ListOfType = new List<TypeInventaireDto>()
+        {
+            new TypeInventaireDto()
+            {
+                Id = 1,
+                TypeInv = "102",
+                NameType = "Tournant"
+            },
+            new TypeInventaireDto()
+            {
+                Id = 2,
+                TypeInv = "82",
+                NameType = "Generale"
+            },
+        };
+
+        ListTypeInventaire = ListOfType;
+    }
+
+    public async void GetAllRayone()
+    {
+        var ListOfRayone = await _RayoneService.GetAll();
+        if (!ListOfRayone.Succeeded)
+        {
+            ListMagasin?.Clear();
+            return;
+        }
+        ListRayone = ListOfRayone.Data;
+        StateHasChanged();
+    }
+
+    private async Task LoadGrid()
+    {
+
+        var ListOfInventaire = await _MagasinService.GetAll();
+        if (!ListOfInventaire.Succeeded)
+        {
+            ListMagasin?.Clear();
+            return;
+        }
+        ListMagasin = ListOfInventaire.Data;
+        StateHasChanged();
+    }
+
+    public async Task ConfirmAjout()
+    {
+        try
+        {
+            _spinnerService.Show();
+
+            if (!string.IsNullOrEmpty(model.number) &&
+               !string.IsNullOrEmpty(model.stockPosition))
+            {
+                var Resulte = await _AddInventaireService.Add(model);
+
+                if (Resulte?.Succeeded == true && Resulte.Data != 0)
+                {
+                    _dialogService.CloseSide();
+
+                    _notificationService.Notify(new NotificationMessage
+                        {
+                            Severity = NotificationSeverity.Success,
+                            Detail = "Création a effectuée avec success."
+                        });
+
+                    await OnConfirm.InvokeAsync();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"ExportExcelBtnClick exception: {ex.Message}");
+            _notificationService.Notify(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Detail = "Echèc de l'opération!"
+                });
+            _spinnerService.Hide();
+            _dialogService.CloseSide();
+
+        }
+    }
+    #endregion
+}

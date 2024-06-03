@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Base:BasePage
+    xmlns:Base="clr-namespace:XForms.Views"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:cc="clr-namespace:XForms.Controls"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="False"
+    HasNavigationBar="False"
+    x:Name="this"
+    x:Class="XForms.Views.Walkthrough.WalkthroughPage">
+    <Base:BasePage.Content>
+
+        <!--Page Content-->
+        <Grid
+            RowSpacing="40"
+            BackgroundColor="{StaticResource BackgroundColor}"
+            Padding="{OnPlatform Android='0,20,0,30', iOS='0,60,0,30'}"
+            RowDefinitions="Auto,*,Auto,60">
+
+            <cc:CustomButton
+                Grid.Row="0"
+                Text="SKIP"
+                Margin="20,0"
+                Visual="Default"
+                VerticalOptions="Start"
+                HorizontalOptions="End"
+                TextColor="{StaticResource BlueStatut}"
+                BackgroundColor="{StaticResource BackgroundColor}"
+                Command="{Binding CommenceCommand}" />
+
+            <CarouselView
+                Grid.Row="1"
+                Grid.RowSpan="3"
+                x:Name="MainCarouselView"
+                Visual="Default"
+                VerticalOptions="FillAndExpand"
+                Position="{Binding WalkthroughPosition}"
+                ItemsSource="{Binding WalkthroughList}"
+                HorizontalScrollBarVisibility="Never">
+                <CarouselView.ItemsLayout>
+                    <LinearItemsLayout
+                        Orientation="Horizontal"
+                        ItemSpacing="0"
+                        SnapPointsType="MandatorySingle"
+                        SnapPointsAlignment="Center" />
+                </CarouselView.ItemsLayout>
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout
+                            Spacing="20"
+                            Padding="20,0"
+                            VerticalOptions="FillAndExpand">
+
+                            <ff:CachedImage
+                                Source="{Binding Image}"
+                                Aspect="AspectFit"
+                                HeightRequest="200"
+                                Margin="30,0"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="CenterAndExpand" />
+
+                            <Label
+                                Text="{Binding Title}"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                FontSize="24"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource Black}" />
+
+                            <Label
+                                Text="{Binding Description}"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                FontSize="18"
+                                TextColor="{StaticResource DarkText}" />
+
+                            <Grid
+                                VerticalOptions="EndAndExpand"
+                                HeightRequest="60">
+
+                                <cc:CustomButton
+                                    VerticalOptions="EndAndExpand"
+                                    IsVisible="{Binding IsLastStep}"
+                                    Text="Bienvenue"
+                                    Command="{Binding Source={x:Reference this}, Path=BindingContext.CommenceCommand}" />
+                            </Grid>
+
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <cc:CarouselIndicators
+                Grid.Row="2"
+                x:Name="carouselIndicators"
+                IndicatorSpacing="10"
+                VerticalOptions="EndAndExpand"
+                HorizontalOptions="CenterAndExpand"
+                IndicatorHeight="10"
+                ColumnSpacing="15"
+                StyleCorner="Circle"
+                IndicatorColor="{StaticResource Accent}"
+                ItemsSource="{Binding Source={x:Reference MainCarouselView}, Path=ItemsSource}"
+                Position="{Binding Source={x:Reference MainCarouselView}, Path=Position}" />
+
+        </Grid>
+
+    </Base:BasePage.Content>
+</Base:BasePage>

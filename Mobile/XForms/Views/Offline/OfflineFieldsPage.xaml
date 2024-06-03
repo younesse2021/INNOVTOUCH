@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Base:BasePage
+    xmlns:Base="clr-namespace:XForms.Views"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:FF="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:res="clr-namespace:XForms.Resources"
+    xmlns:local="clr-namespace:XForms"
+    xmlns:cc="clr-namespace:XForms.Controls"
+    xmlns:shared="clr-namespace:XForms.Views.SharedViews"
+    xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" xmlns:behavior="clr-namespace:XForms.Behaviors"
+    HasNavigationBar="False"
+    x:Name="this"
+    Padding="0"
+    x:Class="XForms.Views.Offline.OfflineFieldsPage">
+    <Base:BaseContent>
+        <Grid
+            VerticalOptions="FillAndExpand"
+            RowSpacing="0"
+            RowDefinitions="Auto,*">
+
+            <!--Background-->
+            <BoxView
+                Grid.Row="0"
+                               Grid.RowSpan="2"
+                Style="{StaticResource GradientNavStyle}">
+                <BoxView.Background>
+                    <LinearGradientBrush
+                        StartPoint="0,0"
+                        EndPoint="0,1">
+                        <GradientStop
+                            Color="{StaticResource StartGradient}"
+                            Offset="0.1" />
+                        <GradientStop
+                            Color="{StaticResource EndGradient}"
+                            Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
+
+            <!--Offline Statut-->
+            <shared:OffilneStatut Grid.Row="0"/>
+
+            <!--Body-->
+            <Grid
+                          Grid.Row="1"
+                RowSpacing="5"
+                VerticalOptions="FillAndExpand"
+                RowDefinitions="Auto,*">
+
+               <!--NavBar-->
+                <shared:SuggestionsNavBarView
+                    Grid.Row="0"
+                    TitleText="{Binding SelectedInventaryCode, StringFormat='N° inventaire {0}'}"
+                    HasTitle="True"
+                    HasReturnAction="True"
+                    HasLogoutAction="False" />
+
+                <Grid
+                    Grid.Row="1"
+                    RowSpacing="20"
+                    VerticalOptions="FillAndExpand"
+                    RowDefinitions="*">
+
+                    <!--Corner Background-->
+                    <BoxView
+                        CornerRadius="0,0,0,0"
+                        VerticalOptions="FillAndExpand"
+                        BackgroundColor="{StaticResource White}" />
+
+                    <StackLayout
+                        Spacing="20"
+                        Padding="15,20,15,30">
+
+
+                        <!--Site-->
+                        <Frame
+                                    Padding="15,5,5,5"
+                                    CornerRadius="10"
+                                    HasShadow="False"
+                                    IsClippedToBounds="True"
+                                    BorderColor="{StaticResource DarkBorderColor}"
+                                    BackgroundColor="{StaticResource White}">
+                            <Grid
+                                        ColumnSpacing="10"
+                                        RowSpacing="0"
+                                        Padding="0"
+                                        ColumnDefinitions="Auto,*">
+
+                                <Label
+                                            Grid.Column="0"
+                                            Text="Site"
+                                            FontSize="14"
+                                            VerticalOptions="FillAndExpand"
+                                            VerticalTextAlignment="Center"
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Bold"
+                                            TextColor="{StaticResource Black}" />
+
+                                <cc:CustomEntry
+                                            x:Name="StoreCodeEntry"
+                                            Grid.Column="1"
+                                            Text="{Binding SelectedStoreCode}"
+                                            Placeholder="Saisissez le site"
+                                            Keyboard="Numeric"
+                                            FontAttributes="Bold"
+                                            VerticalOptions="FillAndExpand"
+                                            VerticalTextAlignment="Center"
+                                            HorizontalOptions="FillAndExpand"
+                                            HorizontalTextAlignment="End"
+                                            IsHasBorder="False"
+                                            BorderWidth="0"
+                                    ReturnType="Next"
+                                    NextView="{x:Reference InventaryCodeEntry}">
+
+                                    <cc:CustomEntry.Behaviors>
+                                        <behavior:NumericValidationBehavior />
+                                    </cc:CustomEntry.Behaviors>
+                                </cc:CustomEntry>
+                            </Grid>
+                        </Frame>
+
+                        <!--Inventary-->
+                        <Frame
+                                    Padding="15,5,5,5"
+                                    CornerRadius="10"
+                                    HasShadow="False"
+                                    IsClippedToBounds="True"
+                                    BorderColor="{StaticResource DarkBorderColor}"
+                                    BackgroundColor="{StaticResource White}">
+                            <Grid
+                                        ColumnSpacing="10"
+                                        RowSpacing="0"
+                                        Padding="0"
+                                        ColumnDefinitions="Auto,*">
+
+                                <Label
+                                            Grid.Column="0"
+                                            Text="N° d'inventaire"
+                                            FontSize="14"
+                                            VerticalOptions="FillAndExpand"
+                                            VerticalTextAlignment="Center"
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Bold"
+                                            TextColor="{StaticResource Black}" />
+
+                                <cc:CustomEntry
+                                            x:Name="InventaryCodeEntry"
+                                            Grid.Column="1"
+                                            Text="{Binding SelectedInventaryCode}"
+                                            Placeholder="Saisissez le numéro"
+                                            Keyboard="Numeric"
+                                            FontAttributes="Bold"
+                                            VerticalOptions="FillAndExpand"
+                                            VerticalTextAlignment="Center"
+                                            HorizontalOptions="FillAndExpand"
+                                            HorizontalTextAlignment="End"
+                                            IsHasBorder="False"
+                                            BorderWidth="0"
+                                            ReturnType="Search"
+                                            ReturnCommand="{Binding VerifyInventaryFolderCommand}">
+
+                                    <cc:CustomEntry.Behaviors>
+                                        <behavior:NumericValidationBehavior />
+                                    </cc:CustomEntry.Behaviors>
+                                </cc:CustomEntry>
+                            </Grid>
+                        </Frame>
+
+                        <cc:CustomButton
+                            Text="VÉRIFIER"
+                            Padding="20,12"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="EndAndExpand"
+                            Clicked="Verify_Clicked"/>
+
+                    </StackLayout>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Base:BaseContent>
+</Base:BasePage>

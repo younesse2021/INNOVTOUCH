@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Base:BasePage
+    xmlns:Base="clr-namespace:XForms.Views"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cc="clr-namespace:XForms.Controls"
+    HasNavigationBar="False"
+        xmlns:res="clr-namespace:XForms.Resources"
+    x:Name="this"
+    x:Class="XForms.Views.SharedViews.PinchToZoomPage">
+    <Base:BaseContent>
+        <Grid VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand">
+
+
+            <cc:PinchToZoomContainer VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand">
+                <cc:PinchToZoomContainer.Content>
+                    <Image x:Name="ZoomableImage" VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand"
+                          />
+                </cc:PinchToZoomContainer.Content>
+            </cc:PinchToZoomContainer>
+
+            <cc:CustomImageButton
+                                            BackgroundColor="#50000000"
+                                            Padding="10"
+
+                   HeightRequest="40"
+                   WidthRequest="40"
+                   Margin="20"
+                                            VerticalOptions="Start"
+                                            HorizontalOptions="EndAndExpand"
+                                          StyleCorner="Circle"
+                    Clicked="Close_Clicked">
+
+                <cc:CustomImageButton.Source>
+                    <FontImageSource
+                                                    FontFamily="{x:Static res:MaterialIconsFonts.FontFamily}"
+                                                    Glyph="{x:Static res:MaterialIconsFonts.Close}"
+                                                    Color="{StaticResource White}"
+                                                    Size="30" />
+                </cc:CustomImageButton.Source>
+            </cc:CustomImageButton>
+        </Grid>
+    </Base:BaseContent>
+</Base:BasePage>

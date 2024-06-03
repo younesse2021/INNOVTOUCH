@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:res="clr-namespace:XForms.Resources"
+    x:Class="XForms.Views.SharedViews.OffilneStatut">
+    <ContentView.Content>
+        <Grid
+            VerticalOptions="Start"
+            HorizontalOptions="EndAndExpand">
+
+            <BoxView
+                CornerRadius="0,0,30,0"
+                HeightRequest="25"
+                VerticalOptions="Start"
+                BackgroundColor="{StaticResource Danger}" />
+
+            <StackLayout
+                Orientation="Horizontal"
+                Padding="15,0,10,0">
+
+
+                <Image
+                    Grid.Column="0"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand">
+                    <Image.Source>
+                        <FontImageSource
+                            FontFamily="{x:Static res:MaterialIconsFonts.FontFamily}"
+                            Glyph="{x:Static res:MaterialIconsFonts.WifiOff}"
+                            Color="{StaticResource White}"
+                            Size="15" />
+                    </Image.Source>
+                </Image>
+
+                <Label
+                    Text="Hors ligne"
+                    FontSize="10"
+                    FontAttributes="Bold"
+                    VerticalOptions="CenterAndExpand"
+                    VerticalTextAlignment="Center"
+                    TextColor="{StaticResource White}" />
+
+            </StackLayout>
+        </Grid>
+
+    </ContentView.Content>
+</ContentView>

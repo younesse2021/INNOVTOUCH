@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Base:BasePopupView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Base="clr-namespace:XForms.Views"
+    xmlns:cc="clr-namespace:XForms.Controls"
+    xmlns:res="clr-namespace:XForms.Resources"
+    BackgroundInputTransparent="False"
+    x:Class="XForms.Popups.FeedBackPopup">
+    <Grid
+        BackgroundColor="Transparent"
+        VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand">
+        <Grid
+            Grid.RowSpan="3"
+            RowDefinitions="40,40,Auto"
+            VerticalOptions="CenterAndExpand">
+
+            <cc:CardView
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                BackgroundColor="{StaticResource White}"
+                Style="{StaticResource PopupCardStyle}">
+
+                <StackLayout
+                    Spacing="10">
+
+                    <Label
+                        x:Name="TitleLabel"
+                        Text="{Binding TitleText}"
+                        FontSize="16"
+                                 Margin="20,0"
+                        HorizontalOptions="CenterAndExpand"
+                        HorizontalTextAlignment="Center"
+                        FontAttributes="Bold" 
+                        TextColor="{StaticResource Black}"/>
+
+                    <Label
+                        Text="{Binding DescriptionText}"
+                        IsVisible="{Binding DescriptionText, Converter={StaticResource ValueToVisibilityConverter}}"
+                        HorizontalOptions="CenterAndExpand"
+                        HorizontalTextAlignment="Center"        
+                                     FontSize="14"
+                         Margin="20,0"
+                        TextColor="{StaticResource Black}" />
+
+                    <!--Footer Actions-->
+                    <FlexLayout
+                        Margin="0,30,0,10"
+                        Direction="Row"
+                        >
+
+                        <cc:CustomButton
+                            x:Name="ConfirmButton"
+                            FlexLayout.Grow="1"
+                                      Margin="5,0"
+                            Padding="5"
+                            Text="{Binding ConfirmActionText}"
+                            BackgroundColor="#0757AA"
+                            Clicked="ConfirmClicked" />
+
+                        <cc:CustomButton
+                            x:Name="CancelButton"
+                            Margin="5,0"
+                                   Padding="5"
+                            FlexLayout.Grow="1"
+                            IsVisible="{Binding HasCancelAction}"
+                            Text="{Binding CancelActionText}"
+                                  BackgroundColor="#FF3E00"
+                            Clicked="Cancel_Clicked" />
+                    </FlexLayout>
+                </StackLayout>
+            </cc:CardView>
+
+            <cc:CornerView
+                Grid.RowSpan="2"
+                StyleCorner="Circle"
+                Padding="5"
+                BackgroundColor="{StaticResource White}"
+                HasShadow="True"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="CenterAndExpand">
+                <cc:CornerView
+                    Padding="5"
+                    BackgroundColor="{Binding HeaderGlyphBackground}">
+
+                    <Image
+                        BackgroundColor="Transparent"
+                        Visual="Default"
+                        Margin="15"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+                        <Image.Source>
+                            <FontImageSource
+                                FontFamily="{x:Static res:FontAwesomeFonts.FontFamilySolid}"
+                                Glyph="{Binding HeaderGlyph}"
+                                Color="{StaticResource White}">
+                            </FontImageSource>
+                        </Image.Source>
+                    </Image>
+                </cc:CornerView>
+            </cc:CornerView>
+        </Grid>
+    </Grid>
+</Base:BasePopupView>

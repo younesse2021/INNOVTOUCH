@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Base:BasePage
+    xmlns:Base="clr-namespace:XForms.Views"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:FF="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:res="clr-namespace:XForms.Resources"
+    xmlns:local="clr-namespace:XForms"
+    xmlns:cc="clr-namespace:XForms.Controls"
+    xmlns:shared="clr-namespace:XForms.Views.SharedViews"
+    xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    HasNavigationBar="False"
+    x:Name="this"
+    Padding="0"
+    x:Class="XForms.Views.Offline.OfflineInventoriesPage">
+    <Base:BaseContent>
+
+                 <Grid
+            VerticalOptions="FillAndExpand"
+            RowSpacing="0"
+            RowDefinitions="Auto,*">
+
+            <!--Background-->
+            <BoxView
+                Grid.Row="0"
+                               Grid.RowSpan="2"
+                Style="{StaticResource GradientNavStyle}">
+                <BoxView.Background>
+                    <LinearGradientBrush
+                        StartPoint="0,0"
+                        EndPoint="0,1">
+                        <GradientStop
+                            Color="{StaticResource StartGradient}"
+                            Offset="0.1" />
+                        <GradientStop
+                            Color="{StaticResource EndGradient}"
+                            Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
+
+                  <!--Offline Statut-->
+           <shared:OffilneStatut Grid.Row="0"/>
+
+           <!--Body-->
+            <Grid
+                          Grid.Row="1"
+                RowSpacing="10"
+                VerticalOptions="FillAndExpand"
+                RowDefinitions="Auto,*">
+
+                <!--NavBar-->
+                <shared:SuggestionsNavBarView
+                    Grid.Row="0"
+                    TitleText="Liste des inventaires"
+                    HasTitle="True"
+                    HasReturnAction="True"
+                    HasLogoutAction="False" />
+
+                <Grid
+                    Grid.Row="1"
+                    RowSpacing="20"
+                    VerticalOptions="FillAndExpand"
+                    RowDefinitions="*">
+
+                    <!--Corner Background-->
+                    <BoxView
+                        CornerRadius="0,0,0,0"
+                        VerticalOptions="FillAndExpand"
+                        BackgroundColor="{StaticResource White}" />
+
+             
+
+                    <StackLayout
+                        Padding="0">
+                        <CarouselView
+                                x:Name="MyCarouselView"
+                                HorizontalOptions="FillAndExpand"
+                                HorizontalScrollBarVisibility="Never"
+            
+                                Position="{Binding InventoriesListPosition}"
+                                ItemsSource="{Binding InventoriesList}"
+                                VerticalOptions="Start">
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <cc:PressableView
+                                            Padding="15,10"
+                                            Clicked="Inventory_Clicked">
+                                        <Frame
+                                                HasShadow="False"
+                                                CornerRadius="5"
+                                                VerticalOptions="CenterAndExpand"
+                                                Padding="0"
+                                                IsClippedToBounds="True"
+                                                BorderColor="{StaticResource DarkBorderColor}"
+                                                BackgroundColor="{StaticResource White}">
+
+                                            <Grid
+                                                    Padding="0"
+                                                    ColumnSpacing="10"
+                                                    RowSpacing="0"
+                                                    RowDefinitions="Auto,1">
+
+                                                <!--Row 1-->
+                                                <Label
+                                                        Grid.Row="0"
+                                                        Grid.Column="0"
+                                                        Text="N° inv"
+                                                        Padding="15,20"
+                                                        FontSize="14"
+                                                        VerticalOptions="FillAndExpand"
+                                                        VerticalTextAlignment="Center"
+                                                        LineBreakMode="TailTruncation" />
+
+                                                <Label
+                                                        Grid.Row="0"
+                                                        Grid.Column="1"
+                                                        Text="{Binding Number.CdataSection}"
+                                                        Padding="15,20"
+                                                        FontSize="14"
+                                                        FontAttributes="Bold"
+                                                        VerticalOptions="FillAndExpand"
+                                                        VerticalTextAlignment="Center"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        HorizontalTextAlignment="Start"
+                                                        LineBreakMode="TailTruncation"
+                                                        TextColor="{StaticResource Primary}" />
+                                            </Grid>
+                                        </Frame>
+                                    </cc:PressableView>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+
+                        <IndicatorView
+                                x:Name="indicatorView"
+                                HideSingle="False"
+                                Margin="20"
+                            ItemsSource="{Binding InventoriesList}"
+                         Position="{Binding InventoriesListPosition}"
+                                HorizontalOptions="Center"
+                                IndicatorColor="{StaticResource LightText}"
+                                SelectedIndicatorColor="{StaticResource Primary}"
+                                VerticalOptions="EndAndExpand" />
+
+                    </StackLayout>
+
+                </Grid>
+            </Grid>
+        </Grid>
+    </Base:BaseContent>
+</Base:BasePage>

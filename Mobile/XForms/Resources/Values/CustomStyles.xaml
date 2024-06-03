@@ -1,0 +1,1319 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="XForms.Resources.CustomStyles"
+    xmlns:resources="clr-namespace:XForms.Resources"
+    xmlns:cc="clr-namespace:XForms.Controls"
+    xmlns:FF="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core">
+    <ResourceDictionary.MergedDictionaries>
+        <resources:Colors />
+        <resources:Sizes />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style
+        x:Key="BoldEntryStyle2"
+        TargetType="cc:CustomEntry">
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource White}" />
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource White}" />
+        <Setter
+            Property="IsHasBorder"
+            Value="False" />
+        <Setter
+            Property="BorderWidth"
+            Value="0" />
+        <Setter
+            Property="CornerRaduis"
+            Value="0" />
+        <Setter
+            Property="FontAttributes"
+            Value="Bold" />
+        <Setter
+            Property="FontSize"
+            Value="13" />
+        <Setter
+            Property="Padding"
+            Value="10,10" />
+
+        <Setter
+            Property="VerticalOptions"
+            Value="FillAndExpand" />
+        <Setter
+            Property="VerticalTextAlignment"
+            Value="Center" />
+
+        <Setter
+            Property="HorizontalOptions"
+            Value="FillAndExpand" />
+        <Setter
+            Property="HorizontalTextAlignment"
+            Value="End" />
+
+        <Setter
+            Property="Margin"
+            Value="0,15,0,0" />
+
+    </Style>
+    
+    
+    <!--NavBarStyle-->
+    <Style
+        x:Key="NavBarStyle"
+        TargetType="Grid">
+        <Setter
+            Property="Padding"
+            Value="{OnPlatform Android='5,10', iOS='5,5'}" />
+    </Style>
+
+    <!--ContentStyle-->
+    <Style
+        x:Key="ContentStyle"
+        TargetType="ScrollView">
+        <Setter
+            Property="Padding"
+            Value="15,20" />
+    </Style>
+
+    <!--TitleBarStyle-->
+    <Style
+        x:Key="TitleBarStyle"
+        TargetType="Label">
+        <Setter
+            Property="FontSize"
+            Value="30" />
+        <Setter
+            Property="FontAttributes"
+            Value="Bold" />
+        <Setter
+            Property="VerticalOptions"
+            Value="CenterAndExpand" />
+        <Setter
+            Property="VerticalTextAlignment"
+            Value="Center" />
+        <!--<Setter Property="FontFamily"
+                Value="{OnPlatform iOS=Ubuntu-Bold, Android=Ubuntu-Bold.ttf#Ubuntu-Bold}" />-->
+        <Setter
+            Property="TextColor"
+            Value="{DynamicResource White}" />
+    </Style>
+
+    <!--TitleDetailBarStyle-->
+    <Style
+        x:Key="TitleDetailBarStyle"
+        TargetType="Label"
+        BasedOn="{StaticResource TitleBarStyle}">
+        <Setter
+            Property="FontSize"
+            Value="16" />
+        <Setter
+            Property="FontAttributes"
+            Value="None" />
+
+        <Setter
+            Property="TextColor"
+            Value="{DynamicResource PlaceholderColor}" />
+    </Style>
+
+    <!--TitleNavBarStyle-->
+    <Style
+        x:Key="TitleNavBarStyle"
+        TargetType="Label">
+        <Setter
+            Property="FontSize"
+            Value="18" />
+        <Setter
+            Property="FontAttributes"
+            Value="Bold" />
+        <Setter
+            Property="VerticalOptions"
+            Value="CenterAndExpand" />
+        <Setter
+            Property="VerticalTextAlignment"
+            Value="Center" />
+        <Setter
+            Property="HorizontalOptions"
+            Value="CenterAndExpand" />
+        <Setter
+            Property="HorizontalTextAlignment"
+            Value="Center" />
+        <!--<Setter Property="FontFamily"
+                Value="{OnPlatform iOS=Ubuntu-Bold, Android=Ubuntu-Bold.ttf#Ubuntu-Bold}" />-->
+        <Setter
+            Property="TextColor"
+            Value="{DynamicResource White}" />
+    </Style>
+
+    <!--TitleBarStyle-->
+    <Style
+        x:Key="TitleStyle"
+        TargetType="Label">
+        <Setter
+            Property="FontSize"
+            Value="18" />
+        <Setter
+            Property="FontAttributes"
+            Value="Bold" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource Black}" />
+    </Style>
+
+    <!--TitleCellStyle-->
+    <Style
+        x:Key="TitleDetailStyle"
+        TargetType="Label">
+        <Setter
+            Property="FontSize"
+            Value="16" />
+        <Setter
+            Property="LineBreakMode"
+            Value="TailTruncation" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource DarkText}" />
+    </Style>
+
+
+    <!--TitleDetailCellStyle-->
+    <Style
+        x:Key="TitleDetailCellStyle"
+        TargetType="Label">
+        <Setter
+            Property="FontSize"
+            Value="14" />
+        <Setter
+            Property="VerticalOptions"
+            Value="EndAndExpand" />
+        <Setter
+            Property="VerticalTextAlignment"
+            Value="End" />
+        <!--<Setter Property="FontFamily"
+                Value="{OnPlatform iOS=Ubuntu-Bold, Android=Ubuntu-Bold.ttf#Ubuntu-Bold}" />-->
+        <Setter
+            Property="TextColor"
+            Value="{DynamicResource White}" />
+    </Style>
+
+
+    <!--PercentDetailCellStyle-->
+    <Style
+        x:Key="PercentDetailCellStyle"
+        TargetType="Label">
+        <Setter
+            Property="FontSize"
+            Value="14" />
+        <Setter
+            Property="VerticalOptions"
+            Value="CenterAndExpand" />
+        <Setter
+            Property="VerticalTextAlignment"
+            Value="Center" />
+        <Setter
+            Property="FontAttributes"
+            Value="Bold" />
+        <!--<Setter Property="FontFamily"
+                Value="{OnPlatform iOS=Ubuntu-Bold, Android=Ubuntu-Bold.ttf#Ubuntu-Bold}" />-->
+        <Setter
+            Property="TextColor"
+            Value="{DynamicResource White}" />
+    </Style>
+
+    <!--LeftBarStyle-->
+    <Style
+        x:Key="LeftBarStyle"
+        TargetType="cc:CustomButton">
+        <Setter
+            Property="HeightRequest"
+            Value="50" />
+        <Setter
+            Property="WidthRequest"
+            Value="50" />
+        <Setter
+            Property="Padding"
+            Value="15" />
+        <Setter
+            Property="Margin"
+            Value="15" />
+        <Setter
+            Property="CornerRadius"
+            Value="5" />
+        <Setter
+            Property="Visual"
+            Value="Default" />
+        <Setter
+            Property="HorizontalOptions"
+            Value="EndAndExpand" />
+        <Setter
+            Property="VerticalOptions"
+            Value="Start" />
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource BackgroundColor}" />
+        <Setter
+            Property="HorizontalOptions"
+            Value="End" />
+        <Setter
+            Property="VerticalOptions"
+            Value="Start" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource DarkText}" />
+    </Style>
+
+    <!--RightBarStyle-->
+    <Style
+        x:Key="RightBarStyle"
+        TargetType="cc:CustomButton">
+        <Setter
+            Property="HeightRequest"
+            Value="50" />
+        <Setter
+            Property="WidthRequest"
+            Value="50" />
+        <Setter
+            Property="Padding"
+            Value="15" />
+        <Setter
+            Property="Margin"
+            Value="15" />
+        <Setter
+            Property="CornerRadius"
+            Value="5" />
+        <Setter
+            Property="Visual"
+            Value="Default" />
+        <Setter
+            Property="HorizontalOptions"
+            Value="Start" />
+        <Setter
+            Property="VerticalOptions"
+            Value="Start" />
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource BackgroundColor}" />
+        <Setter
+            Property="HorizontalOptions"
+            Value="End" />
+        <Setter
+            Property="VerticalOptions"
+            Value="Start" />
+
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource DarkText}" />
+    </Style>
+
+
+
+    <!--TitleBoldStyle-->
+    <Style
+        x:Key="TitleBoldStyle"
+        TargetType="Label">
+        <Setter
+            Property="FontSize"
+            Value="18" />
+        <Setter
+            Property="HorizontalOptions"
+            Value="CenterAndExpand" />
+        <Setter
+            Property="HorizontalTextAlignment"
+            Value="Center" />
+        <Setter
+            Property="FontAttributes"
+            Value="Bold" />
+        <Setter
+            Property="TextColor"
+            Value="{DynamicResource DarkTextColor}" />
+
+        <!--    <Setter Property="FontFamily"
+                Value="{OnPlatform iOS=Ubuntu-Bold, Android=Ubuntu-Bold.ttf#Ubuntu-Bold}" />-->
+    </Style>
+
+    <!--ArticleTextStyle-->
+    <Style
+        x:Key="ArticleTextStyle"
+        TargetType="Label">
+        <Setter
+            Property="TextColor"
+            Value="{DynamicResource LightTextColor}" />
+        <Setter
+            Property="FontSize"
+            Value="14" />
+        <Setter
+            Property="LineHeight"
+            Value="1.2" />
+        <Setter
+            Property="HorizontalTextAlignment"
+            Value="Center" />
+    </Style>
+
+    <!--InputTitleStyle-->
+    <Style
+        x:Key="InputTitleStyle"
+        TargetType="Label">
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource Black}" />
+        <Setter
+            Property="FontSize"
+            Value="14" />
+        <Setter
+            Property="FontAttributes"
+            Value="Bold" />
+        <Setter
+            Property="LineBreakMode"
+            Value="TailTruncation" />
+        <Setter
+            Property="VerticalTextAlignment"
+            Value="Center" />
+        <Setter
+            Property="VerticalOptions"
+            Value="CenterAndExpand" />
+    </Style>
+
+    <!--InputViewStyle-->
+    <Style
+        x:Key="InputViewStyle"
+        TargetType="StackLayout">
+        <Setter
+            Property="Spacing"
+            Value="15" />
+
+    </Style>
+
+
+    <!--ActionBarStyle-->
+    <Style
+        x:Key="ActionBarStyle"
+        TargetType="cc:CustomButton">
+
+        <Setter
+            Property="Padding"
+            Value="10,0" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource Primary}" />
+        <Setter
+            Property="Visual"
+            Value="Default" />
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource BackgroundColor}" />
+
+        <Setter
+            Property="FontSize"
+            Value="12" />
+        <Setter
+            Property="HorizontalOptions"
+            Value="End" />
+        <Setter
+            Property="VerticalOptions"
+            Value="Center" />
+        <!--<Setter
+            Property="FontFamily"
+            Value="{OnPlatform iOS=Ubuntu-Bold, Android=Ubuntu-Bold.ttf#Ubuntu-Bold}" />-->
+    </Style>
+
+    <!--TagButtonStyle-->
+    <Style
+        x:Key="TagButtonStyle"
+        TargetType="cc:CustomButton">
+        <Setter
+            Property="Padding"
+            Value="15,5" />
+        <Setter
+            Property="BorderWidth"
+            Value=".1" />
+        <Setter
+            Property="HeightRequest"
+            Value="35" />
+        <Setter
+            Property="FontSize"
+            Value="12" />
+        <Setter
+            Property="HorizontalOptions"
+            Value="FillAndExpand" />
+        <Setter
+            Property="VerticalOptions"
+            Value="Start" />
+        <!--<Setter Property="FontFamily"
+                Value="{OnPlatform iOS=Ubuntu-Bold, Android=Ubuntu-Bold.ttf#Ubuntu-Bold}" />-->
+    </Style>
+
+    <!--IndicatorStyle-->
+    <Style
+        x:Key="IndicatorStyle"
+        TargetType="ActivityIndicator">
+        <Setter
+            Property="IsVisible"
+            Value="False" />
+        <Setter
+            Property="IsRunning"
+            Value="False" />
+        <Setter
+            Property="VerticalOptions"
+            Value="CenterAndExpand" />
+        <Setter
+            Property="HorizontalOptions"
+            Value="CenterAndExpand" />
+    </Style>
+
+    <Style
+        x:Key="MaterialEntryStyle"
+        TargetType="Entry">
+        <!--<Setter
+            Property="TextColor"
+            Value="{StaticResource BackgroundColor}" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource Black}" />
+        <Setter
+            Property="PlaceholderColor"
+            Value="{StaticResource PlaceholderColor}" />
+        <Setter
+            Property="FontSize"
+            Value="14" />-->
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource BackgroundColor}" />
+
+        <Setter
+            Property="Visual"
+            Value="Material" />
+    </Style>
+
+
+    <Style
+        x:Key="LabelTapStyle"
+        TargetType="Label">
+        <Setter
+            Property="TextColor"
+            Value="{DynamicResource White}" />
+        <Setter
+            Property="FontSize"
+            Value="18" />
+        <Setter
+            Property="FontAttributes"
+            Value="Bold" />
+        <!--        <Setter Property="Opacity" Value=".5" />-->
+    </Style>
+
+    <!--SeparatorStyle-->
+    <Style
+        x:Key="SeparatorStyle"
+        TargetType="BoxView">
+        <Setter
+            Property="HeightRequest"
+            Value="1" />
+        <Setter
+            Property="VerticalOptions"
+            Value="Center" />
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource LightBorderColor}" />
+    </Style>
+
+    <!--DarkSeparatorStyle-->
+    <Style
+        x:Key="DarkSeparatorStyle"
+        TargetType="BoxView"
+        BasedOn="{StaticResource SeparatorStyle}">
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource DarkBorderColor}" />
+    </Style>
+
+
+    <!--GradientNavStyle-->
+    <Style
+        x:Key="GradientNavStyle"
+        TargetType="BoxView">
+        <Setter
+            Property="VerticalOptions"
+            Value="StartAndExpand" />
+
+        <Setter
+            Property="HorizontalOptions"
+            Value="FillAndExpand" />
+        <Setter
+            Property="HeightRequest"
+            Value="150" />
+
+    </Style>
+
+
+    <!--TransparentEntryStyle-->
+    <Style
+        x:Key="TransparentEntryStyle"
+        TargetType="cc:CustomEntry">
+        <Setter
+            Property="BackgroundColor"
+            Value="Transparent" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource Black}" />
+        <Setter
+            Property="BorderWidth"
+            Value="0" />
+        <Setter
+            Property="IsHasBorder"
+            Value="False" />
+    </Style>
+
+    <!--TransparentEntryStyle-->
+    <Style
+        x:Key="BoldEntryStyle"
+        TargetType="cc:CustomEntry">
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource White}" />
+
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource White}" />
+        <Setter
+            Property="IsHasBorder"
+            Value="False" />
+        <Setter
+            Property="BorderWidth"
+            Value="0" />
+          <Setter
+            Property="CornerRaduis"
+            Value="0" />
+        <Setter
+            Property="FontAttributes"
+            Value="Bold" />
+        <Setter
+            Property="FontSize"
+            Value="25" />
+        <Setter
+            Property="Padding"
+            Value="10,10" />
+
+        <Setter
+            Property="VerticalOptions"
+            Value="FillAndExpand" />
+        <Setter
+            Property="VerticalTextAlignment"
+            Value="Center" />
+
+        <Setter
+            Property="HorizontalOptions"
+            Value="FillAndExpand" />
+        <Setter
+            Property="HorizontalTextAlignment"
+            Value="End" />
+    </Style>
+
+    <!--PopupCardStyle-->
+    <Style
+        x:Key="PopupCardStyle"
+        TargetType="cc:CardView">
+        <Setter
+            Property="HasShadow"
+            Value="False" />
+        <Setter
+            Property="IsClippedToBounds"
+            Value="True" />
+        <Setter
+            Property="ShadowColor"
+            Value="Transparent" />
+        <Setter
+            Property="Padding"
+            Value="30,60,30,15" />
+        <Setter
+            Property="Margin"
+            Value="20,0" />
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource White}" />
+        <Setter
+            Property="VerticalOptions"
+            Value="Start" />
+        <Setter
+            Property="CornerRadius"
+            Value="20" />
+    </Style>
+
+    <!--TransparentButtonStyle-->
+    <Style
+        x:Key="TransparentButtonStyle"
+        TargetType="cc:CustomButton">
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource White}" />
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource DarkBackground}" />
+        <Setter
+            Property="Visual"
+            Value="Default" />
+        <Setter
+            Property="FontAttributes"
+            Value="None" />
+    </Style>
+
+
+
+    <!--FrameDetailStyle
+    <Style
+        x:Key="ScrollCardStyle"
+        TargetType="ScrollView">
+        <Setter
+            Property="Padding"
+            Value="10,5" />
+    </Style>
+
+    FrameDetailStyle
+    <Style
+        x:Key="CardStyle"
+        TargetType="Frame">
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource White}" />
+        <Setter
+            Property="VerticalOptions"
+            Value="Start" />
+        <Setter
+            Property="CornerRadius"
+            Value="10" />
+        <Setter
+            Property="HasShadow"
+            Value="{OnPlatform Android='true', iOS='false'}" />
+        <Setter
+            Property="Padding"
+            Value="12,10" />
+        <Setter
+            Property="IsClippedToBounds"
+            Value="true" />
+        <Setter
+            Property="ios:VisualElement.ShadowColor"
+            Value="{StaticResource Black}" />
+        <Setter
+            Property="ios:VisualElement.ShadowOpacity"
+            Value="1" />
+        <Setter
+            Property="ios:VisualElement.ShadowRadius"
+            Value="10" />
+        <Setter
+            Property="ios:VisualElement.IsShadowEnabled"
+            Value="True" />
+        <Setter
+            Property="ios:VisualElement.ShadowOffset"
+            Value="2,2" />
+    </Style>
+
+    <Style
+        x:Key="PopUpStyle"
+        TargetType="Frame">
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource White}" />
+        <Setter
+            Property="IsClippedToBounds"
+            Value="true" />
+        <Setter
+            Property="CornerRadius"
+            Value="20" />
+        <Setter
+            Property="HasShadow"
+            Value="{OnPlatform Android='true', iOS='false'}" />
+        <Setter
+            Property="Padding"
+            Value="0" />
+        <Setter Property="ios:VisualElement.ShadowColor" Value="{StaticResource Black}" />
+        <Setter Property="ios:VisualElement.ShadowOpacity" Value="0.1" />
+        <Setter Property="ios:VisualElement.ShadowRadius" Value="10" />
+        <Setter Property="ios:VisualElement.IsShadowEnabled" Value="True" />
+        <Setter Property="ios:VisualElement.ShadowOffset" Value="1,1" />
+    </Style>
+
+    EntryStyle
+    <Style
+        x:Key="EntryStyle"
+        TargetType="cc:ExtendedEntry">
+        <Setter
+            Property="FontSize"
+            Value="15" />
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource White}" />
+        <Setter
+            Property="TextColor"
+            Value="Black" />
+        <Setter
+            Property="BorderColor"
+            Value="{StaticResource BorderColor}" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource DarkTextColor}" />
+        <Setter
+            Property="PlaceholderColor"
+            Value="{StaticResource LightTextColor}" />
+        <Setter
+            Property="ReturnType"
+            Value="Next" />
+    </Style>
+
+    EntryStyle
+    <Style
+        x:Key="EditorStyle"
+        TargetType="cc:CustomEditor">
+        <Setter
+            Property="FontSize"
+            Value="15" />
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource White}" />
+        <Setter
+            Property="TextColor"
+            Value="Black" />
+        <Setter
+            Property="BorderColor"
+            Value="{StaticResource BorderColor}" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource DarkTextColor}" />
+        <Setter
+            Property="PlaceholderColor"
+            Value="{StaticResource LightTextColor}" />
+    </Style>
+
+    ButtonStyle
+    <Style
+        x:Key="ButtonStyle"
+        TargetType="cc:CustomButton">
+    </Style>
+    <Style
+        x:Key="BaseButtonStyle"
+        TargetType="Button">
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource Primary}" />
+    </Style>
+
+    <Style
+        TargetType="{x:Type Button}"
+        BasedOn="{StaticResource BaseButtonStyle}" />
+
+     ButtonChoiceStyle
+    <Style
+        x:Key="ButtonChoiceStyle"
+        TargetType="cc:CsButton">
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource BlueColor}" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource White}" />
+        <Setter
+            Property="FontSize"
+            Value="16" />
+        <Setter
+            Property="FontAttributes"
+            Value="Bold" />
+
+        <Setter
+            Property="HorizontalOptions"
+            Value="Center" />
+        <Setter
+            Property="Padding"
+            Value="0" />
+ 
+    </Style>
+
+   
+
+    DatePickerStyle
+    <Style
+        x:Key="DatePickerStyle"
+        TargetType="cc:CustomDatePicker">
+        <Setter
+            Property="Format"
+            Value="dd/MM/yyyy" />
+        <Setter
+            Property="FontSize"
+            Value="15" />
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource White}" />
+        <Setter
+            Property="BorderColor"
+            Value="{StaticResource BorderColor}" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource DarkTextColor}" />
+        <Setter
+            Property="RightImage"
+            Value="iconCalendar" />
+    </Style>
+
+    PickerStyle
+    <Style
+        x:Key="TimePickerStyle"
+        TargetType="cc:CustomTimePicker">
+        <Setter
+            Property="FontSize"
+            Value="15" />
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource White}" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource DarkTextColor}" />
+        <Setter
+            Property="BorderColor"
+            Value="{StaticResource BorderColor}" />
+        <Setter
+            Property="RightImage"
+            Value="iconTime" />
+    </Style>
+
+    TitleStyle
+    <Style
+        x:Key="TitleStyle"
+        TargetType="Label">
+        <Setter
+            Property="FontSize"
+            Value="14" />
+        <Setter
+            Property="VerticalTextAlignment"
+            Value="Center" />
+        <Setter
+            Property="VerticalOptions"
+            Value="CenterAndExpand" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource DarkTextColor}" />
+    </Style>
+
+
+    
+
+
+    TitleBoldStyle
+    <Style
+        x:Key="TitleChoiceStyle"
+        TargetType="Label">
+        <Setter
+            Property="FontSize"
+            Value="11" />
+        <Setter
+            Property="VerticalTextAlignment"
+            Value="Center" />
+        <Setter
+            Property="VerticalOptions"
+            Value="CenterAndExpand" />
+        <Setter
+            Property="HorizontalTextAlignment"
+            Value="Center" />
+        <Setter
+            Property="HorizontalOptions"
+            Value="CenterAndExpand" />
+          <Setter
+            Property="LineBreakMode"
+            Value="TailTruncation" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource BlackTextColor}" />
+        <Setter
+            Property="FontAttributes"
+            Value="Bold" />
+    </Style>
+
+
+
+    ViewSearchStyle
+    <Style
+        x:Key="ViewSearchStyle"
+        TargetType="cc:CornerView">
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource LightBackgroundColor}" />
+        <Setter
+            Property="BorderColor"
+            Value="{StaticResource BorderColor}" />
+        <Setter
+            Property="HasShadow"
+            Value="False" />
+        <Setter
+            Property="Padding"
+            Value="{OnPlatform iOS='2', Android='10' }" />
+    </Style>
+
+    EntrySearchStyle
+    <Style
+        x:Key="EntrySearchStyle"
+        TargetType="cc:ExtendedEntry">
+        <Setter
+            Property="FontSize"
+            Value="18" />
+        <Setter
+            Property="TextColor"
+            Value="Black" />
+        <Setter
+            Property="Placeholder"
+            Value="QUE CHERCHEZ-VOUS ?" />
+        <Setter
+            Property="HorizontalTextAlignment"
+            Value="Center" />
+        <Setter
+            Property="CornerRaduis"
+            Value="{OnPlatform iOS='20', Android='20' }" />
+        <Setter
+            Property="BorderWidth"
+            Value="{OnPlatform Android='2', iOS='1'}" />
+        <Setter
+            Property="BorderColor"
+            Value="{StaticResource BorderColor}" />
+        <Setter
+            Property="Padding"
+            Value="10,10" />
+        <Setter
+            Property="IsHasBorder"
+            Value="True" />
+        <Setter
+            Property="IsCustom"
+            Value="true" />
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource LightBackgroundColor}" />
+    </Style>
+
+    StatutViewStyle
+    <Style
+        x:Key="StatutViewStyle"
+        TargetType="Frame">
+        <Setter
+            Property="HasShadow"
+            Value="false" />
+        <Setter
+            Property="HorizontalOptions"
+            Value="FillAndExpand" />
+        <Setter
+            Property="Padding"
+            Value="10,3" />
+        <Setter
+            Property="WidthRequest"
+            Value="80" />
+    </Style>
+
+    StatutTextStyle
+    <Style
+        x:Key="StatutTextStyle"
+        TargetType="Label">
+        <Setter
+            Property="FontSize"
+            Value="12" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource White}" />
+        <Setter
+            Property="HorizontalOptions"
+            Value="FillAndExpand" />
+        <Setter
+            Property="HorizontalTextAlignment"
+            Value="Center" />
+        <Setter
+            Property="VerticalTextAlignment"
+            Value="Center" />
+        <Setter
+            Property="FontAttributes"
+            Value="Bold" />
+        <Setter
+            Property="VerticalOptions"
+            Value="CenterAndExpand" />
+        <Setter
+            Property="LineBreakMode"
+            Value="TailTruncation" />
+    </Style>
+    StatutDateStyle
+    <Style
+        x:Key="StatutDateStyle"
+        TargetType="Label">
+        <Setter
+            Property="FontSize"
+            Value="12" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource DarkTextColor}" />
+        <Setter
+            Property="HorizontalTextAlignment"
+            Value="Center" />
+                        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter
+            Property="HorizontalOptions"
+            Value="CenterAndExpand" />
+        <Setter
+            Property="LineBreakMode"
+            Value="TailTruncation" />
+    </Style>
+    CellRowStyle
+    <Style
+        x:Key="CellRowStyle"
+        TargetType="Grid">
+        <Setter
+            Property="Padding"
+            Value="10,7" />
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource LightBackgroundColor}" />
+        <Setter
+            Property="VerticalOptions"
+            Value="Center" />
+    </Style>
+
+    CellCardStyle
+    <Style
+        x:Key="CellCardStyle"
+        TargetType="Frame">
+        <Setter
+            Property="Padding"
+            Value="10" />
+        <Setter
+            Property="HasShadow"
+            Value="false" />
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource White}" />
+        <Setter
+            Property="IsClippedToBounds"
+            Value="true" />
+        <Setter
+            Property="CornerRadius"
+            Value="6" />
+    </Style>
+
+    CellTitleStyle
+    <Style
+        x:Key="CellTitleStyle"
+        TargetType="Label">
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource DarkTextColor}" />
+        <Setter
+            Property="FontSize"
+            Value="15" />
+        <Setter
+            Property="FontAttributes"
+            Value="Bold" />
+    </Style>
+
+    <Style
+        x:Key="CardViewStyle"
+        TargetType="cc:CardView">
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource White}" />
+        <Setter
+            Property="VerticalOptions"
+            Value="Start" />
+        <Setter
+            Property="CornerRadius"
+            Value="10" />
+        <Setter
+            Property="HasShadow"
+            Value="{OnPlatform Android='true', iOS='false'}" />
+        <Setter
+            Property="Padding"
+            Value="12,10" />
+        <Setter
+            Property="IsClippedToBounds"
+            Value="true" />
+        <Setter
+            Property="ios:VisualElement.ShadowColor"
+            Value="{StaticResource Black}" />
+        <Setter
+            Property="ShadowOpacity"
+            Value="0.1" />
+        <Setter
+            Property="ios:VisualElement.ShadowRadius"
+            Value="10" />
+        <Setter
+            Property="ShadowOffset"
+            Value="2,2" />
+        <Setter
+            Property="Elevation"
+            Value="10" />
+    </Style>
+
+
+    CellDetailStyle
+    <Style
+        x:Key="CellDetailStyle"
+        TargetType="Label">
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource DarkTextColor}" />
+        <Setter
+            Property="FontSize"
+            Value="14" />
+    </Style>
+
+    CellDetailSmallStyle
+    <Style
+        x:Key="CellDetailSmallStyle"
+        TargetType="Label">
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource DarkTextColor}" />
+        <Setter
+            Property="FontSize"
+            Value="12" />
+    </Style>
+    CellDetailLightStyle
+    <Style
+        x:Key="CellDetailLightStyle"
+        TargetType="Label">
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource LightTextColor}" />
+        <Setter
+            Property="FontSize"
+            Value="12" />
+    </Style>
+
+    CellCardStyle
+    <Style
+        x:Key="SmallCellStyle"
+        TargetType="Frame">
+        <Setter
+            Property="Padding"
+            Value="10,15" />
+        <Setter
+            Property="HasShadow"
+            Value="false" />
+        <Setter
+            Property="OutlineColor"
+            Value="{StaticResource LightBorderColor}" />
+        <Setter
+            Property="IsClippedToBounds"
+            Value="true" />
+        <Setter
+            Property="CornerRadius"
+            Value="8" />
+    </Style>
+
+    CellIconLightStyle
+    <Style
+        x:Key="CellIconLightStyle"
+        TargetType="FF:CachedImage">
+        <Setter
+            Property="HeightRequest"
+            Value="15" />
+        <Setter
+            Property="WidthRequest"
+            Value="15" />
+        <Setter
+            Property="Opacity"
+            Value=".5" />
+        <Setter
+            Property="ErrorPlaceholder"
+            Value="info.png" />
+        <Setter
+            Property="RetryCount"
+            Value="3" />
+        <Setter
+            Property="RetryDelay"
+            Value="250" />
+        <Setter
+            Property="CacheDuration"
+            Value="300" />
+        <Setter
+            Property="DownsampleToViewSize"
+            Value="True" />
+        <Setter
+            Property="ErrorPlaceholder"
+            Value="error.png" />
+        <Setter
+            Property="LoadingPlaceholder"
+            Value="transparent.png" />
+    </Style>
+    IconTitleStyle
+    <Style
+        x:Key="IconTitleStyle"
+        TargetType="FF:CachedImage">
+        <Setter
+            Property="HeightRequest"
+            Value="20" />
+        <Setter
+            Property="WidthRequest"
+            Value="20" />
+        <Setter
+            Property="ErrorPlaceholder"
+            Value="info.png" />
+        <Setter
+            Property="RetryCount"
+            Value="3" />
+        <Setter
+            Property="RetryDelay"
+            Value="250" />
+        <Setter
+            Property="CacheDuration"
+            Value="300" />
+        <Setter
+            Property="DownsampleToViewSize"
+            Value="True" />
+        <Setter
+            Property="ErrorPlaceholder"
+            Value="error.png" />
+        <Setter
+            Property="LoadingPlaceholder"
+            Value="transparent.png" />
+    </Style>
+    LabelMessageStyle
+    <Style
+        x:Key="LabelMessageStyle"
+        TargetType="Label">
+        <Setter
+            Property="FontSize"
+            Value="15" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource Red}" />
+        <Setter
+            Property="VerticalOptions"
+            Value="Center" />
+        <Setter
+            Property="HorizontalTextAlignment"
+            Value="Center" />
+        <Setter
+            Property="HorizontalOptions"
+            Value="CenterAndExpand" />
+    </Style>
+    CachedImageStyle
+    <Style
+        x:Key="BaseFFImage"
+        TargetType="FF:CachedImage">
+                        <Setter Property="TransparencyEnabled" Value="false" />
+        <Setter
+            Property="RetryCount"
+            Value="3" />
+        <Setter
+            Property="RetryDelay"
+            Value="250" />
+        <Setter
+            Property="CacheDuration"
+            Value="300" />
+        <Setter
+            Property="DownsampleToViewSize"
+            Value="true" />
+        <Setter
+            Property="ErrorPlaceholder"
+            Value="info.png" />
+        <Setter
+            Property="LoadingPlaceholder"
+            Value="transparent.png" />
+    </Style>
+
+   -->
+</ResourceDictionary>

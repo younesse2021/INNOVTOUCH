@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Base:BasePage
+    xmlns:Base="clr-namespace:XForms.Views"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:FF="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:res="clr-namespace:XForms.Resources"
+    xmlns:local="clr-namespace:XForms"
+    xmlns:cc="clr-namespace:XForms.Controls"
+    xmlns:shared="clr-namespace:XForms.Views.SharedViews"
+    xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
+    xmlns:proc="clr-namespace:PanCardView.Processors;assembly=PanCardView"
+    HasNavigationBar="False"
+    x:Name="this"
+    Padding="0"
+    x:Class="XForms.Views.Inventory.InventoriesPage">
+    <Base:BaseContent>
+
+        <Grid
+            VerticalOptions="FillAndExpand">
+
+            <!--Background-->
+            <BoxView
+                Grid.Row="0"
+                Style="{StaticResource GradientNavStyle}">
+                <BoxView.Background>
+                    <LinearGradientBrush
+                        StartPoint="0,0"
+                        EndPoint="0,1">
+                        <GradientStop
+                            Color="{StaticResource StartGradient}"
+                            Offset="0.1" />
+                        <GradientStop
+                            Color="{StaticResource EndGradient}"
+                            Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
+
+            <Grid
+                RowSpacing="10"
+                VerticalOptions="FillAndExpand"
+                Style="{StaticResource MainGridStyle}"
+                RowDefinitions="Auto,*">
+
+                <!--NavBar-->
+
+
+                <ImageButton 
+                            VerticalOptions="Start"
+                            HorizontalOptions="Start"
+                            Grid.Column="0"
+                            BackgroundColor="Transparent"  
+                            Padding="0" 
+                            Margin="20,0,0,0"
+                            HeightRequest="45" 
+                            Command="{Binding BackToHomePageCommand}"
+                            Source="left.png" />
+                <Label
+                            Margin="80,10,0,0"
+                            Grid.Column="0"
+                            Text="Liste des inventaires"
+                            FontSize="Body"
+                            TextColor="White"
+                            />
+
+                <Grid
+                    Grid.Row="1"
+                    RowSpacing="20"
+                    VerticalOptions="FillAndExpand"
+                    RowDefinitions="*">
+
+                    <!--Corner Background-->
+                    <BoxView
+                        CornerRadius="0,0,0,0"
+                        VerticalOptions="FillAndExpand"
+                        BackgroundColor="{StaticResource White}" />
+
+                    <StackLayout
+                        Padding="0">
+                        <cards:CoverFlowView
+                            ItemsSource="{Binding InventoriesList}"
+                            SelectedIndex="{Binding InventoriesListPosition}"
+                            VerticalOptions="CenterAndExpand">
+                            <x:Arguments>
+                                <proc:CoverFlowProcessor ScaleFactor="0.75" OpacityFactor="0.25" />
+                            </x:Arguments>
+
+                            <cards:CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <cc:PressableView
+                                            Padding="15,10"
+                                            Clicked="Inventory_Clicked">
+                                        <Frame
+                                                BorderColor="{StaticResource StartGradient}"
+                                                HasShadow="False"
+                                                CornerRadius="5"
+                                                VerticalOptions="CenterAndExpand"
+                                                Padding="0"
+                                                IsClippedToBounds="True"
+                                                BackgroundColor="{StaticResource White}">
+
+                                            <Grid
+                                                    Padding="0"
+                                                    ColumnSpacing="10"
+                                                    RowSpacing="0"
+                                                ColumnDefinitions="Auto,*"
+                                                    RowDefinitions="Auto,1,Auto,1,Auto,1,Auto">
+
+                                                <!--Row 1-->
+                                                <Label
+                                                        Grid.Row="0"
+                                                        Grid.Column="0"
+                                                        Text="N° inv"
+                                                        Padding="15,20"
+                                                        FontSize="14"
+                                                        VerticalOptions="FillAndExpand"
+                                                        VerticalTextAlignment="Center"
+                                                        LineBreakMode="TailTruncation" />
+
+                                                <Label
+                                                        Grid.Row="0"
+                                                        Grid.Column="1"
+                                                        Text="{Binding Inventory.number}"
+                                                        Padding="15,20"
+                                                        FontSize="14"
+                                                        FontAttributes="Bold"
+                                                        VerticalOptions="FillAndExpand"
+                                                        VerticalTextAlignment="Center"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        HorizontalTextAlignment="End"
+                                                        LineBreakMode="TailTruncation"
+                                                        TextColor="{StaticResource Primary}" />
+
+                                                <!--Separator-->
+                                                <BoxView
+                                                        Grid.Row="1"
+                                                        Grid.ColumnSpan="2"
+                                                        Style="{StaticResource DarkSeparatorStyle}" />
+
+                                                <!--Row 2-->
+                                                <Label
+                                                        Grid.Row="2"
+                                                        Grid.Column="0"
+                                                        Text="Libelle"
+                                                        Padding="15,20"
+                                                        FontSize="14"
+                                                        VerticalOptions="FillAndExpand"
+                                                        VerticalTextAlignment="Center"
+                                                        LineBreakMode="TailTruncation" />
+
+                                                <Label
+                                                        Grid.Row="2"
+                                                        Grid.Column="1"
+                                                        Text="{Binding Inventory.description}"
+                                                    MaxLines="2"
+                                                        Padding="15,20"
+                                                        FontSize="14"
+                                                        FontAttributes="Bold"
+                                                        VerticalOptions="FillAndExpand"
+                                                        VerticalTextAlignment="Center"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        HorizontalTextAlignment="End"
+                                                        LineBreakMode="TailTruncation"
+                                                        TextColor="{StaticResource Primary}" />
+
+                                                <!--Separator-->
+                                                <BoxView
+                                                        Grid.Row="3"
+                                                        Grid.ColumnSpan="2"
+                                                        Style="{StaticResource DarkSeparatorStyle}" />
+
+                                                <!--Row 3-->
+                                                <Label
+                                                        Grid.Row="4"
+                                                        Grid.Column="0"
+                                                        Text="Type inventaire"
+                                                        Padding="15,20"
+                                                        FontSize="14"
+                                                        VerticalOptions="FillAndExpand"
+                                                        VerticalTextAlignment="Center"
+                                                        LineBreakMode="TailTruncation" />
+
+                                                <Label
+                                                        Grid.Row="4"
+                                                        Grid.Column="1"
+                                                        Text="{Binding TypeInv}"
+                                                        Padding="15,20"
+                                                        FontSize="14"
+                                                        FontAttributes="Bold"
+                                                        VerticalOptions="FillAndExpand"
+                                                        VerticalTextAlignment="Center"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        HorizontalTextAlignment="End"
+                                                        LineBreakMode="TailTruncation"
+                                                        TextColor="{StaticResource Primary}" />
+
+                                                <!--Separator-->
+                                                <BoxView
+                                                        Grid.Row="5"
+                                                        Grid.ColumnSpan="2"
+                                                        Style="{StaticResource DarkSeparatorStyle}" />
+
+                                                <!--Row 4-->
+                                                
+                                                <!--<Label
+                                                        Grid.Row="6"
+                                                        Grid.Column="0"
+                                                        Text="Date valo"
+                                                        Padding="15,20"
+                                                        FontSize="14"
+                                                        VerticalOptions="FillAndExpand"
+                                                        VerticalTextAlignment="Center"
+                                                        LineBreakMode="TailTruncation" />
+
+                                                <Label
+                                                        Grid.Row="6"
+                                                        Grid.Column="1"
+                                                        Text="{Binding valorisationDate}"
+                                                        Padding="15,20"
+                                                        FontSize="14"
+                                                        FontAttributes="Bold"
+                                                        VerticalOptions="FillAndExpand"
+                                                        VerticalTextAlignment="Center"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        HorizontalTextAlignment="End"
+                                                        LineBreakMode="TailTruncation"
+                                                        TextColor="{StaticResource Primary}" />-->
+                                            </Grid>
+                                        </Frame>
+                                    </cc:PressableView>
+                                </DataTemplate>
+                            </cards:CarouselView.ItemTemplate>
+                        </cards:CoverFlowView>
+
+                        <Label
+                            Text="{Binding PaginationIndex}"
+                             IsVisible="{Binding InventoriesList, Converter={StaticResource HasValueConverter}}"
+                            VerticalOptions="EndAndExpand"
+                            Margin="20"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource Primary}"/>
+
+                        <!--<IndicatorView
+                                x:Name="indicatorView"
+                                HideSingle="False"
+                                Margin="20"
+                         ItemsSource="{Binding InventoriesList}"
+                         Position="{Binding InventoriesListPosition}"
+                                HorizontalOptions="Center"
+                                IndicatorColor="{StaticResource LightText}"
+                                SelectedIndicatorColor="{StaticResource Primary}"
+                                VerticalOptions="EndAndExpand" />-->
+
+                    </StackLayout>
+
+                </Grid>
+            </Grid>
+        </Grid>
+    </Base:BaseContent>
+</Base:BasePage>

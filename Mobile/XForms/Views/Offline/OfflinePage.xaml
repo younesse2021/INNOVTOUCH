@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Base:BasePage
+    xmlns:Base="clr-namespace:XForms.Views"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:FF="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:res="clr-namespace:XForms.Resources"
+    xmlns:local="clr-namespace:XForms"
+    xmlns:cc="clr-namespace:XForms.Controls"
+    xmlns:shared="clr-namespace:XForms.Views.SharedViews"
+    xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    HasNavigationBar="False"
+    x:Name="this"
+    Padding="0"
+    x:Class="XForms.Views.Offline.OfflinePage">
+    <Base:BaseContent>
+        <Grid
+            VerticalOptions="FillAndExpand"
+            RowSpacing="0"
+            RowDefinitions="Auto,*">
+
+            <!--Background-->
+            <BoxView
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Style="{StaticResource GradientNavStyle}">
+                <BoxView.Background>
+                    <LinearGradientBrush
+                        StartPoint="0,0"
+                        EndPoint="0,1">
+                        <GradientStop
+                            Color="{StaticResource StartGradient}"
+                            Offset="0.1" />
+                        <GradientStop
+                            Color="{StaticResource EndGradient}"
+                            Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
+
+            <!--Offline Statut-->
+           <shared:OffilneStatut Grid.Row="0"/>
+
+             <!--Body-->
+            <Grid
+                Grid.Row="1"
+                RowSpacing="5"
+                VerticalOptions="FillAndExpand"
+                RowDefinitions="Auto,*">
+
+                <!--NavBar-->
+                <shared:SuggestionsNavBarView
+                    TitleText="{x:Static local:AppConstants.AppName}"
+                    HasTitle="True"
+                    HasReturnAction="False"
+                    HasLogoutAction="True" />
+
+                <Grid
+                    Grid.Row="1"
+                    RowSpacing="20"
+                    VerticalOptions="FillAndExpand"
+                    RowDefinitions="*">
+
+                    <!--Corner Background-->
+                    <BoxView
+                        CornerRadius="0,0,0,0"
+                        VerticalOptions="FillAndExpand"
+                        BackgroundColor="{StaticResource White}" />
+
+                    <Grid
+                        Padding="15,10,15,0"
+                        ColumnDefinitions="*,*">
+
+                        <cc:PressableView
+                            Padding="5,5"
+                            VerticalOptions="Start"
+                            HorizontalOptions="FillAndExpand"
+                            Clicked="Service_Clicked">
+                            <Frame
+                                HasShadow="True"
+                                CornerRadius="5"
+                                Padding="15"
+                                IsClippedToBounds="True"
+                                BackgroundColor="{StaticResource White}">
+
+                                <Grid
+                                    RowDefinitions="60,Auto">
+
+                                    <svg:SvgCachedImage
+                                        Grid.Row="0"
+                                        Source="{local:ImageResource InventaireHorsLigne.svg}"
+                                        Aspect="AspectFit"
+                                        VerticalOptions="FillAndExpand"
+                                        HorizontalOptions="FillAndExpand"
+                                        HeightRequest="60"
+                                        WidthRequest="60" />
+
+                                    <Label
+                                        Grid.Row="1"
+                                        Text="Inventaires H.L"
+                                        FontSize="14"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="Center"
+                                        LineBreakMode="TailTruncation" />
+
+                                </Grid>
+                            </Frame>
+                        </cc:PressableView>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+        </Grid>
+    </Base:BaseContent>
+</Base:BasePage>

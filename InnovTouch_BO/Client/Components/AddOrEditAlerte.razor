@@ -1,0 +1,230 @@
+﻿@inject NotificationService _notificationService
+@inject DialogService _dialogService
+@inject BlazorSpinner.SpinnerService _spinnerService
+@inject AppStateContainer _appStateContainer
+@inject EnseigneService _enseigneService
+@inject AlerteProduitService _alerteProduitService
+@inject FamilleProduitService _familleProduitService
+@inject AddInventaireService _AddInventaireService
+@inject EmplacementService _EmplacementService
+@inject ILogger<AddOrEditAlerte> _logger;
+@using DLC_BO.Client.Service.Entite;
+@using InnovTouch_BO.Client.Service.Emplacement;
+@using InnovTouch_BO.Client.Service.Inventaires;
+@using global::Shared.DTO.InnovTouch.DTO.Entite;
+@using DLC_BO.Client.Service.Produits;
+@using global::Shared.DTO.InnovTouch.DTO.Inventaire;
+@using global::Shared.DTO.InnovTouch.DTO.Produit;
+@using global::Shared.DTO.InnovTouch.DTO.Helper;
+@inject IJSRuntime JS
+
+
+<RadzenTemplateForm TItem="InventoryDTO"
+                    Submit=@OnSubmit
+                    Data=@item>
+
+    <RadzenText TextStyle="TextStyle.H6" Class="rz-display-flex rz-align-items-center rz-m-0">
+        <b>Edit Emplacement avec numero Inventaire :@item.number </b>
+    </RadzenText>
+
+
+@*    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label for="FirstName">Type  Inventaire : </label>
+                <RadzenLabel Style="font-style:italic" Text=@item.TypeInv />
+            </div>
+        </div>
+    </div>*@
+
+
+    <div class="row">
+        <div class="col-sm-12">
+
+
+            <div class="form-group">
+                <label>Choisissez un type d'inventaire *</label>
+
+                @if (ListTypeInventaire == null)
+                {
+                    <p><select disabled class="form-control"></select></p>
+                }
+                else
+                {
+                    <RadzenDropDown Data="@ListTypeInventaire"
+                                AllowFiltering="false"
+                                AllowClear="true"
+                                Style="width: 100%"
+                                TextProperty="NameType"
+                                ValueProperty="Id"
+                                TValue="int"
+                                Name="typeInventaire"
+                                class="w-100"
+                                @bind-Value=@item.typeInventaire />
+
+                    <RadzenRequiredValidator Component="typeInventaire" Text="Choix du Type est obligatoire." />
+                }
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label for="FirstName">nomber  Emplacement *</label>
+                <RadzenNumeric @bind-Value=@item.NumberEmplacement Name="NumberEmplacement" Class="form-control-plaintext"></RadzenNumeric>
+                <RadzenRequiredValidator Component="NumberEmplacement" Text="Le Numero Inventaire est obligatoire." />
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row pt-2">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <RadzenButton ButtonStyle="ButtonStyle.Light"
+                              Click=@(async args => _dialogService.Close())
+                              Text="Retour"
+                              Style="width: 120px" Class="me-1" />
+                <RadzenButton ButtonType="ButtonType.Submit"
+                              Text="Enregistrer"
+                              ButtonStyle="ButtonStyle.Primary"
+                              Icon="save"
+                              Style="margin-right: 0.5rem"
+                              Class="float-end">
+                </RadzenButton>
+            </div>
+        </div>
+    </div>
+
+</RadzenTemplateForm>
+
+
+
+@code {
+    struct FormStatus
+    {
+        public string BtnSaveText = "SAVE";
+        public ButtonStyle BtnSaveStyle = ButtonStyle.Success;
+        public FormStatus()
+        {
+        }
+    }
+    private FormStatus _fieldsState = new FormStatus();
+
+    [Parameter]
+    public EventCallback OnConfirm { get; set; }
+    [Parameter]
+    public string action { get; set; } = "C";
+    [Parameter]
+    public InventoryDTO? item { get; set; }
+    public InventoryDTO model { get; set; } = new();
+
+    private IEnumerable<EnseigneDto>? _enseignes { get; set; }
+    private List<FamilleProduitDto>? _familleProduits { get; set; }
+    public List<TypeInventaireDto> ListTypeInventaire { get; set; }
+    private bool errorVisible { get; set; } = false;
+    // for popup addOrEdit familleProduit
+    private FamilleProduitDto? _newItem { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        GetAllTypeInventair();
+    }
+    async void OnSubmit(InventoryDTO model)
+    {
+        try
+        {
+            //_spinnerService.Show();
+
+            if (!string.IsNullOrEmpty(model.number) &&
+               !string.IsNullOrEmpty(model.description))
+            {
+                var Resulte = await _AddInventaireService.EditInventaire(model);
+
+                if (Resulte?.Succeeded == true)
+                {
+                    _spinnerService.Hide();
+
+                    _notificationService.Notify(new NotificationMessage
+                    {
+                        Severity = NotificationSeverity.Success,
+                        Detail = "Modification  a effectuée avec success."
+                    });
+                    _spinnerService.Hide();
+                    _dialogService.Close();
+                    await OnConfirm.InvokeAsync(true);
+                    return;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"ExportExcelBtnClick exception: {ex.Message}");
+            _dialogService.Close();
+            _spinnerService.Hide();
+        }
+    }
+    public void GetAllTypeInventair()
+    {
+        var ListOfType = new List<TypeInventaireDto>()
+        {
+            new TypeInventaireDto()
+            {
+                Id = 0,
+                TypeInv = "102",
+                NameType = "Reserve"
+            },
+            new TypeInventaireDto()
+            {
+                Id = 1,
+                TypeInv = "82",
+                NameType = "Magasin"
+            },
+        };
+
+        ListTypeInventaire = ListOfType;
+    }
+    public async Task LoadDropMagasin()
+    {
+    }
+    public async Task LoadDropDepartement()
+    {
+    }
+    public async Task LoadDropRayon()
+    {
+    }
+    public async Task LoadDropDownEnseigne()
+    {
+    }
+    public async Task LoadDropDownFamilleProduit()
+    {
+        Response<List<FamilleProduitDto>> response;
+        response = await _familleProduitService.GetAll();
+        _familleProduits = null;
+        if (!response.Succeeded)
+        {
+            return;
+        }
+        _familleProduits = response.Data.OrderBy(f => f.Libelle).ToList();
+    }
+    public async Task LoadDetails()
+    {
+
+    }
+    public async Task AddOrUpdateAsync()
+    {
+        try
+        {
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"AddOrUpdateAsync exception: {ex.Message}");
+            _notificationService.Notify(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Detail = "Echèc de l'opération!"
+                });
+        }
+    }
+}

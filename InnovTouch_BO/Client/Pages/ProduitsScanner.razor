@@ -1,0 +1,234 @@
+﻿@page "/ProduitsScanner"
+@using InnovTouch_BO.Client.Components;
+@using InnovTouch_BO.Client.Service.Produits;
+@using global::Shared.DTO.InnovTouch.DTO.Entite
+@using global::Shared.DTO.DLC.DTO.Produit
+@using global::Shared.DTO.InnovTouch.DTO.Inventaire
+@using DLC_BO.Client.Service.Produits
+@using InnovTouch_BO.Client.Service
+
+@inject NotificationService _notificationService
+@inject MultyDataForm _MultyDataForm
+@inject DialogService _dialogService
+@inject BlazorSpinner.SpinnerService _spinnerService
+@inject AppStateContainer _appStateContainer
+@inject InventaireService _InventaireService
+@inject DlcProduitService _dlcProduitService;
+@inject IJSRuntime _JSRuntime;
+@inject ILogger<Index> _logger;
+
+
+<div class="row" style="padding-top: 20px;">
+    <div class="col-12">
+        <RadzenBreadCrumb>
+            <Template Context="item">
+                <RadzenBadge Path="@item.Path" Text="@item.Text" IsPill="true" />
+            </Template>
+            <ChildContent>
+                <RadzenBreadCrumbItem Text="Accueil" />
+            </ChildContent>
+        </RadzenBreadCrumb>
+    </div>
+</div>
+<RadzenPanel AllowCollapse="false">
+    <HeaderTemplate>
+        <RadzenText TextStyle="TextStyle.H6" Class="rz-display-flex rz-align-items-center rz-m-0">
+            <RadzenIcon Icon="list" class="rz-mr-1" /><b>Accueil</b>
+        </RadzenText>
+    </HeaderTemplate>
+    <ChildContent>
+        <div class="row">
+            <div class="col-12">
+
+                <div class="float-end">
+
+
+                    <InputFile id="filePicker" OnChange="@OnInputFileChange" style="display:none" accept=".xlsx, .xls" />
+                    <label for="filePicker">
+                        <button class="btn btn-info" type="button" style="color: white;background-color: #4340d2;pointer-events: none;--rz-text-color: white;">Choisir la liste (EXCEL)</button>
+                    </label>
+
+                    <RadzenButton Size="ButtonSize.Medium" Click=@(args => ExportExcelBtnClick())
+                                  Text="EXCEL"
+                                  Icon="download"
+                                  ButtonStyle="ButtonStyle.Success" />
+
+                    <RadzenButton Size="ButtonSize.Medium" Variant="Variant.Outlined" Click=@(args => RefreshBtnClick())
+                                  Text=""
+                                  Icon="refresh"
+                                  ButtonStyle="ButtonStyle.Danger" />
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <RadzenDataGrid @ref="@_gridDataInventaire"
+                                IsLoading="@_isLoading"
+                                GridLines="DataGridGridLines.Horizontal"
+                                PagerPosition="PagerPosition.Bottom"
+                                AllowFiltering="true"
+                                AllowPaging="true"
+                                PageSize="10"
+                                FilterMode="FilterMode.Simple"
+                                FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                                LogicalFilterOperator="LogicalFilterOperator.Or"
+                                ColumnWidth="200px"
+                                Data="@_AddInfentaireDto?.OrderByDescending( a => a.Id)" TItem="ExportExcelModelDto">
+                    <EmptyTemplate><p>Vide</p></EmptyTemplate>
+
+                    <Columns>
+                        <RadzenDataGridColumn Filterable="true" TItem="ExportExcelModelDto" Property="inventaire" Title="Numero inventaire" Width="150px" />
+                        <RadzenDataGridColumn Filterable="true" TItem="ExportExcelModelDto" Property="codebar" Title="Code Article" Width="150px" />
+                        <RadzenDataGridColumn Filterable="true" TItem="ExportExcelModelDto" Property="description" Title="Libellé article" Width="150px" />
+                        <RadzenDataGridColumn Filterable="true" TItem="ExportExcelModelDto" Property="quantity" Title="Quantité" Width="150px" />
+                        <RadzenDataGridColumn Filterable="true" TItem="ExportExcelModelDto" Property="username" Title="L'utlisateur'" Width="150px" />
+                        <RadzenDataGridColumn Filterable="true" TItem="ExportExcelModelDto" Property="emplacement" Title="Lot" Width="150px" />
+                        <RadzenDataGridColumn TItem="ExportExcelModelDto"
+                                              Property="Id"
+                                              Filterable="false"
+                                              TextAlign="TextAlign.Right">
+                            <Template Context="data">
+                              <RadzenButton Icon="edit" ButtonStyle="ButtonStyle.Primary"
+                              Click=@(args=>OpenUpdateDialog(args,data)) Variant="Variant.Flat" Shade="Shade.Lighter" />
+                             @*
+                                <RadzenButton  Icon="build" ButtonStyle="ButtonStyle.Primary"
+                                              Click=@(args=>OpenUpdateDialog(args,data)) />*@
+
+                            </Template>
+                        </RadzenDataGridColumn>
+                    </Columns>
+                </RadzenDataGrid>
+            </div>
+        </div>
+    </ChildContent>
+</RadzenPanel>
+
+
+@code {
+    DialogOptions _diagOptions = new DialogOptions() { Width = "50%", Resizable = false };
+    private bool _isLoading = true;
+    private List<ExportExcelModelDto>? _AddInfentaireDto { get; set; }
+    private RadzenDataGrid<ExportExcelModelDto>? _gridDataInventaire { get; set; }
+    private List<ExportExcelModelDto>? _filtrelist { get; set; } = new();
+    private EventCallback AjoutHandler => new(this, (Action)(async () => { await AddRowCallBack(); }));
+
+    public async Task AddRowCallBack()
+    {
+        await LoadGrid();
+    }
+
+    protected async override Task OnInitializedAsync()
+    {
+        try
+        {
+            await LoadGrid();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"OnInitializedAsync exception: {ex.Message}");
+            _notificationService.Notify(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Detail = "Echèc de l'opération!"
+                });
+        }
+    }
+
+    public async Task OpenUpdateDialog(MouseEventArgs args, ExportExcelModelDto item)
+    {
+        await _dialogService.OpenAsync<AddOrEditProduit>($"Modification Produit Scanne",
+           new Dictionary<string, object>() { { "OnConfirm", AjoutHandler }, { "item", item } }, _diagOptions);
+    }
+
+    private async Task ExportExcelBtnClick()
+    {
+        try
+        {
+            _isLoading = true;
+            await _dlcProduitService.DowloadExport(1);
+            _isLoading = false;
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"ExportExcelBtnClick exception: {ex.Message}");
+            _notificationService.Notify(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Detail = "Echèc de l'opération!"
+                });
+        }
+    }
+
+    private async Task LoadGrid()
+    {
+        _isLoading = true;
+        var ListOfInventaire = await _InventaireService.GetAllByFiltre();
+        if (!ListOfInventaire.Succeeded)
+        {
+            _AddInfentaireDto?.Clear();
+            return;
+        }
+        _AddInfentaireDto = new List<ExportExcelModelDto>();
+        _AddInfentaireDto.AddRange(ListOfInventaire.Data);
+        _isLoading = false;
+        _gridDataInventaire?.Reload();
+        StateHasChanged();
+    }
+
+    private async Task RefreshBtnClick()
+    {
+        await LoadGrid();
+    }
+
+    public async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        try
+        {
+            _isLoading = true;
+
+            if (!(e.File.Name.Contains("xlsx") || e.File.Name.Contains("xls")))
+            {
+                await _dialogService.Alert("Veuillez choisir un fichier EXCEL", "Type fichier incompatible.", new AlertOptions() { OkButtonText = "OK" });
+                return;
+            }
+
+            using var stream = e.File.OpenReadStream();
+            using var content = new StreamContent(stream);
+            using var formData = new MultipartFormDataContent();
+            formData.Add(content, "file", e.File.Name);
+
+            var Responce = await _MultyDataForm.Add(formData);
+
+            if (Responce.Succeeded)
+            {
+                _notificationService.Notify(new NotificationMessage
+                    {
+                        Severity = NotificationSeverity.Success,
+                        Detail = "Opiration a effectuée avec success."
+                    });
+                _isLoading = true;
+            }
+            else
+            {
+                _notificationService.Notify(new NotificationMessage
+                    {
+                        Severity = NotificationSeverity.Error,
+                        Detail = "Echèc de l'opération!"
+                    });
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"ExportExcelBtnClick exception: {ex.Message}");
+
+            _notificationService.Notify(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Detail = "Echèc de l'opération!"
+                });
+        }
+    }
+}
+

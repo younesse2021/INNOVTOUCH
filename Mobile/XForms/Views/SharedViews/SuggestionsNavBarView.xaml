@@ -1,0 +1,93 @@
+﻿<Base:BaseContent
+    xmlns:Base="clr-namespace:XForms.Views"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cc="clr-namespace:XForms.Controls"
+    xmlns:res="clr-namespace:XForms.Resources"
+    x:Name="this"
+    x:Class="XForms.Views.SharedViews.SuggestionsNavBarView">
+    <Base:BaseContent.Content>
+        <Grid
+            Padding="10,0"
+            Grid.Row="0"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Start"
+            ColumnDefinitions="Auto,*,Auto">
+
+            <cc:CustomButton
+                Grid.Column="0"
+                IsVisible="{Binding HasReturnAction, Source={x:Reference this}}"
+                BackgroundColor="Transparent"
+                HeightRequest="45"
+                WidthRequest="45"
+                Padding="25"
+                VerticalOptions="Start"
+                HorizontalOptions="FillAndExpand"
+                Visual="Default"
+                StyleCorner="Circle"
+                Command="{Binding DismissPageCommand}">
+                <cc:CustomButton.ImageSource>
+                    <FontImageSource
+                        FontFamily="{x:Static res:FontAwesomeFonts.FontFamilySolid}"
+                        Glyph="{x:Static res:FontAwesomeFonts.ArrowLeft}"
+                        Color="{StaticResource White}"
+                        Size="20" />
+                </cc:CustomButton.ImageSource>
+            </cc:CustomButton>
+
+            <Label
+                Grid.Column="1"
+                IsVisible="{Binding HasTitle, Source={x:Reference this}}"
+                Text="{Binding TitleText, Source={x:Reference this}}"
+                TextColor="{StaticResource White}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                VerticalTextAlignment="Center"
+                FontAttributes="Bold" />
+
+            <!--<Grid
+                IsVisible="{Binding HasStorePicker, Source={x:Reference this}}">
+                <cc:CustomPicker
+                    Title="Veuillez sélectionner un magasin"
+                    SelectedItem="{Binding StoreModel}"
+                    ItemsSource="{Binding StoresList}" />
+
+                <Image
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="EndAndExpand"
+                    TranslationX="-15"
+                    BackgroundColor="{StaticResource White}">
+                    <Image.Source>
+                        <FontImageSource
+                            FontFamily="{x:Static res:FontAwesomeFonts.FontFamilySolid}"
+                            Glyph="{x:Static res:FontAwesomeFonts.ChevronDown}"
+                            Color="{StaticResource DarkIconAction}"
+                            Size="12" />
+                    </Image.Source>
+                </Image>
+            </Grid>-->
+
+            <cc:CustomButton
+                Grid.Column="2"
+                IsVisible="{Binding HasLogoutAction, Source={x:Reference this}}"
+                BackgroundColor="Transparent"
+                HeightRequest="45"
+                WidthRequest="45"
+                Padding="25"
+                VerticalOptions="Start"
+                HorizontalOptions="FillAndExpand"
+                Visual="Default"
+                StyleCorner="Circle"
+                Command="{Binding LogoutCommand}">
+                <cc:CustomButton.ImageSource>
+                    <FontImageSource
+                        FontFamily="{x:Static res:FontAwesomeFonts.FontFamilySolid}"
+                        Glyph="{x:Static res:FontAwesomeFonts.SignOutAlt}"
+                        Color="{StaticResource White}"
+                        Size="20" />
+                </cc:CustomButton.ImageSource>
+            </cc:CustomButton>
+
+        </Grid>
+    </Base:BaseContent.Content>
+</Base:BaseContent>

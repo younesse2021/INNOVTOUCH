@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Base:BasePage
+    xmlns:Base="clr-namespace:XForms.Views"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:res="clr-namespace:XForms.Resources"
+    xmlns:cc="clr-namespace:XForms.Controls"
+    xmlns:shared="clr-namespace:XForms.Views.SharedViews"
+    HasNavigationBar="False"
+    x:Name="this"
+    Padding="0"
+    x:Class="XForms.Views.Offline.OfflineInventoryDetailPage">
+    <Base:BaseContent>
+
+           <Grid
+            VerticalOptions="FillAndExpand"
+            RowSpacing="0"
+            RowDefinitions="Auto,*">
+
+            <!--Background-->
+            <BoxView
+                Grid.Row="0"
+                               Grid.RowSpan="2"
+                Style="{StaticResource GradientNavStyle}">
+                <BoxView.Background>
+                    <LinearGradientBrush
+                        StartPoint="0,0"
+                        EndPoint="0,1">
+                        <GradientStop
+                            Color="{StaticResource StartGradient}"
+                            Offset="0.1" />
+                        <GradientStop
+                            Color="{StaticResource EndGradient}"
+                            Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
+
+                  <!--Offline Statut-->
+           <shared:OffilneStatut Grid.Row="0"/>
+
+           <!--Body-->
+            <Grid
+                          Grid.Row="1"
+                RowSpacing="10"
+                VerticalOptions="FillAndExpand"
+                RowDefinitions="Auto,*">
+
+                <!--NavBar-->
+                <shared:SuggestionsNavBarView
+                    Grid.Row="0"
+                    TitleText="{Binding SelectedInventory.Number.CdataSection, StringFormat='N° inventaire {0}'}"
+                    HasTitle="True"
+                    HasReturnAction="True"
+                    HasLogoutAction="False" />
+
+                <Grid
+                    Grid.Row="1"
+                    RowSpacing="0"
+                    RowDefinitions="35,Auto,*">
+
+                    <Grid
+                        Grid.Row="1"
+                        Grid.RowSpan="2"
+                        RowSpacing="20"
+                        VerticalOptions="FillAndExpand"
+                        RowDefinitions="*">
+
+                        <!--Corner Background-->
+                        <BoxView
+                            CornerRadius="0,0,0,0"
+                            VerticalOptions="FillAndExpand"
+                            BackgroundColor="{StaticResource White}" />
+
+                        <StackLayout
+                            Spacing="20"
+                            Padding="15,0">
+                            <CollectionView
+                                ItemsSource="{Binding EmplacementsList}">
+                                <CollectionView.Header>
+                                 
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Text="Selection de la zone"
+                                            Padding="15,50,15,10"
+                                            FontSize="14"
+                                            VerticalOptions="FillAndExpand"
+                                            VerticalTextAlignment="Center"
+                                            LineBreakMode="TailTruncation"
+                                            TextColor="{StaticResource MediumText}" />
+
+                                </CollectionView.Header>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <cc:PressableView
+                                            Padding="5,10"
+                                            Clicked="InventoryZone_Clicked">
+                                            <Frame
+                                                HasShadow="True"
+                                                CornerRadius="5"
+                                                Padding="15,20"
+                                                IsClippedToBounds="True"
+                                                BackgroundColor="{StaticResource White}">
+
+                                                <Grid
+                                                    ColumnSpacing="15"
+                                                    ColumnDefinitions="Auto,*">
+
+                                                    <Image
+                                                        VerticalOptions="Start"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        HeightRequest="20"
+                                                        WidthRequest="20"
+                                                        BackgroundColor="{StaticResource White}"
+                                                        Visual="Default">
+                                                        <Image.Source>
+                                                            <FontImageSource
+                                                                FontFamily="{x:Static res:FontAwesomeFonts.FontFamilySolid}"
+                                                                Glyph="{x:Static res:FontAwesomeFonts.ShoppingCart}"
+                                                                Color="{StaticResource DarkIconAction}"
+                                                                Size="20" />
+                                                        </Image.Source>
+                                                    </Image>
+
+                                                    <Label
+                                                        Grid.Column="1"
+                                                        Text="{Binding Desc.CdataSection}"
+                                                        TextColor="{StaticResource Black}"
+                                                        VerticalOptions="CenterAndExpand"
+                                                        VerticalTextAlignment="Center"
+                                                        FontAttributes="Bold" />
+
+                                                </Grid>
+                                            </Frame>
+                                        </cc:PressableView>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </Grid>
+
+                    <Frame
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Margin="20,0"
+                        Padding="0"
+                        CornerRadius="5"
+                        IsClippedToBounds="True"
+                        BackgroundColor="{StaticResource White}"
+                        VerticalOptions="FillAndExpand">
+                        <Grid
+                            ColumnSpacing="10"
+                            RowSpacing="0"
+                            Padding="15,20"
+                            ColumnDefinitions="Auto,*"
+                            VerticalOptions="CenterAndExpand">
+
+                            <!--Column 1-->
+                            <Label
+                                Grid.Column="0"
+                                Text="Libelle"
+                                FontSize="14"
+                                VerticalOptions="FillAndExpand"
+                                VerticalTextAlignment="Center"
+                                LineBreakMode="TailTruncation"
+                                TextColor="{StaticResource MediumText}" />
+
+                            <!--Column 2-->
+                            <Label
+                                Grid.Column="1"
+                                Text="{Binding SelectedInventory.Description.CdataSection}"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                VerticalOptions="FillAndExpand"
+                                VerticalTextAlignment="Center"
+                                HorizontalOptions="EndAndExpand"
+                                HorizontalTextAlignment="Start"
+                                LineBreakMode="TailTruncation"
+                                TextColor="{StaticResource Primary}" />
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Base:BaseContent>
+</Base:BasePage>

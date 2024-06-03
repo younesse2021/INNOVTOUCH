@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<item
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		<shape
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:shape="rectangle">
+			<gradient
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:angle="270"
+				android:startColor ="@color/startGradient"
+				android:endColor="@color/endGradient"
+				android:type="linear" />
+		</shape>
+	</item>
+<!--
+	<item
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:drawable="@color/launcher_background"/>-->
+
+	<item
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:drawable="@drawable/InnovTouchLogo"
+		android:width="141dp"
+		android:height="59dp"
+		android:gravity="center"/>
+<!--
+	    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+ />-->
+
+	<!--<item
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text=""
+		android:height="30dp"
+		
+	       android:top="30dp"
+        android:bottom="30dp"
+        android:left="30dp"
+        android:right="30dp"
+		android:gravity="bottom"
+		 android:layout_gravity="bottom"/>-->
+
+</layer-list>
+

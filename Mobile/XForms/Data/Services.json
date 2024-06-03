@@ -1,0 +1,543 @@
+﻿{
+  "succeeded": true,
+  "message": "Success",
+  "errors": null,
+  "data": [
+    {
+      "label": {
+        "cdataSection": "Correction de stock"
+      },
+      "function": "STOCKADJUSTMENT",
+      "ident": "10",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Commande fournisseur"
+      },
+      "function": "ORDER",
+      "ident": "11",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Reception"
+      },
+      "function": "RECEPTIONS",
+      "ident": "12",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Commande specifique"
+      },
+      "function": "MJ_CMDPDA",
+      "ident": "1006",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Retour fournisseur"
+      },
+      "function": "",
+      "ident": "13",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "POSITION STOCK"
+      },
+      "function": "MJ_POSSTOCK",
+      "ident": "1005",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Inventaire"
+      },
+      "function": "INVENTORIES",
+      "ident": "14",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Comptage"
+      },
+      "function": "CYCLECOUNT",
+      "ident": "15",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Prix"
+      },
+      "function": "",
+      "ident": "16",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Reception externe"
+      },
+      "function": "",
+      "ident": "17",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Mise a jour de parametres d'Article"
+      },
+      "function": "PARAMETRESARTICLE",
+      "ident": "18",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Inventaire dons Covid19"
+      },
+      "function": "INVSANSINIT",
+      "ident": "19",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Info generale article"
+      },
+      "function": "INFOGENARTICLE",
+      "ident": "20",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Delai de retrait"
+      },
+      "function": "DELAIRETRAIT",
+      "ident": "21",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Demande d'Etiquette"
+      },
+      "function": "DEMANDEETI",
+      "ident": "22",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Controle Rupture"
+      },
+      "function": "CONTROLERUPTURE",
+      "ident": "24",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Controle SurStock"
+      },
+      "function": "CONTROLESURSTOCK",
+      "ident": "25",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Gestion du Stock"
+      },
+      "function": "",
+      "ident": "27",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Cessions Inter Rayons"
+      },
+      "function": "CESSINTRAYON",
+      "ident": "30",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Assortiments"
+      },
+      "function": "",
+      "ident": "33",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Transfert sans requete"
+      },
+      "function": "TRANSFERSANSREQUETE",
+      "ident": "34",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Article"
+      },
+      "function": "",
+      "ident": "35",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Mode deconnecte"
+      },
+      "function": "",
+      "ident": "38",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "OS"
+      },
+      "function": "",
+      "ident": "50",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Mot de  Passe"
+      },
+      "function": "MOTDEPASSE",
+      "ident": "51",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Pre-receptions"
+      },
+      "function": "PRERECEPTIONS",
+      "ident": "55",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Controle Remplissage"
+      },
+      "function": "MJ_CONTROLERUPTURE",
+      "ident": "900",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Vente assistée"
+      },
+      "function": "",
+      "ident": "910",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Reserve"
+      },
+      "function": "",
+      "ident": "950",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "ARRIVAGES MAGASINS"
+      },
+      "function": "",
+      "ident": "1000",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "MJ RECEPTION"
+      },
+      "function": "MJ_RECEPTIONS",
+      "ident": "1003",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Imprimer prix"
+      },
+      "function": "MJIMPRIMPRIX",
+      "ident": "1004",
+      "parent": "0"
+    },
+    {
+      "label": {
+        "cdataSection": "Nouveaux Produits"
+      },
+      "function": "NOUVPROD",
+      "ident": "40",
+      "parent": "1"
+    },
+    {
+      "label": {
+        "cdataSection": "Produits Sortants"
+      },
+      "function": "PRODSORT",
+      "ident": "41",
+      "parent": "1"
+    },
+    {
+      "label": {
+        "cdataSection": "Saisie retours"
+      },
+      "function": "SUPPLIERRETURNS",
+      "ident": "42",
+      "parent": "13"
+    },
+    {
+      "label": {
+        "cdataSection": "Controle prix"
+      },
+      "function": "CTRLPRIX",
+      "ident": "36",
+      "parent": "16"
+    },
+    {
+      "label": {
+        "cdataSection": "Changement prix"
+      },
+      "function": "CONTROLPRIX",
+      "ident": "37",
+      "parent": "16"
+    },
+    {
+      "label": {
+        "cdataSection": "Operation casse frais"
+      },
+      "function": "OPFRAIS",
+      "ident": "52",
+      "parent": "16"
+    },
+    {
+      "label": {
+        "cdataSection": "Reception par article"
+      },
+      "function": "RECEPTIONEXTERN",
+      "ident": "610",
+      "parent": "17"
+    },
+    {
+      "label": {
+        "cdataSection": "Reception par support"
+      },
+      "function": "RECEPTIONEXTSUPP",
+      "ident": "620",
+      "parent": "17"
+    },
+    {
+      "label": {
+        "cdataSection": "Controle selon criteres"
+      },
+      "function": "CONTROLESELONCRITERES",
+      "ident": "123",
+      "parent": "27"
+    },
+    {
+      "label": {
+        "cdataSection": "Planning article"
+      },
+      "function": "PLANNING",
+      "ident": "124",
+      "parent": "27"
+    },
+    {
+      "label": {
+        "cdataSection": "Saisie de la casse"
+      },
+      "function": "SAISIECASSE",
+      "ident": "31",
+      "parent": "27"
+    },
+    {
+      "label": {
+        "cdataSection": "Assort. commandables"
+      },
+      "function": "",
+      "ident": "1",
+      "parent": "33"
+    },
+    {
+      "label": {
+        "cdataSection": "Article selon Balisage"
+      },
+      "function": "BALISAGE",
+      "ident": "351",
+      "parent": "35"
+    },
+    {
+      "label": {
+        "cdataSection": "Balisage sans liste"
+      },
+      "function": "BALISAGESANSLISTE",
+      "ident": "352",
+      "parent": "35"
+    },
+    {
+      "label": {
+        "cdataSection": "Demande d'etiquette"
+      },
+      "function": "DEMANDEETIDC",
+      "ident": "39",
+      "parent": "38"
+    },
+    {
+      "label": {
+        "cdataSection": "Saisie de la casse"
+      },
+      "function": "SAISIECASSEDC",
+      "ident": "43",
+      "parent": "38"
+    },
+    {
+      "label": {
+        "cdataSection": "Controle balisage / detention"
+      },
+      "function": "BALISAGEDC",
+      "ident": "44",
+      "parent": "38"
+    },
+    {
+      "label": {
+        "cdataSection": "Article selon planning"
+      },
+      "function": "PLANNINGDC",
+      "ident": "45",
+      "parent": "38"
+    },
+    {
+      "label": {
+        "cdataSection": "Controle rupture"
+      },
+      "function": "CONTROLERUPTUREDC",
+      "ident": "46",
+      "parent": "38"
+    },
+    {
+      "label": {
+        "cdataSection": "Controle sur stock"
+      },
+      "function": "CONTROLESURSTOCKDC",
+      "ident": "47",
+      "parent": "38"
+    },
+    {
+      "label": {
+        "cdataSection": "Controle rupture liste"
+      },
+      "function": "CONTROLERUPTURELISTE",
+      "ident": "48",
+      "parent": "38"
+    },
+    {
+      "label": {
+        "cdataSection": "Controle sur stock liste"
+      },
+      "function": "CONTROLESURSTOCKLISTE",
+      "ident": "49",
+      "parent": "38"
+    },
+    {
+      "label": {
+        "cdataSection": "Inventaire"
+      },
+      "function": "INVENTORIESDC",
+      "ident": "53",
+      "parent": "38"
+    },
+    {
+      "label": {
+        "cdataSection": "Comptage"
+      },
+      "function": "CYCLECOUNTDC",
+      "ident": "54",
+      "parent": "38"
+    },
+    {
+      "label": {
+        "cdataSection": "Controle OS"
+      },
+      "function": "CTRLOS",
+      "ident": "501",
+      "parent": "50"
+    },
+    {
+      "label": {
+        "cdataSection": "Risque Rupture OS"
+      },
+      "function": "SUIVIARTICLEOSRUPTURE",
+      "ident": "502",
+      "parent": "50"
+    },
+    {
+      "label": {
+        "cdataSection": "Risque Surstock OS"
+      },
+      "function": "SUIVIARTICLEOSSURSTOCK",
+      "ident": "503",
+      "parent": "50"
+    },
+    {
+      "label": {
+        "cdataSection": "Bon de vente"
+      },
+      "function": "MJ_CREATION_BDV",
+      "ident": "911",
+      "parent": "910"
+    },
+    {
+      "label": {
+        "cdataSection": "Creation palette"
+      },
+      "function": "MJ_RSV_CREATION_PALETTE",
+      "ident": "951",
+      "parent": "950"
+    },
+    {
+      "label": {
+        "cdataSection": "Modification palette"
+      },
+      "function": "MJ_RSV_MODIFICATION_PALETTE",
+      "ident": "952",
+      "parent": "950"
+    },
+    {
+      "label": {
+        "cdataSection": "Stocker palette"
+      },
+      "function": "MJ_RSV_STOCKER_PALETTE",
+      "ident": "953",
+      "parent": "950"
+    },
+    {
+      "label": {
+        "cdataSection": "Descente palette"
+      },
+      "function": "MJ_RSV_DESCENTE_PALETTE",
+      "ident": "954",
+      "parent": "950"
+    },
+    {
+      "label": {
+        "cdataSection": "Infos article reserve"
+      },
+      "function": "MJ_RSV_INFO_ARTICLE",
+      "ident": "955",
+      "parent": "950"
+    },
+    {
+      "label": {
+        "cdataSection": "CREATION ARRIVAGES"
+      },
+      "function": "MJ_CREATION_ARRIVAGE",
+      "ident": "1001",
+      "parent": "1000"
+    },
+    {
+      "label": {
+        "cdataSection": "MODIFICATION ARRIVAGES"
+      },
+      "function": "MJ_MODIFICATION_ARRIVAGE",
+      "ident": "1002",
+      "parent": "1000"
+    }
+  ]
+}

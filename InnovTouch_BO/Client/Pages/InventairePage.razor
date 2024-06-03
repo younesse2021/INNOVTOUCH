@@ -1,0 +1,304 @@
+﻿@page "/Inventaire"
+
+@using InnovTouch_BO.Client.Components;
+@using DLC_BO.Client.Service.Entite;
+@using DLC_BO.Client.Service.Produits;
+@using InnovTouch_BO.Client.Service.Inventaires;
+@using global::Shared.DTO.InnovTouch.DTO.Entite;
+@using global::Shared.DTO.InnovTouch.DTO.Helper;
+@using global::Shared.DTO.InnovTouch.DTO.Produit;
+
+@inject NotificationService _notificationService
+@inject DialogService _dialogService
+@inject BlazorSpinner.SpinnerService _spinnerService
+@inject AppStateContainer _appStateContainer
+@inject EnseigneService _enseigneService
+@inject AlerteProduitService _alerteProduitService
+@inject FamilleProduitService _familleProduitService
+@inject AddInventaireService _AddInventaireService
+
+
+<RadzenPanel AllowCollapse="false">
+    <HeaderTemplate>
+
+        <RadzenText TextStyle="TextStyle.H6" Class="rz-display-flex rz-align-items-center rz-m-0">
+            <RadzenIcon Icon="account_box" class="rz-mr-1" /><b>Gestion des Inventaires</b>
+        </RadzenText>
+    </HeaderTemplate>
+    <ChildContent>
+
+        <div class="row">
+            <div class="row">
+                <div class="col-12">
+                    <div class="float-center">
+                        <RadzenButton Click=@(async args => await OpenFilterBtnClick1())
+                                      Text="Ajouter inventaire"
+                                      Icon="add_circle_outline"
+                                      Style="margin:10px;"
+                                      ButtonStyle="ButtonStyle.Primary" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <RadzenDataGrid @ref="@gridData"
+                                    IsLoading="@_isLoading"
+                                    Data="@_inventaires"
+                                    TItem="InventoryDTO"
+                                    AllowFiltering="true"
+                                    AllowSorting="true"
+                                    AllowPaging="true"
+                                    PageSize="10"
+                                    FilterMode="FilterMode.Simple"
+                                    FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                                    LogicalFilterOperator="LogicalFilterOperator.Or"
+                                    ColumnWidth="200px"
+                                    TItem="InventoryDTO">
+
+
+                        <EmptyTemplate><p>Vide</p></EmptyTemplate>
+
+                        <Columns>
+                            <RadzenDataGridColumn TItem="InventoryDTO" Property="Magasin.Libelle" Title="Magasin " />
+                            <RadzenDataGridColumn TItem="InventoryDTO" Property="number" Title="number" />
+                            <RadzenDataGridColumn TItem="InventoryDTO" Property="description" Title="Description" />
+                            <RadzenDataGridColumn TItem="InventoryDTO" Property="TypeInv" Title="Type inventaire" />
+
+                            <RadzenDataGridColumn TItem="InventoryDTO"
+                                                  Property="Id"
+                                                  Filterable="false"
+                                                  TextAlign="TextAlign.Right">
+
+                                <Template Context="data">
+                                    <RadzenButton Icon="delete" ButtonStyle="ButtonStyle.Danger"
+                                                  Click=@(args=>OpenDeleteDialog(args,data)) />
+                                </Template>
+                            </RadzenDataGridColumn>
+
+
+                        </Columns>
+                    </RadzenDataGrid>
+                </div>
+            </div>
+        </div>
+    </ChildContent>
+</RadzenPanel>
+
+@code {
+    private EventCallback AjoutHandler => new(this, (Action)(async () => { await AddRowCallBack(); }));
+    DialogOptions _diagOptions = new DialogOptions() { Width = "50%", Resizable = false };
+    private IEnumerable<EnseigneDto>? _enseignes { get; set; }
+    private IEnumerable<FamilleProduitDto>? _familleProduits { get; set; }
+    private List<InventoryDTO>? _inventaires { get; set; }
+    private RadzenDataGrid<InventoryDTO>? gridData { get; set; }
+    private EnseigneDto? _enseigneSelected { get; set; }
+    private FamilleProduitDto? _familleProduitSelected { get; set; }
+    private InventoryDTO? _newItem;
+    private bool _isLoading = true;
+    protected async override Task OnInitializedAsync()
+    {
+        await LoadGrid();
+    }
+    private async Task OpenFilterBtnClick1()
+    {
+        try
+        {
+            await _dialogService.OpenSideAsync<Filtres>("",
+                new Dictionary<string, object>()
+                {
+                {"OnConfirm",AjoutHandler}
+                }, options: new SideDialogOptions
+                {
+                    CloseDialogOnOverlayClick = true,
+                    Position = DialogPosition.Right,
+                    ShowMask = true,
+                    ShowClose = false
+                });
+
+        }
+        catch (Exception ex)
+        {
+            _notificationService.Notify(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Detail = "Echèc de l'opération!"
+                });
+        }
+    }
+    public async Task LoadGrid()
+    {
+        _isLoading = true;
+        var response = await _AddInventaireService.GetAll();
+
+        if (!response.Succeeded)
+        {
+            _inventaires?.Clear();
+            return;
+        }
+        _inventaires = new List<InventoryDTO>();
+        _inventaires.AddRange(response.Data);
+        _isLoading = false;
+        _dialogService.Close();
+    }
+    public async Task LoadGridTow()
+    {
+        try
+        {
+            var response = await _AddInventaireService.GetAll();
+
+            if (!response.Succeeded)
+            {
+                _inventaires?.Clear();
+                return;
+            }
+            _inventaires = new List<InventoryDTO>();
+            _inventaires.AddRange(response.Data);
+            _dialogService.Close();
+        }
+        catch (Exception)
+        {
+            
+        }
+         
+    }
+    public async Task LoadDropDownEnseigne()
+    {
+        Response<List<EnseigneDto>> response;
+        response = await _enseigneService.GetAll();
+        _enseignes = Enumerable.Empty<EnseigneDto>();
+        if (!response.Succeeded)
+        {
+            return;
+        }
+        _enseignes = response.Data;
+    }
+    public async Task LoadDropDownFamilleProduit()
+    {
+        Response<List<FamilleProduitDto>> response;
+        response = await _familleProduitService.GetAll();
+        _familleProduits = Enumerable.Empty<FamilleProduitDto>();
+        if (!response.Succeeded)
+        {
+            return;
+        }
+        _familleProduits = response.Data;
+    }
+    public async Task OpenAddDialog(MouseEventArgs args)
+    {
+        _newItem = new InventoryDTO();
+        await _dialogService.OpenAsync<AddOrEditAlerte>(
+            "Ajout nouvelle alerte",
+                      new Dictionary<string, object>() {
+                        { "action", "A" },
+                        { "item", _newItem },
+                        { "OnConfirm", AjoutHandler }},
+                      _diagOptions);
+    }
+    public async Task OpenUpdateDialog(MouseEventArgs args, Object item)
+    {
+        await _dialogService.OpenAsync<AddOrEditAlerte>("Modification alerte",
+                         new Dictionary<string, object>() {
+                             { "action", "M" },
+                             { "item", item }
+                                 }, _diagOptions
+                     );
+
+        await gridData.Reload();
+    }
+    public async Task OpenDeleteDialog(Microsoft.AspNetCore.Components.Web.MouseEventArgs args, Object item)
+    {
+        try
+        {
+            if (await _dialogService.Confirm("Etes-vous sûr de vouloir supprimer cet enregistrement?",
+                "Confirmation", new ConfirmOptions()
+                    {
+                        OkButtonText = "OUI",
+                        CancelButtonText = "NON"
+                    }) == true)
+            {
+                //_spinnerService.Show();
+                _isLoading = true;
+                var response = await _AddInventaireService.DeleteById(((InventoryDTO)item).Id);
+                //_spinnerService.Hide();
+                if (!response.Succeeded)
+                {
+                    _notificationService.Notify(new NotificationMessage
+                        { Severity = NotificationSeverity.Error, Detail = "Echèc suppression." });
+                    return;
+                }
+                var res = _inventaires?.Remove((InventoryDTO)item);
+                gridData?.Reload();
+                _isLoading = false;
+                _notificationService.Notify(new NotificationMessage
+                    {
+                        Severity = NotificationSeverity.Success,
+                        Summary = "Info",
+                        Detail = "Suppression a été bien effectuée."
+                    });
+            }
+        }
+        catch (Exception ex)
+        {
+            _notificationService.Notify(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Detail = "Echèc suppression!"
+                });
+        }
+    }
+    public async Task AddRowCallBack()
+    {
+        _dialogService.Close();
+        await LoadGrid();
+        StateHasChanged();
+
+    }
+    public async Task FiltrerClick(Object args)
+    {
+        StateHasChanged();
+    }
+    private async Task OpenFilterBtnClick()
+    {
+        try
+        {
+
+            await _dialogService.OpenSideAsync<Filtres>("",
+                new Dictionary<string, object>()
+            {
+                {"OnConfirm",AjoutHandler}
+            }, options: new SideDialogOptions
+            {
+                CloseDialogOnOverlayClick = true,
+                Position = DialogPosition.Right,
+                ShowMask = true,
+                ShowClose = false
+            });
+
+        }
+        catch (Exception ex)
+        {
+            _notificationService.Notify(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Detail = "Echèc de l'opération!"
+                });
+        }
+    }
+    private async Task SetFilterCallBack(FiltreDto args)
+    {
+        try
+        {
+            _dialogService.CloseSide();
+            await LoadGrid();
+        }
+        catch (Exception ex)
+        {
+            _notificationService.Notify(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Detail = "Echèc de l'opération!"
+                });
+        }
+    }
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary
+    x:Class="XForms.Resources.Converters"
+    xmlns:converters="clr-namespace:XForms.Converters"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <converters:StringValueConverter
+        x:Key="StringValueConverter" />
+    <converters:ValueToVisibilityConverter
+        x:Key="ValueToVisibilityConverter" />
+    <converters:HasValueConverter
+        x:Key="HasValueConverter" />
+    <converters:NegateHasValueConverter
+        x:Key="NegateHasValueConverter" />
+    <converters:ToUpperConverter
+        x:Key="ToUpperConverter" />
+    <converters:NegateBooleanConverter
+        x:Key="NegateBooleanConverter" />
+    <converters:LightColorConverter
+        x:Key="LightColorConverter" />
+</ResourceDictionary>

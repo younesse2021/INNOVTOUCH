@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Base:BasePopupView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Base="clr-namespace:XForms.Views"
+    xmlns:cc="clr-namespace:XForms.Controls"
+    xmlns:res="clr-namespace:XForms.Resources"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:behavior="clr-namespace:XForms.Behaviors"
+    xmlns:FF="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    CloseWhenBackgroundIsClicked="True"
+    x:Name="this"
+    BackgroundColor="#90000000"
+    x:Class="XForms.Views.SharedViews.DisplayPromptAsyncPopup">
+    <Base:BasePopupView.Animation>
+        <animations:ScaleAnimation
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            ScaleIn="1"
+            ScaleOut="1"
+            DurationIn="200"
+            DurationOut="200"
+            HasBackgroundAnimation="True" />
+    </Base:BasePopupView.Animation>
+
+    <Grid
+        VerticalOptions="End"
+        Padding="0,10,0,0"
+        RowDefinitions="Auto,*">
+
+        <!--Close Button-->
+        <cc:CustomImageButton
+            Grid.Row="0"
+            BackgroundColor="{StaticResource White}"
+            Padding="8"
+            HeightRequest="35"
+            WidthRequest="35"
+            Margin="0,0,40,0"
+            VerticalOptions="Start"
+            HorizontalOptions="EndAndExpand"
+            StyleCorner="Circle"
+            Clicked="Close_Clicked">
+
+            <cc:CustomImageButton.Source>
+                <FontImageSource
+                    FontFamily="{x:Static res:MaterialIconsFonts.FontFamily}"
+                    Glyph="{x:Static res:MaterialIconsFonts.Close}"
+                    Color="{StaticResource DarkIconAction}"
+                    Size="28" />
+            </cc:CustomImageButton.Source>
+        </cc:CustomImageButton>
+
+        <BoxView
+            Grid.Row="1"
+            BackgroundColor="{StaticResource White}"
+            CornerRadius="0,0,0,0"
+            VerticalOptions="FillAndExpand" />
+
+        <ScrollView
+                       Grid.Row="1"
+                    Padding="15,30"
+            VerticalOptions="End">
+            <StackLayout
+ 
+            Spacing="30">
+
+
+                <!--Code-->
+                <StackLayout
+                                    Style="{StaticResource InputViewStyle}">
+                    <Label
+                                        Text="CODE"
+                                        Style="{StaticResource InputTitleStyle}" />
+
+                    <Grid>
+                        <cc:CustomEntry
+                                            x:Name="CodeEntry"
+                                            Placeholder="Saisissez le code"
+                                            IsPassword="True"/>
+
+                        <!--<cc:CustomButton
+                                            VerticalOptions="CenterAndExpand"
+                                            HorizontalOptions="EndAndExpand"
+                                            TranslationX="-5"
+                                            HeightRequest="35"
+                                            WidthRequest="35"
+                                            BackgroundColor="{StaticResource White}"
+                                            Padding="10"
+                                            Visual="Default"
+                                            StyleCorner="Circle"
+                                            Clicked="ShowOrHide_Clicked">
+                            <cc:CustomButton.ImageSource>
+                                <FontImageSource
+                                                    FontFamily="{x:Static res:FontAwesomeFonts.FontFamilySolid}"
+                                                    Glyph="{Binding SingInPasswordGlyph}"
+                                                    Color="{StaticResource DarkIconAction}"
+                                                    Size="15" />
+                            </cc:CustomButton.ImageSource>
+                        </cc:CustomButton>-->
+                    </Grid>
+
+                </StackLayout>
+
+                <cc:CustomButton
+                Text="OK"
+                    HorizontalOptions="FillAndExpand"
+                Margin="20,0"
+                    Clicked="Confirm_Clicked"/>
+            </StackLayout>
+        </ScrollView>
+
+    </Grid>
+</Base:BasePopupView>

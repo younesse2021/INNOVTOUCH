@@ -1,0 +1,294 @@
+﻿@page "/utilisateurs"
+@using DLC_BO.Client.Service.Role;
+@using InnovTouch_BO.Client.Components;
+@using global::Shared.DTO.InnovTouch.DTO.Role;
+@inject DialogService DialogService
+@inject NotificationService NotifonService
+@inject UtilisateurService _UserService
+@inject IJSRuntime JS
+@inject AppStateContainer appStateContainer
+@inject BlazorSpinner.SpinnerService _spinnerService
+
+
+
+<h3>Liste des utilisateurs</h3>
+<div class="row">
+    <div class="col-sm-12">
+    </div>
+</div>
+
+<div  class="row pt-0 pb-2">
+    <div class="col-12">
+
+        <RadzenButton class="float-end"
+                      Text="Ajouter Utilisateur"
+                      ButtonStyle="ButtonStyle.Danger"
+                      Icon="add_circle_outline"
+                      Click=@ShowCloseableFromOverlayDialog />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        @if (UserList == null)
+        {
+            <p><em>Chargement...</em></p>
+        }
+        else
+        {
+            <RadzenDataGrid @ref="_GridUserRadzin"
+                        GridLines="DataGridGridLines.Horizontal"
+                        AllowPaging="true"
+                        PagerPosition="PagerPosition.Bottom"
+                        AllowFiltering="true"
+                        FilterMode="FilterMode.Simple"
+                        FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                        LogicalFilterOperator="LogicalFilterOperator.Or"
+                        Data="@UserList.OrderByDescending(u => u.Id)"
+                        ColumnWidth="200px"
+                        TItem="UtilisateurDto">
+                <Columns>
+                    <RadzenDataGridColumn TItem="UtilisateurDto" Property="Nom" Title="Nom" />
+                    <RadzenDataGridColumn TItem="UtilisateurDto" Property="Prenom" Title="Prénom" />
+                    <RadzenDataGridColumn TItem="UtilisateurDto" Property="Email" Title="Login" />
+
+                    <RadzenDataGridColumn TItem="UtilisateurDto" Width="120px" Property="IsHaveAccessToApp" Title="Statut L'utlisateur'" Sortable="false" Filterable="false">
+                                <Template Context="data">
+                            <RadzenImage Visible="!data.IsHaveAccessToApp" Path="/images/notAccess.png" Style="width: 40px;hight: 40px;" />
+                            <RadzenImage Visible="data.IsHaveAccessToApp" Path="/images/notAccess.png" Style="width: 40px;hight: 40px;" />
+                                </Template>
+                            </RadzenDataGridColumn>
+
+                    <RadzenDataGridColumn Title="Action" TItem="UtilisateurDto" Property="Id" Filterable="false">
+
+                        <Template Context="data">
+
+                             <RadzenButton Icon="edit" 
+                                           ButtonStyle="ButtonStyle.Primary"
+                                           Click=@(args=>OpenUpdateDialog(args,data)) 
+                                           Variant="Variant.Flat" 
+                                           Shade="Shade.Lighter" />
+
+                            <RadzenButton  Icon="find_in_page"
+                                           ButtonStyle="ButtonStyle.Primary"
+                                           Click=@(args=>OpenUpdateDialog(args,data))
+                                           Variant="Variant.Flat"
+                                           Shade="Shade.Lighter" />
+
+                            <RadzenButton  Icon="delete"
+                                           ButtonStyle="ButtonStyle.Primary"
+                                           Click=@(args=>OpenUpdateDialog(args,data))
+                                           Variant="Variant.Flat"
+                                           Shade="Shade.Lighter" />
+                             
+                        </Template>
+                    </RadzenDataGridColumn>
+                </Columns>
+            </RadzenDataGrid>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<UtilisateurDto>? UserList { get; set; }
+    private RadzenDataGrid<UtilisateurDto>? _GridUserRadzin { get; set; }
+    private UtilisateurDto _newTligne;
+
+    protected bool VisibleBlocked;
+
+    private EventCallback AjoutHandler => new(this, (Action)(async () => { await AddRowCallBack(); }));
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    // Fonction
+    private async Task LoadData()
+    {
+        int count = 0;
+        bool isLoaded = false;
+
+        try
+        {
+            count++;
+            isLoaded = false;
+
+            var ListOfInventaire = await _UserService.GetAll();
+            if (!ListOfInventaire.Succeeded)
+            {
+                UserList?.Clear();
+                return;
+            }
+
+            UserList = new List<UtilisateurDto>();
+            UserList.AddRange(ListOfInventaire.Data);
+            isLoaded = true;
+        }
+        catch
+        {
+        }
+    }
+
+    async Task ShowCloseableFromOverlayDialog()
+    {
+        _newTligne = new UtilisateurDto() { Id = 0 };
+        await DialogService.OpenAsync<AddOrEditUtilisateur>("Ajouter utilisateur",
+              new Dictionary<string, object>()
+                                                      {
+                                  { "model", _newTligne },
+                                  { "OnConfirm", AjoutHandler } ,
+                                                      });
+    }
+    public async Task OpenDetailsDialog(MouseEventArgs args, Object ligne)
+    {
+        if (typeof(UtilisateurDto) == ligne.GetType())
+        {
+            _newTligne = (UtilisateurDto)ligne;
+            await DialogService.OpenAsync<AddOrEditUtilisateur>($"Détails utilisateur",
+               new Dictionary<string, object>()
+                                                       {
+                          { "model", ligne },
+                          { "showdetails", true }
+                                                       });
+        }
+
+    }
+    public async Task OpenUpdateDialog(MouseEventArgs args, Object ligne)
+    {
+        if (typeof(UtilisateurDto) == ligne.GetType())
+        {
+            _newTligne = (UtilisateurDto)ligne;
+            await DialogService.OpenAsync<AddOrEditUtilisateur>("Modification utilisateur",
+        new Dictionary<string, object>()
+                                      {
+                                        { "forupdate", true },
+                                        { "model", _newTligne }
+                                      });
+        }
+    }
+
+    public async Task OpenDeleteDialog(Microsoft.AspNetCore.Components.Web.MouseEventArgs args, Object ligne)
+    {
+        try
+        {
+            var result = await DialogService.Confirm("Etes-vous sûr de vouloir supprimer cet enregistrement?", "Confirmation", new ConfirmOptions()
+                {
+                    OkButtonText = "OUI",
+                    CancelButtonText = "NON"
+                });
+
+            if (result == true)
+            {
+                _spinnerService.Show();
+                var respons = (await _UserService.DeleteById(((UtilisateurDto)ligne).Id)).Data;
+                if (!respons)
+                {
+                    throw new Exception("");
+                }
+
+                if (typeof(UtilisateurDto) == ligne.GetType())
+                {
+                    UserList.Remove((UtilisateurDto)ligne);
+                    await _GridUserRadzin.Reload();
+                }
+                _spinnerService.Hide();
+                NotifonService.Notify(new NotificationMessage
+                    {
+                        Severity = NotificationSeverity.Success,
+                        Summary = "Info",
+                        Detail = "Suppression bien effectuée!"
+                    });
+            }
+            else
+            {
+                return;
+            }
+        }
+        catch (Exception ex)
+        {
+            NotifonService.Notify(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Detail = "Suppression impossible,veuillez supprimer les sous enregistrements!"
+                });
+        }
+    }
+    //public async Task OpenBlockUserDialog(Microsoft.AspNetCore.Components.Web.MouseEventArgs args, Object ligne)
+    //{
+    //    try
+    //    {
+    //        var statusBlockage = "bloquer";
+    //        var user = (ligne as UtilisateurDto);
+    //        if (user.IsHaveAccessToApp == false)
+    //        {
+    //            statusBlockage = "debloquer";
+    //        }
+
+    //        var result = await DialogService.Confirm($"Etes-vous sûr de vouloir {statusBlockage} {user.UserName}?", "Confirmation", new ConfirmOptions()
+    //            {
+    //                OkButtonText = "OUI",
+    //                CancelButtonText = "NON"
+    //            });
+
+    //        if (result == true)
+    //        {
+    //            HttpResponseMessage respons = null;
+    //            _spinnerService.Show();
+    //            if (typeof(UtilisateurDto) == ligne.GetType())
+    //            {
+    //                respons = await _UserService.BlockAccessUser(((UtilisateurDto)ligne).Id);
+    //            }
+    //            respons.EnsureSuccessStatusCode();
+    //            if (typeof(UtilisateurDto) == ligne.GetType())
+    //            {
+    //                ((UtilisateurDto)ligne).IsHaveAccessToApp = !((UtilisateurDto)ligne).IsHaveAccessToApp;
+    //                await gridUser.Reload();
+    //            }
+
+    //            _spinnerService.Hide();
+    //            var status = "Debloquage";
+    //            if (user.IsHaveAccessToApp == false)
+    //            {
+    //                status = "Bloquage";
+    //            }
+    //            NotifonService.Notify(new NotificationMessage
+    //                {
+    //                    Severity = NotificationSeverity.Success,
+    //                    Summary = "Info",
+    //                    Detail = $"{status} bien effectué!"
+    //                });
+    //        }
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        NotifonService.Notify(new NotificationMessage
+    //            {
+    //                Severity = NotificationSeverity.Error,
+    //                Detail = "Echèc changement status!"
+    //            });
+    //    }
+    //}
+    public async Task AddRowCallBack()
+    {
+        if (_newTligne.Id > 0)
+        {
+            UserList.Add(_newTligne);
+            await _GridUserRadzin.Reload();
+            _spinnerService.Hide();
+            DialogService.Close(false);
+            NotifonService.Notify(new NotificationMessage
+                { Severity = NotificationSeverity.Success, Detail = "Ajout bien effectué" });
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        appStateContainer.OnStateChange += StateHasChanged;
+    }
+    public void Dispose()
+    {
+        appStateContainer.OnStateChange -= StateHasChanged;
+    }
+}

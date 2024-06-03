@@ -1,0 +1,64 @@
+﻿@inject AppStateContainer _appStateContainer
+@inject Blazored.SessionStorage.ISessionStorageService _sessionStorage
+
+
+<div style="background-color:#073C4E">
+
+    <nav class="flex-column" style="position:relative">
+
+        <div class="nav-item">
+            <NavLink class="nav-link" href="/">
+                <span class="oi" aria-hidden="true">
+                    <RadzenIcon Icon="bar_chart"></RadzenIcon>
+                </span> Accueil
+            </NavLink>
+        </div>
+
+        <div class="nav-item">
+            <NavLink class="nav-link" href="ProduitsScanner">
+                <span class="oi" aria-hidden="true"> 
+                    <RadzenIcon Icon="qr_code_scanner"></RadzenIcon>
+                </span> Les produits scannés
+            </NavLink>
+        </div>
+
+        <div class="nav-item">
+            <NavLink class="nav-link" href="Inventaire">
+
+                <span class="oi" aria-hidden="true">
+                    <RadzenIcon Icon="inventory_2"></RadzenIcon>
+                </span>
+                Gestion des Inventaires
+            </NavLink>
+        </div>
+
+        <div class="nav-item">
+            <NavLink class="nav-link" href="emplacement">
+                <span class="oi" aria-hidden="true"> <RadzenIcon Icon="corporate_fare"></RadzenIcon></span> Gestion des Emplacement
+            </NavLink>
+        </div>
+
+        <div class="nav-item">
+            <NavLink class="nav-link" href="utilisateurs">
+                <span class="oi" aria-hidden="true"> <RadzenIcon Icon="person_add"></RadzenIcon></span> Gestion des utilisateurs
+            </NavLink>
+        </div>
+        
+    </nav>
+</div>
+﻿
+<style>
+
+    .hide-icon .rz-menu-item-icon {
+        display: none;
+    }
+
+</style>
+
+@code {
+    private async Task Disconnect(Object args)
+    {
+        _appStateContainer.UtilisateurBo = new UtilisateurBoDto();
+        await _sessionStorage.RemoveItemAsync("usr_bo");
+    }
+}

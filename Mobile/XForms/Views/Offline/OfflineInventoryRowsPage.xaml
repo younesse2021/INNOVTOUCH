@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Base:BasePage
+    xmlns:Base="clr-namespace:XForms.Views"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:FF="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:res="clr-namespace:XForms.Resources"
+    xmlns:local="clr-namespace:XForms"
+    xmlns:cc="clr-namespace:XForms.Controls"
+    xmlns:shared="clr-namespace:XForms.Views.SharedViews"
+    xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    HasNavigationBar="False"
+    x:Name="this"
+    Padding="0"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    x:Class="XForms.Views.Offline.OfflineInventoryRowsPage">
+    <Base:BaseContent>
+
+         <Grid
+            VerticalOptions="FillAndExpand"
+            RowSpacing="0"
+            RowDefinitions="Auto,*">
+
+            <!--Background-->
+            <BoxView
+                Grid.Row="0"
+                               Grid.RowSpan="2"
+                Style="{StaticResource GradientNavStyle}">
+                <BoxView.Background>
+                    <LinearGradientBrush
+                        StartPoint="0,0"
+                        EndPoint="0,1">
+                        <GradientStop
+                            Color="{StaticResource StartGradient}"
+                            Offset="0.1" />
+                        <GradientStop
+                            Color="{StaticResource EndGradient}"
+                            Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
+
+                  <!--Offline Statut-->
+           <shared:OffilneStatut Grid.Row="0"/>
+
+           <!--Body-->
+            <Grid
+                          Grid.Row="1"
+                RowSpacing="10"
+                VerticalOptions="FillAndExpand"
+                RowDefinitions="Auto,*">
+
+                <!--NavBar-->
+                <shared:SuggestionsNavBarView
+                    Grid.Row="0"
+                    TitleText="{Binding SelectedInventaryCode, StringFormat='N° inventaire {0}'}"
+                    HasTitle="True"
+                    HasReturnAction="True"
+                    HasLogoutAction="False" />
+
+                <Grid
+                    Grid.Row="1"
+                    RowSpacing="10"
+                    RowDefinitions="35,Auto,*">
+
+                    <Grid
+                        Grid.Row="1"
+                        Grid.RowSpan="2"
+                        RowSpacing="0"
+                        VerticalOptions="FillAndExpand"
+                        RowDefinitions="*">
+
+                        <!--Corner Background-->
+                        <BoxView
+                            CornerRadius="0,0,0,0"
+                            VerticalOptions="FillAndExpand"
+                            BackgroundColor="{StaticResource White}" />
+
+                        <StackLayout
+                            Spacing="20"
+                            Padding="20,0,20,30"
+                            VerticalOptions="FillAndExpand">
+                            <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Text="Rayons"
+                                        Padding="0,60,0,0"
+                                        FontSize="14"
+                                        VerticalOptions="Start"
+                                        VerticalTextAlignment="Start"
+                                        LineBreakMode="TailTruncation"
+                                        TextColor="{StaticResource MediumText}" />
+
+
+                            <!--Site-->
+                            <Frame
+                                    Padding="15,5,5,5"
+                                    CornerRadius="10"
+                                    HasShadow="False"
+                                    IsClippedToBounds="True"
+                                    BorderColor="{StaticResource DarkBorderColor}"
+                                    BackgroundColor="{StaticResource White}">
+                                <Grid
+                                        ColumnSpacing="10"
+                                        RowSpacing="0"
+                                        Padding="0"
+                                        ColumnDefinitions="*,Auto">
+
+                                    <Label
+                                            Grid.Column="0"
+                                            Text="Liste des Rayons"
+                                            FontSize="14"
+                                            VerticalOptions="FillAndExpand"
+                                            VerticalTextAlignment="Center"
+                                        HorizontalOptions="FillAndExpand"
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Bold"
+                                            TextColor="{StaticResource Black}" />
+
+                                    <Grid
+                                                     Grid.Column="1"
+                                                    ColumnDefinitions="Auto"
+                                        >
+
+                                        <Label Text="{Binding SelectedRowString}"
+                                                  VerticalOptions="FillAndExpand"
+                                               Padding="10,0"
+                                            VerticalTextAlignment="Center"
+                                            HorizontalOptions="End"
+                                            HorizontalTextAlignment="End" FontSize="14"/>
+                                        <cc:CustomPicker
+                           
+                                        Title="Séléctionner un rayon"
+                                        BackgroundColor="Transparent"
+                                            Opacity="0"
+                                ItemsSource="{Binding RowsList}"
+                                SelectedItem="{Binding SelectedRow}"
+                                ItemDisplayBinding="{Binding .}"
+                                      IsCustom="True"
+                                      IsHasBorder="False"
+                                      BorderWidth="0"
+                                            VerticalOptions="FillAndExpand"
+                                            VerticalTextAlignment="Center"
+                                            HorizontalOptions="End"
+                                            HorizontalTextAlignment="End"/>
+
+                                    </Grid>
+
+
+                                    <!--<cc:CustomEntry
+                                            x:Name="StoreCodeEntry"
+                                            Grid.Column="1"
+                                            Text="{Binding SelectedStoreCode}"
+                                            Placeholder="Saisissez le site"
+                                            HeightRequest="40"
+                                            Keyboard="Numeric"
+                                            Padding="15,12"
+                                            FontAttributes="Bold"
+                                            VerticalOptions="FillAndExpand"
+                                            VerticalTextAlignment="Center"
+                                            HorizontalOptions="FillAndExpand"
+                                            HorizontalTextAlignment="End"
+                                            IsHasBorder="False"
+                                            BorderWidth="0">
+
+                                    <cc:CustomEntry.Behaviors>
+                                        <behavior:NumericValidationBehavior />
+                                    </cc:CustomEntry.Behaviors>
+                                </cc:CustomEntry>-->
+                                </Grid>
+                            </Frame>
+
+                            <cc:CustomButton
+                            Text="SUIVANT"
+                            Padding="20,12"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="EndAndExpand"
+                            Clicked="SelectedRow_Clicked"/>
+
+                        </StackLayout>
+                    </Grid>
+
+                    <Frame
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Margin="20,0"
+                        Padding="0,0"
+                        CornerRadius="5"
+                        IsClippedToBounds="True"
+                        BackgroundColor="{StaticResource White}"
+                        VerticalOptions="FillAndExpand">
+                        <Grid
+                            ColumnSpacing="10"
+                            RowSpacing="10"
+                            Padding="15,15"
+                            RowDefinitions="Auto"
+                            ColumnDefinitions="Auto,*"
+                            VerticalOptions="CenterAndExpand">
+
+                            <!--Row 1-->
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Text="Site"
+                                FontSize="14"
+                                VerticalOptions="FillAndExpand"
+                                VerticalTextAlignment="Center"
+                                LineBreakMode="TailTruncation"
+                                TextColor="{StaticResource MediumText}" />
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Text="{Binding SelectedStoreCode}"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                VerticalOptions="FillAndExpand"
+                                VerticalTextAlignment="Center"
+                                HorizontalOptions="EndAndExpand"
+                                HorizontalTextAlignment="Start"
+                                LineBreakMode="TailTruncation"
+                                TextColor="{StaticResource Primary}" />
+
+
+                            <!--Row 2-->
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Text="N° d'inventaire"
+                                FontSize="14"
+                                VerticalOptions="FillAndExpand"
+                                VerticalTextAlignment="Center"
+                                LineBreakMode="TailTruncation"
+                                TextColor="{StaticResource MediumText}" />
+
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Text="{Binding SelectedInventaryCode}"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                VerticalOptions="FillAndExpand"
+                                VerticalTextAlignment="Center"
+                                HorizontalOptions="EndAndExpand"
+                                HorizontalTextAlignment="Start"
+                                LineBreakMode="TailTruncation"
+                                TextColor="{StaticResource Primary}" />
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Base:BaseContent>
+</Base:BasePage>

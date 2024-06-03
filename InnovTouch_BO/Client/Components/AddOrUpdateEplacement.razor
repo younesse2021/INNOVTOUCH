@@ -1,0 +1,270 @@
+﻿@inject NotificationService _notificationService
+@inject DialogService _dialogService
+@inject BlazorSpinner.SpinnerService _spinnerService
+@inject AppStateContainer _appStateContainer
+@inject AddInventaireService _AddInventaireService
+@inject EmplacementService _EmplacementService
+@inject ILogger<AddOrUpdateEplacement> _logger;
+
+@using DLC_BO.Client.Service.Entite;
+@using InnovTouch_BO.Client.Service.Emplacement;
+@using InnovTouch_BO.Client.Service.Inventaires;
+@using global::Shared.DTO.InnovTouch.DTO.Entite;
+@using DLC_BO.Client.Service.Produits;
+@using global::Shared.DTO.InnovTouch.DTO.Inventaire;
+@using global::Shared.DTO.InnovTouch.DTO.Produit;
+@using global::Shared.DTO.InnovTouch.DTO.Helper;
+
+@inject IJSRuntime JS
+@inject RayoneService _RayoneService
+
+<RadzenTemplateForm TItem="EmplacementDetails"
+                    Data=@model
+                    Submit=@OnSubmit>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label>Choisissez inventaire *</label>
+
+                @if (ListInventaire == null)
+                {
+                    <p><select disabled class="form-control"></select></p>
+                }
+                else
+                {
+                    <RadzenDropDown Data="@ListInventaire"
+                                AllowFiltering="false"
+                                AllowClear="true"
+                                Style="width: 100%"
+                                Name="Inventaire"
+                                TextProperty="description"
+                                FilterOperator="StringFilterOperator.StartsWith"
+                                FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                                TValue="InventoryDTO"
+                                @bind-Value=@model.Inventory
+                                    class="w-100" />
+                    <RadzenRequiredValidator Component="Inventaire" Text="Choix du Inventaire est obligatoire." />
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label>Choisissez le Rayone *</label>
+
+                @if (ListRayone == null)
+                {
+                    <p><select disabled class="form-control"></select></p>
+                }
+                else
+                {
+                    <RadzenDropDown Data="@ListRayone"
+                                AllowFiltering="false"
+                                AllowClear="true"
+                                Style="width: 100%"
+                                Name="Rayone"
+                                TextProperty="Name"
+                                FilterOperator="StringFilterOperator.StartsWith"
+                                FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                                TValue="RayoneDto"
+                                @bind-Value=@model.Rayone
+                                    class="w-100" />
+                    <RadzenRequiredValidator Component="Rayone" Text="Choix du Rayone est obligatoire." />
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+
+
+            <div class="form-group">
+                <label>Choisissez un type d'inventaire *</label>
+
+                @if (ListTypeInventaire == null)
+                {
+                    <p><select disabled class="form-control"></select></p>
+                }
+                else
+                {
+                    <RadzenDropDown Data="@ListTypeInventaire"
+                                AllowFiltering="false"
+                                AllowClear="true"
+                                Style="width: 100%"
+                                TextProperty="NameType"
+                                ValueProperty="Id"
+                                TValue="int"
+                                Name="Type"
+                                class="w-100"
+                                @bind-Value=@model.TypeInventaire />
+                    <RadzenRequiredValidator Component="Type" Text="Choix du Type est obligatoire." />
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label for="FirstName">nomber  Emplacement *</label>
+                <RadzenNumeric @bind-Value=@model.NumberEmplacement Name="NumberEmplacement" Class="form-control-plaintext"></RadzenNumeric>
+                <RadzenRequiredValidator Component="NumberEmplacement" Text="Le Numero Inventaire est obligatoire." />
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row pt-2">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <RadzenButton ButtonStyle="ButtonStyle.Light"
+                              Click=@(async args => _dialogService.Close())
+                              Text="Retour"
+                              Style="width: 120px" Class="me-1" />
+
+                <RadzenButton ButtonType="ButtonType.Submit"
+                              Text="Enregistrer"
+                              ButtonStyle="ButtonStyle.Primary"
+                              Icon="save"
+                              Style="margin-right: 0.5rem"
+                              Class="float-end">
+                </RadzenButton>
+            </div>
+        </div>
+    </div>
+
+</RadzenTemplateForm>
+
+@code {
+
+    [Parameter]
+    public EventCallback OnConfirm { get; set; }
+    [Parameter]
+    public string action { get; set; } = "C";
+    [Parameter]
+    public EmplacementDetails? item { get; set; }
+    public EmplacementDetails model { get; set; } = new();
+    private IEnumerable<EnseigneDto>? _enseignes { get; set; }
+    private List<FamilleProduitDto>? _familleProduits { get; set; }
+    public List<TypeInventaireDto>? ListTypeInventaire { get; set; }
+    public List<RayoneDto>? ListRayone { get; set; }
+    public List<InventoryDTO>? ListInventaire { get; set; }
+    private bool errorVisible { get; set; } = false;
+    private FamilleProduitDto? _newItem { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadInventaire();
+        GetAllTypeInventair();
+        await LoadRayone();
+    }
+
+    async void OnSubmit(EmplacementDetails model)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(model.Inventory.number) && model.NumberEmplacement != 0)
+            {
+                var Resulte = await _EmplacementService.Add(model);
+
+                if (Resulte?.Succeeded == true && Resulte.Data != 0)
+                {
+                    _spinnerService.Hide();
+
+                    _notificationService.Notify(new NotificationMessage
+                        {
+                            Severity = NotificationSeverity.Success,
+                            Detail = "Création a effectuée avec success."
+                        });
+
+                    await OnConfirm.InvokeAsync();
+                }
+                else
+                {
+                    _spinnerService.Hide();
+
+                    _notificationService.Notify(new NotificationMessage
+                        {
+                            Severity = NotificationSeverity.Error,
+                            Detail = $"{Resulte.Message}"
+                        });
+
+                    await OnConfirm.InvokeAsync();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"ExportExcelBtnClick exception: {ex.Message}");
+            _notificationService.Notify(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Detail = "Echèc de Modification"
+                });
+            _dialogService.Close();
+            _spinnerService.Hide();
+        }
+    }
+    public void GetAllTypeInventair()
+    {
+        var ListOfType = new List<TypeInventaireDto>()
+            {
+                new TypeInventaireDto()
+                {
+                    Id = 0,
+                    TypeInv = "102",
+                    NameType = "Reserve"
+                },
+                new TypeInventaireDto()
+                {
+                    Id = 1,
+                    TypeInv = "82",
+                    NameType = "Magasin"
+                },
+            };
+
+        ListTypeInventaire = ListOfType;
+    }
+    public async Task LoadInventaire()
+    {
+        var response = await _AddInventaireService.GetAll();
+
+        if (!response.Succeeded)
+        {
+            ListInventaire?.Clear();
+            return;
+        }
+        ListInventaire = response.Data;
+    }
+    public async Task LoadRayone()
+    {
+        var ListOfRayone = await _RayoneService.GetAll();
+        if (!ListOfRayone.Succeeded)
+        {
+            ListRayone.Clear();
+            return;
+        }
+        ListRayone = ListOfRayone.Data;
+        StateHasChanged();
+    }
+    public async Task AddOrUpdateAsync()
+    {
+        try
+        {
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"AddOrUpdateAsync exception: {ex.Message}");
+            _notificationService.Notify(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Detail = "Echèc de l'opération!"
+                });
+        }
+    }
+}

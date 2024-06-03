@@ -1,0 +1,255 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Files\**" />
+    <Compile Remove="Views\DLCViews\**" />
+    <EmbeddedResource Remove="Files\**" />
+    <EmbeddedResource Remove="Views\DLCViews\**" />
+    <None Remove="Files\**" />
+    <None Remove="Views\DLCViews\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="dotMorten.Xamarin.Forms.AutoSuggestBox" Version="1.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="Xamarin.CommunityToolkit.Markup" Version="2.0.5" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="FluentValidation" Version="8.4.0" />
+    <PackageReference Include="Fody" Version="6.5.3">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.514" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.12" />
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.0.10" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.4.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.4.0" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.2196" />
+    <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
+    <PackageReference Include="GraphQL.Client" Version="3.2.4" />
+    <PackageReference Include="GraphQL.Client.Serializer.Newtonsoft" Version="3.2.4" />
+    <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
+    <PackageReference Include="GraphQL.SystemTextJson" Version="4.6.1" />
+    <PackageReference Include="Xam.Plugin.SimpleBottomDrawer" Version="1.0.8" />
+    <PackageReference Include="CardsView" Version="2.8.0" />
+    <PackageReference Include="DotNetZip" Version="1.16.0" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.5" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="Enums\" />
+    <Folder Include="Controls\" />
+    <Folder Include="Constants\" />
+    <Folder Include="ViewModels\Base\" />
+    <Folder Include="Services\" />
+    <Folder Include="Views\Base\" />
+    <Folder Include="Services\Base\" />
+    <Folder Include="HttpREST\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Validators\" />
+    <Folder Include="Popups\" />
+    <Folder Include="Resources\Converters\" />
+    <Folder Include="Resources\Values\" />
+    <Folder Include="Views\Home\" />
+    <Folder Include="ViewModels\Home\" />
+    <Folder Include="Resources\Assets\" />
+    <Folder Include="Validators\" />
+    <Folder Include="Validators\UserSettings\" />
+    <Folder Include="Localization\" />
+    <Folder Include="Views\Walkthrough\" />
+    <Folder Include="ViewModels\Walkthrough\" />
+    <Folder Include="Views\SignUp\" />
+    <Folder Include="ViewModels\SignUp\" />
+    <Folder Include="HttpGraphQL\" />
+    <Folder Include="Effects\" />
+    <Folder Include="ViewModels\Inventory\" />
+    <Folder Include="Data\" />
+    <Folder Include="Views\Offline\" />
+    <Folder Include="ViewModels\Offline\" />
+    <Folder Include="Behaviors\" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Remove="FodyWeavers.xml" />
+    <None Remove="Resources\Assets\AnimLoadingLight.json" />
+    <None Remove="Resources\Assets\Oxygen-Regular.ttf" />
+    <None Remove="Resources\Images\CP.svg" />
+    <None Remove="Resources\Images\download.png" />
+    <None Remove="Resources\Images\Facing.svg" />
+    <None Remove="Resources\Images\folder-open-solid.svg" />
+    <None Remove="Resources\Images\Reserve.svg" />
+    <None Remove="Xam.Plugin.Media" />
+    <None Remove="Views\Walkthrough\" />
+    <None Remove="ViewModels\Walkthrough\" />
+    <None Remove="Views\SignUp\" />
+    <None Remove="ViewModels\SignUp\" />
+    <None Remove="Resources\Assets\MaterialIcons-Regular.ttf" />
+    <None Remove="Resources\Assets\FontAwesome5Regular.ttf" />
+    <None Remove="Resources\Assets\FontAwesome5Solid.ttf" />
+    <None Remove="Resources\Assets\FontAwesome5Regular.otf" />
+    <None Remove="Resources\Assets\FontAwesome5Brands.ttf" />
+    <None Remove="GraphQL.Client" />
+    <None Remove="GraphQL.Client.Serializer.Newtonsoft" />
+    <None Remove="HttpGraphQL\" />
+    <None Remove="Refractored.MvvmHelpers" />
+    <None Remove="GraphQL.SystemTextJson" />
+    <None Remove="ViewModels\Procuct\" />
+    <None Remove="Views\Category\" />
+    <None Remove="Xamarin.Forms.GoogleMaps" />
+    <None Remove="Xam.Plugin.SimpleBottomDrawer" />
+    <None Remove="Effects\" />
+    <None Remove="Views\Settings\" />
+    <None Remove="ViewModels\Settings\" />
+    <None Remove="Resources\Images\Walkthrough_3.png" />
+    <None Remove="Resources\Images\Walkthrough_2.png" />
+    <None Remove="Resources\Images\Walkthrough_1.png" />
+    <None Remove="Views\Inventory\" />
+    <None Remove="ViewModels\Inventory\" />
+    <None Remove="Data\" />
+    <None Remove="Views\Offline\" />
+    <None Remove="ViewModels\Offline\" />
+    <None Remove="Behaviors\" />
+    <None Remove="ViewModels\Scan\" />
+    <None Remove="Views\GeneralProductInfos\" />
+    <None Remove="CardsView" />
+    <None Remove="ViewModels\EtiquetteRequest\" />
+    <None Remove="Views\Demarque\" />
+    <None Remove="ViewModels\Demarque\" />
+    <None Remove="ViewModels\CasseFrais\" />
+    <None Remove="Views\CasseFrais\" />
+    <None Remove="DotNetZip" />
+    <None Remove="Views\PriceControl\" />
+    <None Remove="ViewModels\PriceControl\" />
+    <None Remove="Resources\Images\Demande.svg" />
+    <None Remove="Resources\Images\Arrivage.svg" />
+    <None Remove="Resources\Images\DefaultImage.png" />
+    <None Remove="Resources\Images\Demarque.svg" />
+    <None Remove="Resources\Images\Operation.svg" />
+    <None Remove="Resources\Images\Controle.svg" />
+    <None Remove="Resources\Images\InventaireHorsLigne.svg" />
+    <None Remove="Resources\Images\Cession.svg" />
+    <None Remove="Resources\Images\InfosGenerale.svg" />
+    <None Remove="Resources\Images\Inventaire.svg" />
+    <None Remove="Resources\Images\Wallet.svg" />
+    <None Remove="Xamarin.CommunityToolkit" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Assets\AnimLoadingLight.json">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Assets\Oxygen-Regular.ttf" />
+    <EmbeddedResource Include="Resources\Assets\MaterialIcons-Regular.ttf" />
+    <EmbeddedResource Include="Resources\Assets\FontAwesome5Regular.ttf" />
+    <EmbeddedResource Include="Resources\Assets\FontAwesome5Solid.ttf" />
+    <EmbeddedResource Include="Resources\Assets\FontAwesome5Regular.otf" />
+    <EmbeddedResource Include="Resources\Assets\FontAwesome5Brands.ttf" />
+    <EmbeddedResource Include="Resources\Images\CP.svg" />
+    <EmbeddedResource Include="Resources\Images\download.png" />
+    <EmbeddedResource Include="Resources\Images\Facing.svg" />
+    <EmbeddedResource Include="Resources\Images\folder-open-solid.svg" />
+    <EmbeddedResource Include="Resources\Images\Reserve.svg" />
+    <EmbeddedResource Include="Resources\Images\Walkthrough_3.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Images\Walkthrough_2.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Images\Walkthrough_1.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Images\Demande.svg" />
+    <EmbeddedResource Include="Resources\Images\Arrivage.svg" />
+    <EmbeddedResource Include="Resources\Images\DefaultImage.png" />
+    <EmbeddedResource Include="Resources\Images\Demarque.svg" />
+    <EmbeddedResource Include="Resources\Images\Operation.svg" />
+    <EmbeddedResource Include="Resources\Images\Controle.svg" />
+    <EmbeddedResource Include="Resources\Images\InventaireHorsLigne.svg" />
+    <EmbeddedResource Include="Resources\Images\Cession.svg" />
+    <EmbeddedResource Include="Resources\Images\InfosGenerale.svg" />
+    <EmbeddedResource Include="Resources\Images\Inventaire.svg" />
+    <EmbeddedResource Include="Resources\Images\Wallet.svg" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="Resources\Assets\AnimLoadingLight.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Views\Inventory\InventoriesPage">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Update="Localization\AppResources.resx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Localization\AppResources.ar.resx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Localization\AppResources.fr.resx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CustomControls\MyButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Inventory\AddProductNonFound.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Reception\ReceptionChoicePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SharedViews\CodeIn.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SharedViews\CodeOut.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SharedViews\PopupValideInnovTouch.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Update="Localization\AppResources.Designer.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\Comparator\ProductDetailPage.xaml.cs">
+      <DependentUpon>ProductDetailPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\Inventory\InventoryDetailPage.xaml.cs">
+      <DependentUpon>InventoryDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\SharedViews\ScanFloatingButton.xaml.cs">
+      <DependentUpon>ScanFloatingButton.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared.DTO\Shared.DTO.csproj" />
+    <ProjectReference Include="..\..\Shared.Models\Shared.Models.csproj" />
+  </ItemGroup>
+   
+  
+</Project>

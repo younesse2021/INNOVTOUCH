@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Base:BasePage
+    xmlns:Base="clr-namespace:XForms.Views"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:FF="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:res="clr-namespace:XForms.Resources"
+    xmlns:local="clr-namespace:XForms"
+    xmlns:cc="clr-namespace:XForms.Controls"
+    xmlns:shared="clr-namespace:XForms.Views.SharedViews"
+    xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    HasNavigationBar="False"
+    x:Name="this"
+    Padding="0"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    x:Class="XForms.Views.Offline.OfflineChooseZoneTypePage">
+    <Base:BaseContent>
+       <Grid
+            VerticalOptions="FillAndExpand"
+            RowSpacing="0"
+            RowDefinitions="Auto,*">
+
+            <!--Background-->
+            <BoxView
+                Grid.Row="0"
+                               Grid.RowSpan="2"
+                Style="{StaticResource GradientNavStyle}">
+                <BoxView.Background>
+                    <LinearGradientBrush
+                        StartPoint="0,0"
+                        EndPoint="0,1">
+                        <GradientStop
+                            Color="{StaticResource StartGradient}"
+                            Offset="0.1" />
+                        <GradientStop
+                            Color="{StaticResource EndGradient}"
+                            Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
+
+                  <!--Offline Statut-->
+           <shared:OffilneStatut Grid.Row="0"/>
+
+           <!--Body-->
+            <Grid
+                          Grid.Row="1"
+                RowSpacing="10"
+                VerticalOptions="FillAndExpand"
+                RowDefinitions="Auto,*">
+
+                <!--NavBar-->
+                <shared:SuggestionsNavBarView
+                    Grid.Row="0"
+                    TitleText="{Binding SelectedInventaryCode, StringFormat='N° inventaire {0}'}"
+                    HasTitle="True"
+                    HasReturnAction="True"
+                    HasLogoutAction="False" />
+
+                <Grid
+                    Grid.Row="1"
+                    RowSpacing="10"
+                    RowDefinitions="35,Auto,*">
+
+                    <Grid
+                        Grid.Row="1"
+                        Grid.RowSpan="2"
+                        RowSpacing="0"
+                        VerticalOptions="FillAndExpand"
+                        RowDefinitions="*">
+
+                        <!--Corner Background-->
+                        <BoxView
+                            CornerRadius="0,0,0,0"
+                            VerticalOptions="FillAndExpand"
+                            BackgroundColor="{StaticResource White}" />
+
+                       <StackLayout
+                            Spacing="10"
+                            Padding="15,90,15,0">
+
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Text="Selection de la zone"
+                                        Padding="15,0,15,10"
+                                        FontSize="14"
+                                        VerticalOptions="Start"
+                                        VerticalTextAlignment="Start"
+                                        LineBreakMode="TailTruncation"
+                                        TextColor="{StaticResource MediumText}" />
+
+
+                                    <cc:PressableView
+                                            Padding="5"
+                                            Command="{Binding SelectedZoneCommand}"
+                                        CommandParameter="{local:SystemType Int=1}">
+                                            <Frame
+                                                HasShadow="True"
+                                                CornerRadius="5"
+                                                Padding="15,20"
+                                                IsClippedToBounds="True"
+                                                BackgroundColor="{StaticResource White}">
+
+                                                <Grid
+                                                    ColumnSpacing="15"
+                                                    ColumnDefinitions="Auto,*">
+
+                                                    <Image
+                                                        VerticalOptions="Start"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        HeightRequest="20"
+                                                        WidthRequest="20"
+                                                        BackgroundColor="{StaticResource White}"
+                                                        Visual="Default">
+                                                        <Image.Source>
+                                                            <FontImageSource
+                                                                FontFamily="{x:Static res:FontAwesomeFonts.FontFamilySolid}"
+                                                                Glyph="{x:Static res:FontAwesomeFonts.Store}"
+                                                                Color="{StaticResource DarkIconAction}"
+                                                                Size="20" />
+                                                        </Image.Source>
+                                                    </Image>
+
+                                                    <Label
+                                                        Grid.Column="1"
+                                                        Text="Magasin"
+                                                        TextColor="{StaticResource Black}"
+                                                        VerticalOptions="CenterAndExpand"
+                                                        VerticalTextAlignment="Center"
+                                                        FontAttributes="Bold" />
+
+                                                </Grid>
+                                            </Frame>
+                                        </cc:PressableView>
+
+                             <cc:PressableView
+                                            Padding="5"
+                                         Command="{Binding SelectedZoneCommand}"
+                                        CommandParameter="{local:SystemType Int=2}">
+                                            <Frame
+                                                HasShadow="True"
+                                                CornerRadius="5"
+                                                Padding="15,20"
+                                                IsClippedToBounds="True"
+                                                BackgroundColor="{StaticResource White}">
+
+                                                <Grid
+                                                    ColumnSpacing="15"
+                                                    ColumnDefinitions="Auto,*">
+
+                                                    <Image
+                                                        VerticalOptions="Start"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        HeightRequest="20"
+                                                        WidthRequest="20"
+                                                        BackgroundColor="{StaticResource White}"
+                                                        Visual="Default">
+                                                        <Image.Source>
+                                                            <FontImageSource
+                                                                FontFamily="{x:Static res:FontAwesomeFonts.FontFamilySolid}"
+                                                                Glyph="{x:Static res:FontAwesomeFonts.Boxes}"
+                                                                Color="{StaticResource DarkIconAction}"
+                                                                Size="20" />
+                                                        </Image.Source>
+                                                    </Image>
+
+                                                    <Label
+                                                        Grid.Column="1"
+                                                        Text="Reserve"
+                                                        TextColor="{StaticResource Black}"
+                                                        VerticalOptions="CenterAndExpand"
+                                                        VerticalTextAlignment="Center"
+                                                        FontAttributes="Bold" />
+
+                                                </Grid>
+                                            </Frame>
+                                        </cc:PressableView>
+
+                        </StackLayout>
+                    </Grid>
+
+                    <Frame
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Margin="20,0"
+                        Padding="0,0"
+                        CornerRadius="5"
+                        IsClippedToBounds="True"
+                        BackgroundColor="{StaticResource White}"
+                        VerticalOptions="FillAndExpand">
+                        <Grid
+                            ColumnSpacing="10"
+                            RowSpacing="10"
+                            Padding="15,15"
+                            RowDefinitions="Auto,Auto,Auto"
+                            ColumnDefinitions="Auto,*"
+                            VerticalOptions="CenterAndExpand">
+
+                            <!--Row 1-->
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Text="Site"
+                                FontSize="14"
+                                VerticalOptions="FillAndExpand"
+                                VerticalTextAlignment="Center"
+                                LineBreakMode="TailTruncation"
+                                TextColor="{StaticResource MediumText}" />
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Text="{Binding SelectedStoreCode}"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                VerticalOptions="FillAndExpand"
+                                VerticalTextAlignment="Center"
+                                HorizontalOptions="EndAndExpand"
+                                HorizontalTextAlignment="Start"
+                                LineBreakMode="TailTruncation"
+                                TextColor="{StaticResource Primary}" />
+
+
+                            <!--Row 2-->
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Text="N° d'inventaire"
+                                FontSize="14"
+                                VerticalOptions="FillAndExpand"
+                                VerticalTextAlignment="Center"
+                                LineBreakMode="TailTruncation"
+                                TextColor="{StaticResource MediumText}" />
+
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Text="{Binding SelectedInventaryCode}"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                VerticalOptions="FillAndExpand"
+                                VerticalTextAlignment="Center"
+                                HorizontalOptions="EndAndExpand"
+                                HorizontalTextAlignment="Start"
+                                LineBreakMode="TailTruncation"
+                                TextColor="{StaticResource Primary}" />
+
+                            
+                            <!--Row 3-->
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Text="Rayon"
+                                FontSize="14"
+                                VerticalOptions="FillAndExpand"
+                                VerticalTextAlignment="Center"
+                                LineBreakMode="TailTruncation"
+                                TextColor="{StaticResource MediumText}" />
+
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Text="{Binding SelectedRow}"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                VerticalOptions="FillAndExpand"
+                                VerticalTextAlignment="Center"
+                                HorizontalOptions="EndAndExpand"
+                                HorizontalTextAlignment="Start"
+                                LineBreakMode="TailTruncation"
+                                TextColor="{StaticResource Primary}" />
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Base:BaseContent>
+</Base:BasePage>

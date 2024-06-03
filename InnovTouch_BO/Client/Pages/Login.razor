@@ -1,0 +1,128 @@
+﻿@using InnovTouch_BO.Client.Models;
+@using InnovTouch_BO.Client.Service.Bo;
+
+@inject NotificationService _notificationService
+@inject DialogService _dialogService
+@inject BlazorSpinner.SpinnerService _spinnerService
+@inject Blazored.SessionStorage.ISessionStorageService _sessionStorage
+@inject AppStateContainer _appStateContainer
+@inject UtilisateurBoService _utilisateurBoService
+
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 d-flex align-items-center justify-content-center progress-bar-animated">
+            <RadzenCard class="d-flex flex-column m-5 p-0 rz-border-radius-8 rz-shadow-4" style="width: 100%; overflow: hidden; background-color: #f5f5f5;">
+                <RadzenCard class="rz-shadow-0 rz-border-radius-8 p-4" style="text-align: center; background-color: #007bff; color: #ffffff;">
+                    <RadzenText TextStyle="TextStyle.DisplayH3" TagName="TagName.H2" class="mb-0">InnovTouch</RadzenText>
+                </RadzenCard>
+                <RadzenCard class="rz-shadow-0 p-4" style="background-color: #ffffff; color: #495057;">
+                    <RadzenTemplateForm Data=@("SimpleLogin")>
+                        <RadzenLogin LoginText="Se connecter"
+                                     UserText="Login"
+                                     PasswordText="Mot de passe"
+                                     UserRequired="Login obligatoire"
+                                     PasswordRequired="Mot de passe obligatoire"
+                                     AllowRegister="false" AllowResetPassword="false"
+                                     Login=@(args => OnLogin(args, "Simple login")) />
+                    </RadzenTemplateForm>
+                </RadzenCard>
+            </RadzenCard>
+        </div>
+    </div>
+</div>
+
+
+@*<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3 d-flex p-3">
+            <RadzenCard class="d-flex m-5 p-0 rz-border-radius-4 rz-shadow-10" Style="width: 100%; flex-direction: column; overflow: hidden; align-items: stretch;">
+                <RadzenCard class="rz-shadow-0 rz-border-radius-10 p-5" style="text-align: center; background-color:#073C4E;">
+                    <RadzenText TextStyle="TextStyle.DisplayH3" 
+                    TagName="TagName.H2" class="rz-color-white mb-0">InnovTouch</RadzenText>
+                </RadzenCard>
+                <RadzenCard class="rz-shadow-0 p-5" style="background-color: #073C4E; color: #fff;">
+                    <RadzenTemplateForm Data=@("SimpleLogin")>
+                        <RadzenLogin LoginText="Se connecter"                                  
+                                     UserText="Login"
+                                     PasswordText="Mot de passe"
+                                     UserRequired="login obligatoire"
+                                     PasswordRequired="Mot de passe obligatoire"
+                                     AllowRegister="false" AllowResetPassword="false"
+                                     Login=@(args => OnLogin(args, "Simple login"))
+                                      />
+                    </RadzenTemplateForm>
+                </RadzenCard>
+            </RadzenCard>
+        </div>
+    </div>
+</div>*@
+ 
+
+@code {
+    protected async override Task OnInitializedAsync()
+    {
+        try
+        {
+            var usrBo = await _sessionStorage.GetItemAsync<UtilisateurBoDto>("usr_bo");
+            if (usrBo != null)
+            {
+                _appStateContainer.SetValue(usrBo);
+            }
+        }
+        catch (Exception ex)
+        {
+            
+            throw;
+        }
+    }
+
+    async void OnLogin(LoginArgs args, string name)
+    {
+        try
+        {
+            _spinnerService.Show();
+            UtilisateurBoDto usrBo = new()
+                {
+                    UserName = args.Username,
+                    Password = args.Password,
+                };
+            await InvokeAsync(async () =>
+            {
+                var connexionResponse = (await _utilisateurBoService.ConnectAsync(usrBo));
+                if (!connexionResponse.Succeeded)
+                {
+                    _spinnerService.Hide();
+                    _notificationService.Notify(
+                    new NotificationMessage()
+                        {
+                            Severity = NotificationSeverity.Error,
+                            Summary = "La connexion a échoué",
+                            Detail = connexionResponse.Message,
+                            Duration = 4000
+                        });
+                    return;
+                }
+                if (connexionResponse.Data.isConnected == true)
+                {
+                    await _sessionStorage.SetItemAsync("usr_bo", connexionResponse.Data);
+                    _appStateContainer.SetValue(connexionResponse.Data);
+                    _spinnerService.Hide();
+                    return;
+                }
+                _spinnerService.Hide();
+                _notificationService.Notify(new NotificationMessage()
+                        {
+                            Severity = NotificationSeverity.Error,
+                            Summary = "La connexion a échoué",
+                            Detail = "Login ou mot de passe incorrecte",
+                            Duration = 4000
+                        });
+            });
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+    }
+}

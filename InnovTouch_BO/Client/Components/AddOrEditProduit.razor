@@ -1,0 +1,112 @@
+﻿@using InnovTouch_BO.Client.Service.Inventaires;
+@using InnovTouch_BO.Client.Service;
+@using global::Shared.DTO.InnovTouch.DTO.Inventaire;
+@inject NotificationService _notificationService
+@inject DialogService _dialogService
+@inject BlazorSpinner.SpinnerService _spinnerService
+@inject AppStateContainer _appStateContainer
+@inject InventaireService _InventaireService
+
+@inject IJSRuntime JS
+@inject RayoneService _RayoneService
+
+<RadzenTemplateForm TItem="ExportExcelModelDto"
+                    Data=@item
+                    Submit=@OnSubmit>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <RadzenText TextStyle="TextStyle.H6" Class="rz-display-flex rz-align-items-center rz-m-0">
+                    <b>Numero d'inventaire : @item.inventaire</b>
+                </RadzenText>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <RadzenText TextStyle="TextStyle.H6" Class="rz-display-flex rz-align-items-center rz-m-0">
+                    <b>Desciption d'inventaire : @item.description</b>
+                </RadzenText>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label for="NewQentity">La quantite Inventaire *</label>
+                <RadzenNumeric @bind-Value=@item.NewQentity Name="NewQentity" Class="form-control-plaintext"></RadzenNumeric>
+                <RadzenRequiredValidator Component="NewQentity" Text="La quantite Inventaire est obligatoire." />
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row pt-2">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <RadzenButton ButtonStyle="ButtonStyle.Light"
+                              Click=@(async args => _dialogService.Close())
+                              Text="Retour"
+                              Style="width: 120px" Class="me-1" />
+
+                <RadzenButton ButtonType="ButtonType.Submit"
+                              Text="Enregistrer"
+                              ButtonStyle="ButtonStyle.Primary"
+                              Icon="save"
+                              Style="margin-right: 0.5rem"
+                              Class="float-end">
+                </RadzenButton>
+            </div>
+        </div>
+    </div>
+
+</RadzenTemplateForm>
+
+@code {
+
+    [Parameter]
+    public EventCallback OnConfirm { get; set; }
+    [Parameter]
+    public ExportExcelModelDto? item { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    { }
+
+    async void OnSubmit(ExportExcelModelDto model)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(model.inventaire) &&
+                !string.IsNullOrEmpty(model.quantity))
+            {
+                _dialogService.Close();
+                var Resulte = await _InventaireService.Edit(model);
+                if (Resulte?.Succeeded == true)
+                {
+                    _spinnerService.Hide();
+                    _notificationService.Notify(new NotificationMessage
+                        {
+                            Severity = NotificationSeverity.Success,
+                            Detail = "Modification a effectuée avec success."
+                        });
+
+                    await OnConfirm.InvokeAsync();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            _notificationService.Notify(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Detail = "Echèc de Modification"
+                });
+            _dialogService.Close();
+            _spinnerService.Hide();
+        }
+    }
+}

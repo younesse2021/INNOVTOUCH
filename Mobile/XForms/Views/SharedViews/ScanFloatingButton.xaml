@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:res="clr-namespace:XForms.Resources" xmlns:cc="clr-namespace:XForms.Controls"
+    x:Class="XForms.Views.SharedViews.ScanFloatingButton">
+    <ContentView.Content>
+        <cc:CustomButton
+                HeightRequest="60"
+                WidthRequest="60"
+                Margin="0,20,20,20"
+                            BackgroundColor="{StaticResource Accent}"
+                            Padding="30"
+                            VerticalOptions="EndAndExpand"
+                            HorizontalOptions="EndAndExpand"
+                            Visual="Default"
+                            StyleCorner="Circle"
+                            Clicked="OpenScanProductPopup_Clicked">
+            <cc:CustomButton.ImageSource>
+                <FontImageSource
+                                    FontFamily="{x:Static res:FontAwesomeFonts.FontFamilySolid}"
+                                    Glyph="{x:Static res:FontAwesomeFonts.Barcode}"
+                                    Color="{StaticResource White}"
+                                    Size="30" />
+            </cc:CustomButton.ImageSource>
+        </cc:CustomButton>
+
+    </ContentView.Content>
+</ContentView>

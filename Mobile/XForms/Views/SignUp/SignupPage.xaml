@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Base:BasePage
+    xmlns:Base="clr-namespace:XForms.Views"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cc="clr-namespace:XForms.Controls"
+    NavigationPage.HasNavigationBar="False"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:res="clr-namespace:XForms.Resources" xmlns:controls="clr-namespace:XForms.Views.CustomControls"
+    ios:Page.UseSafeArea="True"
+    BackgroundColor="Black"
+     x:Class="XForms.Views.SignUp.SignupPage">
+    <Base:BasePage.Content>
+        <StackLayout BackgroundColor="#e6e6e6">
+            <Grid>
+                <StackLayout Padding="0" Margin="10,60,10,0" HorizontalOptions="FillAndExpand">
+                    <Frame  BackgroundColor="White" HeightRequest="600" HasShadow="True" Padding="0" Margin="0">
+
+                        <StackLayout >
+
+                            <StackLayout Margin="6">
+                                <Image Source="InnovTouchLogo.png" HeightRequest="70" WidthRequest="70"/>
+                            </StackLayout>
+
+                            <StackLayout Margin="10">
+                                <Label FontSize="Large" Text="INNOVTOUCH" TextColor="Black" HorizontalOptions="CenterAndExpand" FontAttributes="Bold"/>
+                            </StackLayout>
+                            
+                            <StackLayout Padding="0" Margin="15,10" >
+
+                                <StackLayout
+                                    Style="{StaticResource InputViewStyle} ">
+                                    <Label
+                                        Text="NOM D'UTILISATEUR"
+                                        Style="{StaticResource InputTitleStyle}" />
+
+                                    <cc:CustomEntry
+                                              x:Name="SingInUserNameEntry"
+                                        Text="{Binding SingInUserName}"
+                                        Placeholder="Nom d'utilisateur"
+                                        ReturnType="Next"
+                                             NextView="{x:Reference SingInPasswordEntry}"/>
+                                </StackLayout>
+
+
+                                <StackLayout
+                                    Style="{StaticResource InputViewStyle}">
+                                    <Label
+                                        Text="MOT DE PASSE"
+                                        Style="{StaticResource InputTitleStyle}" />
+
+                                    <Grid>
+                                        <cc:CustomEntry
+                                            x:Name="SingInPasswordEntry"
+                                            Text="{Binding SingInPassword}"
+                                            Placeholder="Mot de passe"
+                                            IsPassword="{Binding IsSingInPassword}"
+                                            ReturnType="Done"
+                                            ReturnCommand="{Binding SignInCommand}" />
+
+                                        <cc:CustomButton
+                                            VerticalOptions="CenterAndExpand"
+                                            HorizontalOptions="EndAndExpand"
+                                            TranslationX="-5"
+                                            HeightRequest="35"
+                                            WidthRequest="35"
+                                            BackgroundColor="{StaticResource White}"
+                                            Padding="10"
+                                            Visual="Default"
+                                            StyleCorner="Circle"
+                                            Clicked="ShowOrHide_Clicked">
+                                            <cc:CustomButton.ImageSource>
+                                                <FontImageSource
+                                                    FontFamily="{x:Static res:FontAwesomeFonts.FontFamilySolid}"
+                                                    Glyph="{Binding SingInPasswordGlyph}"
+                                                    Color="{StaticResource DarkIconAction}"
+                                                    Size="15" />
+                                            </cc:CustomButton.ImageSource>
+                                        </cc:CustomButton>
+                                        
+                                    </Grid>
+
+                                </StackLayout>
+                                <Button  Margin="0,50,0,0" Command="{Binding SignInCommand}" Text="Connect" BackgroundColor="{StaticResource Primary}" TextColor="White" CornerRadius="10" />
+                                <controls:MyButton  
+                                    Command="{Binding OpenOfflinePageCommand}"
+                                    TextColor="#fff" 
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    Grid.ColumnSpan="2"
+                                    FrameBackgroundColor="#ff3547"
+                                    Image="off.png" 
+                                    Text="hors ligne"
+                                />
+
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </Base:BasePage.Content>
+</Base:BasePage>
